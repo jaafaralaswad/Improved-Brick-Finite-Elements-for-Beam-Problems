@@ -46,16 +46,14 @@ We distinguish between the **reference configuration** $\mathcal{B}_0$ with mate
 
 ### 2. Balance Relations
 
-- In the reference configuration, the **strong form** of the equilibrium equations is:
-  \[
-  \text{Div}(\mathbf{P}) + \rho_0 (\mathbf{b} - \ddot{\mathbf{x}}) = 0 \quad \text{in } \mathcal{B}_0
-  \]
-  where:
-  - \( \mathbf{P} \) is the **first Piola-Kirchhoff stress**
-  - \( \mathbf{b} \): body force per unit reference volume
-  - \( \rho_0 \): reference density
+- In the reference configuration, the **strong form** of the equilibrium equations is:  
+  $\text{Div}(\mathbf{P}) + \rho_0 (\mathbf{b} - \ddot{\mathbf{x}}) = 0 \quad \text{in } \mathcal{B}_0$  
+  where:  
+  - $\mathbf{P}$ is the **first Piola-Kirchhoff stress**  
+  - $\mathbf{b}$ is the **body force** per unit reference volume  
+  - $\rho_0$ is the **reference density**
 
-> For static problems, inertial effects are neglected: \( \ddot{\mathbf{x}} = 0 \).
+> For static problems, inertial effects are neglected: $\ddot{\mathbf{x}} = 0$.
 
 ### 3. Constitutive Model: Saint-Venant Kirchhoff Material
 
