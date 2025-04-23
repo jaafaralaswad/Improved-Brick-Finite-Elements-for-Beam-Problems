@@ -36,17 +36,13 @@ We distinguish between the **reference configuration** $\mathcal{B}_0$ with mate
   - $\mathbf{g}_i$ are **covariant base vectors** in the current configuration  
   - $\mathbf{G}^i$ are **contravariant base vectors** in the reference configuration
 
-- The **Green-Lagrange strain tensor** is:
-  \[
-  \mathbf{E} = \frac{1}{2}(\mathbf{C} - \mathbf{I}), \quad \text{with } \mathbf{C} = \mathbf{F}^\top \mathbf{F}
-  \]
+- The **Green-Lagrange strain tensor** is given by  
+  $\mathbf{E} = \dfrac{1}{2}(\mathbf{C} - \mathbf{I})$, with $\mathbf{C} = \mathbf{F}^\top \mathbf{F}$.
 
-- In **contravariant basis** \( \{ \mathbf{G}^i \} \), the strain tensor is:
-  \[
-  \mathbf{E} = E^{ij} \, \mathbf{G}_i \otimes \mathbf{G}_j, \quad \text{with } E^{ij} = \frac{1}{2}(g^{ij} - G^{ij})
-  \]
+- In the **contravariant basis** $\{\mathbf{G}^i\}$, the strain tensor is written as  
+  $\mathbf{E} = E^{ij} \, \mathbf{G}_i \otimes \mathbf{G}_j$, with $E^{ij} = \dfrac{1}{2}(g^{ij} - G^{ij})$.
 
-> Metric tensors \( g^{ij} = \mathbf{g}_i \cdot \mathbf{g}_j \), and \( G^{ij} = \mathbf{G}_i \cdot \mathbf{G}_j \) allow transformation between covariant and contravariant bases.
+> Metric tensors $g^{ij} = \mathbf{g}_i \cdot \mathbf{g}_j$ and $G^{ij} = \mathbf{G}_i \cdot \mathbf{G}_j$ allow transformation between covariant and contravariant components.
 
 ### 2. Balance Relations
 
