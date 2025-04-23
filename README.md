@@ -17,14 +17,14 @@
 
 ## Introduction
 
+This code solves beam problems using brick elements, trating beams as 3D finite deformation problems using **Saint-Venant Kirchhoff hyperelasticity**.
 
 ## Conda Environment, Install, and Testing
 
 
 ## The Boundary Value Problem
-This code solves beam problems using brick elements, trating beams as 3D finite deformation problems using **Saint-Venant Kirchhoff hyperelasticity**.
 
-All quantities are formulated in the **reference configuration** using **convective coordinates** for better mechanical interpretation and implementation flexibility.
+In order to construct a complete BVP, we need to bring together kinematics, balance relations and material law, in addition to the boundary conditions. All quantities are formulated in the **reference configuration** using **convective coordinates** for better structural mechanical interpretation and later implementation flexibility.
 
 ### 1. Kinematics
 
