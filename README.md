@@ -29,14 +29,12 @@ This code solves a 3D nonlinear finite deformation elasticity problem in the Lag
 
 We distinguish between the **reference configuration** $\mathcal{B}_0$ with material coordinates $\mathbf{X}$, and the **current configuration** $\mathcal{B}$ with spatial coordinates $\mathbf{x}$. The displacement is given by $\mathbf{u} = \mathbf{x} - \mathbf{X}$.
 
-- The **deformation gradient** is computed via the chain rule:
-  \[
-  \mathbf{F} = \frac{\partial \mathbf{x}}{\partial \mathbf{X}} = \frac{\partial \mathbf{x}}{\partial \xi^i} \otimes \frac{\partial \xi^i}{\partial \mathbf{X}} = \mathbf{g}_i \otimes \mathbf{G}^i
-  \]
-  where:
-  - \( \xi^i \in \{\xi, \eta, \zeta\} \) are **convective (natural) coordinates**
-  - \( \mathbf{g}_i \) are **covariant base vectors** in the current configuration
-  - \( \mathbf{G}^i \) are **contravariant base vectors** in the reference configuration
+- The **deformation gradient** is computed via the chain rule:  
+  $\mathbf{F} = \dfrac{\partial \mathbf{x}}{\partial \mathbf{X}} = \dfrac{\partial \mathbf{x}}{\partial \xi^i} \otimes \dfrac{\partial \xi^i}{\partial \mathbf{X}} = \mathbf{g}_i \otimes \mathbf{G}^i$  
+  where:  
+  - $\xi^i \in \{\xi, \eta, \zeta\}$ are **convective (natural) coordinates**  
+  - $\mathbf{g}_i$ are **covariant base vectors** in the current configuration  
+  - $\mathbf{G}^i$ are **contravariant base vectors** in the reference configuration
 
 - The **Green-Lagrange strain tensor** is:
   \[
