@@ -27,10 +27,7 @@ This code solves a 3D nonlinear finite deformation elasticity problem in the Lag
 
 ### 1. Kinematics
 
-We distinguish between the **reference configuration** $\mathcal{B}_0$ with material coordinates $\mathbf{X}$, and the **current configuration** $\mathcal{B}$ with spatial coordinates $\mathbf{x}$. The displacement is:
-
-```math
-\mathbf{u} = \mathbf{x} - \mathbf{X}
+We distinguish between the **reference configuration** $\mathcal{B}_0$ with material coordinates $\mathbf{X}$, and the **current configuration** $\mathcal{B}$ with spatial coordinates $\mathbf{x}$. The displacement is given by $\mathbf{u} = \mathbf{x} - \mathbf{X}$.
 
 - The **deformation gradient** is computed via the chain rule:
   \[
