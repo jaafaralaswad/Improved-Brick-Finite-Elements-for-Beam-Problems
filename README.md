@@ -24,7 +24,7 @@ This code solves beam problems using brick elements, trating beams as 3D finite 
 
 ## The Boundary Value Problem
 
-In order to construct a complete BVP, we need to bring together kinematics, balance relations and material law, in addition to the boundary conditions. All quantities are formulated in the **reference configuration** using **convective coordinates** for better structural mechanical interpretation and later implementation flexibility.
+In order to construct a complete BVP, we need to bring together kinematics, balance relations and material law, in addition to the boundary conditions. We formulate the problem using **convective coordinates** for better structural mechanical interpretation and later implementation flexibility.
 
 ### 1. Kinematics
 
