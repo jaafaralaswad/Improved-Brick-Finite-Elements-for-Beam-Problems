@@ -76,17 +76,14 @@ We distinguish between the **reference configuration** $\mathcal{B}_0$ with mate
 
 The problem is completed with:
 
-- **Displacement boundary conditions** on \( \Gamma_u \):
-  \[
-  \mathbf{u} = \bar{\mathbf{u}} \quad \text{on } \Gamma_u
-  \]
+- **Displacement boundary conditions** on $\Gamma_u$:  
+  $\mathbf{u} = \bar{\mathbf{u}} \quad \text{on } \Gamma_u$
 
-- **Traction boundary conditions** on \( \Gamma_t \):
-  \[
-  \mathbf{P} \mathbf{N} = \bar{\mathbf{t}} \quad \text{on } \Gamma_t
-  \]
+- **Traction boundary conditions** on $\Gamma_t$:  
+  $\mathbf{P} \mathbf{N} = \bar{\mathbf{t}} \quad \text{on } \Gamma_t$
 
-  ## Locking modes
+
+## Locking modes
 
 To be written.
 
