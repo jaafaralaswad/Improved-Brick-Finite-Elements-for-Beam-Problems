@@ -71,11 +71,8 @@ $\hat{\mathbf{E}} = \left[ \overline{E}{\xi \xi},\ \overline{E}{\eta \eta},\ \ov
   $\psi_0(C) = \dfrac{1}{8} \lambda (I_C - 3)^2 + \dfrac{1}{4} \mu (I_C^2 - 2I_C - 2II_{C} + 3)$  
   where $I_C = \text{tr}(\mathbf{C})$, $II_{C} = \text{tr}(\mathbf{C}^2)$.
 
-- The **second Piola-Kirchhoff stress** can be calculated as  
-  $\mathbf{S} = \lambda \text{tr}(\mathbf{E}) \, \mathbf{I} + 2\mu \mathbf{E}$.
-
-- when projected into the **contravariant basis** the components are  
-  $S^{ij} = \lambda  \text{tr}(\mathbf{E}) G^{ij} + 2\mu \, E^{ij}$.
+- The 4th order **second Piola-Kirchhoff stress** can be calculated as  
+  $\mathbf{S} = \lambda \text{tr}(\mathbf{E}) \mathbf{I} + 2\mu \mathbf{E}$.
 
 - The **elasticity tensor** in the **contravariant basis** is given by  
   $\mathbb{C}^{ijkl} = \lambda G^{ij} G^{kl} + \mu (G^{ik} G^{jl} + G^{il} G^{jk})$.
