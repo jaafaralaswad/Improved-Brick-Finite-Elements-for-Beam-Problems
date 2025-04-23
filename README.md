@@ -64,8 +64,8 @@ $\hat{\mathbf{E}} = \left[ \overline{E}{\xi \xi},\ \overline{E}{\eta \eta},\ \ov
 ### 3. Constitutive Model: Saint-Venant Kirchhoff Material
 
 - The **Helmholtz free energy density** is defined as  
-  $\psi(C) = \dfrac{1}{8} \lambda (I_C - 3)^2 + \dfrac{1}{4} \mu (I_C^2 - 2I_C - 2I_{II} + 3)$  
-  where $I_C = \text{tr}(\mathbf{C})$, $I_{II} = \text{tr}(\mathbf{C}^2)$.
+  $\psi(C) = \dfrac{1}{8} \lambda (I_C - 3)^2 + \dfrac{1}{4} \mu (I_C^2 - 2I_C - 2II_{C} + 3)$  
+  where $I_C = \text{tr}(\mathbf{C})$, $II_{C} = \text{tr}(\mathbf{C}^2)$.
 
 - The **second Piola-Kirchhoff stress** is given by  
   $\mathbf{S} = \lambda \, \text{tr}(\mathbf{E}) \, \mathbf{I} + 2\mu \mathbf{E}$.
