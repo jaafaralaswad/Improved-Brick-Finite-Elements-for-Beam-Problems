@@ -63,20 +63,20 @@ $\hat{\mathbf{E}} = \left[ \overline{E}{\xi \xi},\ \overline{E}{\eta \eta},\ \ov
 
 ### 3. Constitutive Model: Saint-Venant Kirchhoff Material
 
-- The **Helmholtz free energy** is defined as  
+- The **Helmholtz free energy** is defined in the **reference configuration** as  
   $\psi_0(C) = \dfrac{1}{8} \lambda (I_C - 3)^2 + \dfrac{1}{4} \mu (I_C^2 - 2I_C - 2II_{C} + 3)$  
   where $I_C = \text{tr}(\mathbf{C})$, $II_{C} = \text{tr}(\mathbf{C}^2)$.
 
-- The **second Piola-Kirchhoff stress** is given by  
+- The **second Piola-Kirchhoff stress** can be calculated as  
   $\mathbf{S} = \lambda \text{tr}(\mathbf{E}) \, \mathbf{I} + 2\mu \mathbf{E}$.
 
-- In the **contravariant basis**, the components are  
+- when projected into the **contravariant basis** the components are  
   $S^{ij} = \lambda  \text{tr}(\mathbf{E}) G^{ij} + 2\mu \, E^{ij}$.
 
-- The **elasticity tensor** is defined as  
+- The **elasticity tensor** in the **contravariant basis** is given by  
   $\mathbb{C}^{ijkl} = \lambda G^{ij} G^{kl} + \mu (G^{ik} G^{jl} + G^{il} G^{jk})$.
 
-> This model is linear in strain and suitable for small-to-moderate strains. All tensors are projected in the contravariant basis $\{ \mathbf{G}^i \otimes \mathbf{G}^j \}$.
+> This model is linear in strain and suitable for small-to-moderate strains.
 
 ### 4. Boundary Conditions
 
