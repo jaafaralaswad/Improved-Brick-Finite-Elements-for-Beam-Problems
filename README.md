@@ -9,10 +9,10 @@
 
 - [Introduction](#introduction)
 - [Conda Environment, Installation, and Testing](#conda-environment-installation-and-testing)
-- [The Boundary Value Problem](#BVP)
-- [Nonlinear Finite Element Procedure](#NFEM)
+- [The Boundary Value Problem](#the-boundary-value-problem)
+- [Nonlinear Finite Element Procedure](#nonlinear-finite-element-procedure)
 - [Locking Modes](#locking-modes)
-- [Assumed Natural Strain Method](#ANS)
+- [Assumed Natural Strain Method](#assumed-natural-strain-method)
 - [Results](#results)
 
 ## Introduction
