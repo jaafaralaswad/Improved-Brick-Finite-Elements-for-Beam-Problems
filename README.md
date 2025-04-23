@@ -45,6 +45,21 @@ We distinguish between the **reference configuration** $\mathcal{B}_0$ with mate
 
 > Metric tensors $g^{ij} = \mathbf{g}_i \cdot \mathbf{g}_j$ and $G^{ij} = \mathbf{G}_i \cdot \mathbf{G}_j$ allow transformation between covariant and contravariant components.
 
+- In **Voigt notation**, we exploit the symmetry of the strain tensor to get  
+  $\mathbf{E} = E^{ij} \, \mathbf{G}_i \otimes \mathbf{G}_j$, with $E^{ij} = \dfrac{1}{2}(g^{ij} - G^{ij})$.
+
+\[
+\hat{\mathbf{E}} = 
+\begin{bmatrix}
+\overline{E}_{\xi \xi},\ 
+\overline{E}_{\eta \eta},\ 
+\overline{E}_{\zeta \zeta},\ 
+2\overline{E}_{\xi \eta},\ 
+2\overline{E}_{\eta \zeta},\ 
+2\overline{E}_{\xi \zeta}
+\end{bmatrix}^{\mathrm{T}}.
+\]
+
 ### 2. Balance Relations
 
 - In the reference configuration, the **strong form** of the equilibrium equations is:  
