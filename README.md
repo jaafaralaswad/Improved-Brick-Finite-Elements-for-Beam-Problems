@@ -22,9 +22,9 @@
 
 
 ## The Boundary Value Problem
-This code solves a 3D finite deformation elasticity problem using **Saint-Venant Kirchhoff hyperelasticity** in the **Lagrangian** description, employing **convective coordinates**.
+This code solves beam problems using brick elements, trating beams as 3D finite deformation problems using **Saint-Venant Kirchhoff hyperelasticity**.
 
-This code solves a 3D nonlinear finite deformation elasticity problem in the Lagrangian framework using **Saint-Venant Kirchhoff hyperelasticity**. All quantities are formulated in the **reference configuration** using **convective coordinates** for better mechanical interpretation and implementation flexibility.
+All quantities are formulated in the **reference configuration** using **convective coordinates** for better mechanical interpretation and implementation flexibility.
 
 ### 1. Kinematics
 
