@@ -68,10 +68,10 @@ $\hat{\mathbf{E}} = \left[ \overline{E}{\xi \xi},\ \overline{E}{\eta \eta},\ \ov
   where $I_C = \text{tr}(\mathbf{C})$, $II_{C} = \text{tr}(\mathbf{C}^2)$.
 
 - The **second Piola-Kirchhoff stress** is given by  
-  $\mathbf{S} = \lambda \, \text{tr}(\mathbf{E}) \, \mathbf{I} + 2\mu \mathbf{E}$.
+  $\mathbf{S} = \lambda \text{tr}(\mathbf{E}) \, \mathbf{I} + 2\mu \mathbf{E}$.
 
 - In the **contravariant basis**, the components are  
-  $S^{ij} = \lambda \, \text{tr}(\mathbf{E}) G^{ij} + 2\mu \, E^{ij}$.
+  $S^{ij} = \lambda  \text{tr}(\mathbf{E}) G^{ij} + 2\mu \, E^{ij}$.
 
 - The **elasticity tensor** is defined as  
   $\mathbb{C}^{ijkl} = \lambda G^{ij} G^{kl} + \mu (G^{ik} G^{jl} + G^{il} G^{jk})$.
