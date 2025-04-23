@@ -46,7 +46,7 @@ We distinguish between the **reference configuration** $\mathcal{B}_0$ with mate
 > Metric tensors $g^{ij} = \mathbf{g}_i \cdot \mathbf{g}_j$ and $G^{ij} = \mathbf{G}_i \cdot \mathbf{G}_j$ allow transformation between covariant and contravariant components.
 
 - In Voigt notation, we exploit the symmetry of the strain tensor to write it as  
-$\hat{\mathbf{E}} = \left[ \overline{E}_{\xi \xi},\ \overline{E}_{\eta \eta},\ \overline{E}_{\zeta \zeta},\ 2\overline{E}_{\xi \eta},\ 2\overline{E}_{\eta \zeta},\ 2\overline{E}_{\xi \zeta} \right]^\mathrm{T}$.
+$\hat{\mathbf{E}} = \left[ \overline{E}{\xi \xi},\ \overline{E}{\eta \eta},\ \overline{E}{\zeta \zeta},\ 2\overline{E}{\xi \eta},\ 2\overline{E}{\eta \zeta},\ 2\overline{E}{\xi \zeta} \right]^\mathrm{T}$.
 
 
 
