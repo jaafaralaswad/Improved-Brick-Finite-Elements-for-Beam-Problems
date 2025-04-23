@@ -10,6 +10,7 @@
 - [Introduction](#introduction)
 - [Conda Environment, Installation, and Testing](#conda-environment-installation-and-testing)
 - [The Boundary Value Problem](#BVP)
+- [Nonlinear Finite Element Procedure](#NFEM)
 - [Locking Modes](#locking-modes)
 - [Assumed Natural Strain Method](#ANS)
 - [Results](#results)
@@ -82,6 +83,7 @@ The problem is completed with:
 - **Traction boundary conditions** on $\Gamma_t$:  
   $\mathbf{P} \mathbf{N} = \bar{\mathbf{t}} \quad \text{on } \Gamma_t$
 
+## Nonlinear Finite Element Procedure
 
 ## Locking modes
 
