@@ -48,7 +48,7 @@ We distinguish between the **reference configuration** $\mathcal{B}_0$ with mate
 - In **Voigt notation**, we exploit the symmetry of the strain tensor to get  
   $\mathbf{E} = E^{ij} \, \mathbf{G}_i \otimes \mathbf{G}_j$, with $E^{ij} = \dfrac{1}{2}(g^{ij} - G^{ij})$.
 
-\[
+$
 \hat{\mathbf{E}} = 
 \begin{bmatrix}
 \overline{E}_{\xi \xi},\ 
@@ -58,7 +58,7 @@ We distinguish between the **reference configuration** $\mathcal{B}_0$ with mate
 2\overline{E}_{\eta \zeta},\ 
 2\overline{E}_{\xi \zeta}
 \end{bmatrix}^{\mathrm{T}}.
-\]
+$
 
 ### 2. Balance Relations
 
