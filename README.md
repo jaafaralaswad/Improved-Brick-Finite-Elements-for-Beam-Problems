@@ -52,7 +52,7 @@ $\hat{\mathbf{E}} = \left[ \overline{E}{\xi \xi},\ \overline{E}{\eta \eta},\ \ov
 
 ### 2. Balance Relations
 
-- In the reference configuration, the **strong form** of the equilibrium equations is:  
+- The **strong form** of the equilibrium equations is:  
   $\text{Div}(\mathbf{P}) + \rho_0 (\mathbf{b} - \ddot{\mathbf{x}}) = 0 \quad \text{in } \mathcal{B}_0$  
   where:  
   - $\mathbf{P}$ is the **first Piola-Kirchhoff stress**  
