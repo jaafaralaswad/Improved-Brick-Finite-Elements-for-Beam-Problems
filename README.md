@@ -103,7 +103,7 @@ Here, we adopt the **Assumed Natural Strain (ANS)** method as outlined in:
 *Caseiro, J.F., Valente, R.F., Reali, A., Kiendl, J., Auricchio, F., & Alves de Sousa, R.*  
 ["On the Assumed Natural Strain method to alleviate locking in solid-shell NURBS-based finite elements."](https://doi.org/10.1007/s00466-014-0978-4 ) *Computational Mechanics*, **53**, 1341–1353 (2014).
 
-However, we **specialize the formulation to beam problems** and we **use Lagrange polynomials instead of NURBS**.
+However, we **specialize the formulation to beam problems**, we **use Lagrange polynomials instead of NURBS**, and we do **geometriaclly nonlinear** problems.
 
 ## More Information
 
