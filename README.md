@@ -98,11 +98,12 @@ To be written.
 
 ## Assumed Natural Strain Method
 
-Here, we adopt the Assumed Natural Strain (ANS) method as described in:
+Here, we adopt the **Assumed Natural Strain (ANS)** method as outlined by  
 
-Caseiro JF, Valente RF, Reali A, Kiendl J, Auricchio F, Alves de Sousa R. On the Assumed Natural Strain method to alleviate locking in solid-shell NURBS-based finite elements. Computational Mechanics. 2014 Jun;53:1341-53. 
+*Caseiro, J.F., Valente, R.F., Reali, A., Kiendl, J., Auricchio, F., & Alves de Sousa, R.*  
+["On the Assumed Natural Strain method to alleviate locking in solid-shell NURBS-based finite elements."](https://doi.org/10.1007/s00466-013-0967-1) *Computational Mechanics*, **53**, 1341–1353 (2014).
 
-However, we specialize the formulation to beam problems and we use Lagrange polynomials instead of NURBS.
+However, we **specialize the formulation to beam problems** and we **use Lagrange polynomials instead of NURBS**.
 
 ## More Information
 
