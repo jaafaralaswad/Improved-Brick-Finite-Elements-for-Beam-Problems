@@ -227,20 +227,18 @@ $$
 \mathbf{B}_I \, \delta \mathbf{u}_I
 $$
 
-where each $\mathbf{B}_I$ matrix is:
+where the components of each $\mathbf{B}_I$ matrix is:
 
-Each $\mathbf{B}_I$ row is:
-
-The components of $\mathbf{B}_I$ are:
-
-The components of **B<sub>I</sub>** are:
-
-**B<sub>I</sub>** = [ N<sub>I,ξ</sub> g<sub>ξ</sub><sup>T</sup>, N<sub>I,η</sub> g<sub>η</sub><sup>T</sup>, N<sub>I,ζ</sub> g<sub>ζ</sub><sup>T</sup> ]<sup>T</sup>
+**B<sub>I</sub><sup>e</sup>** = [
+N<sub>I,ξ</sub> **g<sub>ξ</sub><sup>T</sup>**,
+N<sub>I,η</sub> **g<sub>η</sub><sup>T</sup>**,
+N<sub>I,ζ</sub> **g<sub>ζ</sub><sup>T</sup>**,
+N<sub>I,ξ</sub> **g<sub>η</sub><sup>T</sup>** + N<sub>I,η</sub> **g<sub>ξ</sub><sup>T</sup>**,
+N<sub>I,η</sub> **g<sub>ζ</sub><sup>T</sup>** + N<sub>I,ζ</sub> **g<sub>η</sub><sup>T</sup>**,
+N<sub>I,ξ</sub> **g<sub>ζ</sub><sup>T</sup>** + N<sub>I,ζ</sub> **g<sub>ξ</sub><sup>T</sup>**
+]<sup>T</sup>
 
 - **g<sub>ξ</sub>**, **g<sub>η</sub>**, and **g<sub>ζ</sub>** are the **covariant base vectors** in the current configuration.
-
-- $\mathbf{g}_\xi$,  $\mathbf{g}_\eta$, and $\mathbf{g}_\zeta $ are the **covariant base vectors** in the current configuration.
-
 
 
 ## Locking modes
