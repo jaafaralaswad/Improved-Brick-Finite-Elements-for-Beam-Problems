@@ -230,8 +230,7 @@ $$
 where each $\mathbf{B}_I$ matrix is:
 
 $$
-\mathbf{B}_I =
-\begin{bmatrix}
+\mathbf{B}_I = \begin{bmatrix}
 N_{I,\xi} \, \mathbf{g}_\xi^T \\
 N_{I,\eta} \, \mathbf{g}_\eta^T \\
 N_{I,\zeta} \, \mathbf{g}_\zeta^T \\
