@@ -186,8 +186,6 @@ $$
 \end{bmatrix}
 $$
 
-
-
 ## Locking modes
 
 
