@@ -177,6 +177,12 @@ However, we **adapt the formulation for beam problems**, **replace NURBS with La
 
 ## Problem Setup and Usage Instructions
 
+The problem we solve here is a cantiliever beam subjected to bending moment applied on its tip.  
+
+<p align="center">
+  <img src="README_figures/cantilever.jpg" alt="Cantilever beam" width="400"/>
+</p>
+
 
 All the user needs to do is define the parameters in the `DEFINE PROBLEM SETUP` block from `main.py`.
 
