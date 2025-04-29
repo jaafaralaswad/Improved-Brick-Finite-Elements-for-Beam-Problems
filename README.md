@@ -137,10 +137,7 @@ where:
 
 The **lienarization** of the **internal virtual work** is given by
 
-$\Delta g^{\mathrm{int}} = 
-\underbrace{\int_{\Omega_0} \Delta \mathbf{E} : \mathbb{C}(\mathbf{E}) : \delta \mathbf{E} \, \mathrm{d}V}_{\text{material part}} 
-+ 
-\underbrace{\int_{\Omega_0} \mathbf{S} : \Delta \delta \mathbf{E} \, \mathrm{d}V}_{\text{geometric part}}.$
+$\Delta g^{\mathrm{int}} = \int_{\Omega_0} \Delta \mathbf{E} : \mathbb{C}(\mathbf{E}) : \delta \mathbf{E} \, \mathrm{d}V + \int_{\Omega_0} \mathbf{S} : \Delta \delta \mathbf{E} \, \mathrm{d}V$
 
 
 ## Locking modes
