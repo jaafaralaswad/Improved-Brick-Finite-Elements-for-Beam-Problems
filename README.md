@@ -180,9 +180,7 @@ However, we **adapt the formulation for beam problems**, **replace NURBS with La
 
 All the user needs to do is define the parameters in the `DEFINE PROBLEM SETUP` block from `main.py`.
 
-<p align="center">
-  <img src="README_figures/user-parameters.jpg" alt="User parameters" width="800"/>
-</p>
+
 <p align="center">
   <img src="README_figures/user-parameters.jpg" alt="User parameters" width="800"/>
 </p>
