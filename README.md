@@ -347,6 +347,24 @@ recovering the classical 8-node brick when $n_\xi=2$.
 
 ## Locking modes
 
+**Locking** is characterized by an overestimation of the stresses and an underestimation of the displacements. It can also deteriorate the convergence behavior even when the correct results are obtained.
+
+Five types of locking are commonly distinguished:
+
+1. **Transverse shear locking**  
+   Occurs when elements cannot represent pure bending without activating non-physical transverse shear strains.  
+
+2. **Membrane locking**  
+   Occurs when elements cannot represent pure bending without activating non-physical membrane strains.  
+
+3. **Curvature-thickness locking**  
+   Also called trapezoidal locking; when linear shape functions are used in the transverse direction, bending deformation induces artificial thickness stretch due to parasitic strain terms, resulting in an increased bending stiffness.  
+
+4. **Poisson locking**  
+  Arises from an incorrect assumption of constant normal stress in the thickness direction. Linear transverse shape functions impose a linear displacement profile, leading to constant thickness strain. However, Poisson’s effect couples this with linearly varying in-plane strains, causing a mismatch that induces transverse contraction and locking when Poisson’s ratio $\nu \ne 0$.
+
+5. **Volumetric locking**  
+   Found in (nearly) incompressible materials where artificial volumetric constraints stiffen the response.
 
 
 
