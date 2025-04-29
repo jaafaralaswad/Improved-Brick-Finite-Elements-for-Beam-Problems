@@ -171,13 +171,11 @@ $$
 
 The mapping between parametric $(\xi, \eta, \zeta)$ and physical coordinates $(X_1, X_2, X_3)$ is given by the **Jacobian**:
 
-$$
-\begin{bmatrix}
+$$ \begin{bmatrix}
 \frac{\partial (\cdot)}{\partial \xi} \\
 \frac{\partial (\cdot)}{\partial \eta} \\
 \frac{\partial (\cdot)}{\partial \zeta}
-\end{bmatrix}
-=
+\end{bmatrix} =
 \mathbf{J}
 \begin{bmatrix}
 \frac{\partial (\cdot)}{\partial X_1} \\
