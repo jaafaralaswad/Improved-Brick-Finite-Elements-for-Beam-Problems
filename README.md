@@ -208,9 +208,9 @@ The parameters are:
 
 - **ngp_c**: Number of Gauss points in each cross-sectional direction. Use `ngp_c = 2` for full integration. Setting `ngp_c = 1` often produces inaccurate results.
 - **ngp_l**: Number of Gauss points in the length direction.  
-  - `ngp_l = ne_L` → full integration  
-  - `ngp_l = ne_L - 1` → reduced integration in the axial direction  
-  Note: No stabilization techniques are included in the current implementation.
+- `ngp_l = ne_L` → **full integration**  
+- `ngp_l = ne_L - 1` → **reduced integration** in the **axial direction**  
+**Note:** No **stabilization techniques** are included in the current implementation.
 
 - **ANS_membrane**: Enables/disables the Assumed Natural Strain (ANS) method to alleviate **membrane locking**.
 - **ANS_shear**: Enables/disables ANS to alleviate **transverse shear locking**.
