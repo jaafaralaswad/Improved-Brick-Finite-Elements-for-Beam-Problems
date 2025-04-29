@@ -121,10 +121,8 @@ We are working in **convective curvilinear coordinates**, so while we follow the
 
 The weak form for the problem neglecting inertial effects and body forces is given by
 
-\[
-\int_{\Omega_0} \mathbf{S} : \delta \mathbf{E} \, \mathrm{d}V 
-- \int_{\partial \Omega_0} \mathbf{t}_0 \cdot \delta \mathbf{x} \, \mathrm{d}A = 0,
-\]
+$\int_{\Omega_0} \mathbf{S} : \delta \mathbf{E} \, \mathrm{d}V - \int_{\partial \Omega_0} \mathbf{t}_0 \cdot \delta \mathbf{x} \, \mathrm{d}A = 0$
+
 
 
 ## Locking modes
