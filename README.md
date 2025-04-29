@@ -184,6 +184,21 @@ $$ \begin{bmatrix}
 \end{bmatrix}
 $$
 
+with:
+
+$$
+\mathbf{J} =
+\begin{bmatrix}
+\frac{\partial X_1}{\partial \xi} & \frac{\partial X_2}{\partial \xi} & \frac{\partial X_3}{\partial \xi} \\
+\frac{\partial X_1}{\partial \eta} & \frac{\partial X_2}{\partial \eta} & \frac{\partial X_3}{\partial \eta} \\
+\frac{\partial X_1}{\partial \zeta} & \frac{\partial X_2}{\partial \zeta} & \frac{\partial X_3}{\partial \zeta}
+\end{bmatrix}
+$$
+
+
+
+
+
 ## Locking modes
 
 
