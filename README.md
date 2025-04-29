@@ -185,4 +185,4 @@ However, we **adapt the formulation for beam problems**, **replace NURBS with La
 
 The current code serves as a platform for further development. Additional validation can be performed by solving more benchmark problems and conducting more thorough comparisons between different locking alleviation methods. **Poisson locking** and **volumetric locking** are suppressed by using a **linear material model** and setting the **Poisson's ratio** to zero.   The formulation can be augmented with methods such as the **Enhanced Assumed Strain (EAS)** technique to properly address these effects when present.
 
-The code is already ready for this, I just don't currently have the time to do it. Also, I was hoping to try implement ANS and EAS for FEniCSx but time is limited.
+The code is already structured to support these extensions. We had intended to develop these implementations within FEniCSx to establish a more comprehensive and more usable framework, but time limitations have prevented us from pursuing this effort at present.
