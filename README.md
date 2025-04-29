@@ -318,12 +318,8 @@ where:
 
 - $N_J(\eta)$ and $N_K(\zeta)$ are simple linear Lagrange polynomials:
 
-  $$
-  N_1(\eta) = \frac{1-\eta}{2}, \quad N_2(\eta) = \frac{1+\eta}{2}
-  $$
-  $$
-  N_1(\zeta) = \frac{1-\zeta}{2}, \quad N_2(\zeta) = \frac{1+\zeta}{2}
-  $$
+$N_1(\eta) = \frac{1 - \eta}{2}, \quad N_2(\eta) = \frac{1 + \eta}{2}$  
+$N_1(\zeta) = \frac{1 - \zeta}{2}, \quad N_2(\zeta) = \frac{1 + \zeta}{2}$
 
 - $N_I(\xi)$ is a higher-order Lagrange polynomial depending on $n_\xi$ nodes.
 
