@@ -124,8 +124,7 @@ The weak form for the problem neglecting inertial effects and body forces is giv
 $\int_{\Omega_0} \mathbf{S} : \delta \mathbf{E} \, \mathrm{d}V - \int_{\partial \Omega_0} \mathbf{t}_0 \cdot \delta \mathbf{x} \, \mathrm{d}A = 0$
 
   where:  
-  - $\mathbf{S}$ is **2nd Piola-Kirchhoff stress tensor**  
-  - $\mathbf{E} $ is **Green-Lagrange strain tensor**  
+  - $\mathbf{S}$ is **2nd Piola-Kirchhoff stress tensor**.
   - $\mathbf{t}_0$ is **surface traction** in the reference configuration.
 
 
