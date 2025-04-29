@@ -214,8 +214,7 @@ The parameters are:
 - **max_iterations**: Maximum number of Newton–Raphson iterations allowed per load step.
 - **tolerance**: Convergence tolerance on the **energy norm**.
 
-
-
+Other modifications, such as changing the load and boundary conditions, must be made manually within their respective functions.
 
 ## Results
 
