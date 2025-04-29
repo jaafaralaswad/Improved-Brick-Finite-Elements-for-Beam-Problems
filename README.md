@@ -23,6 +23,7 @@ However, low-order brick elements often suffer from **locking**, leading to inac
 
 [![Watch the simulation](https://img.youtube.com/vi/4MB-QnyLL30/0.jpg)](https://www.youtube.com/watch?v=4MB-QnyLL30)
 
+[![Watch the simulation](https://img.youtube.com/vi/REFapxlKZWc/0.jpg)](https://www.youtube.com/watch?v=REFapxlKZWc)
 
 
 ## Conda Environment, Install, and Testing
