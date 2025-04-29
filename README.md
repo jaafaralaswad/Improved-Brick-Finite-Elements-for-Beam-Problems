@@ -248,9 +248,7 @@ $$
 
 with:
 
-$$
-\mathbf{f}^{\mathrm{int}}_e = \int_{\Omega^*} \mathbf{B}_e^T \widehat{\mathbf{S}} J_e \, \mathrm{d}\xi \, \mathrm{d}\eta \, \mathrm{d}\zeta
-$$
+$f^{\mathrm{int},e} = \int_{\Omega^*} \mathbf{B}_e^T \, \widehat{\mathbf{S}} \, J_e \, \mathrm{d}\xi \, \mathrm{d}\eta \, \mathrm{d}\zeta$
 
 where:
 - $\widehat{\mathbf{S}}$: second Piola-Kirchhoff stress in Voigt notation
