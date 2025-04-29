@@ -5,8 +5,8 @@
 
 # Improved Brick Finite Elements for Beam Problems
 
-#Note
-If figures do not appear, please refresh the page.
+> **Note**  
+> If figures do not appear, please refresh the page.
 
 ## Table of Contents
 
