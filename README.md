@@ -177,6 +177,36 @@ However, we **adapt the formulation for beam problems**, **replace NURBS with La
 
 ## Problem Setup and Usage Instructions
 
+
+All the user needs to do is define the parameters in the `DEFINE PROBLEM SETUP` block from `main.py`. The parameters are:
+
+- **width**: Width of the beam (cross-sectional).
+- **height**: Height of the beam (cross-sectional).
+- **length**: Length of the beam (axial direction).
+- **E**: Young’s modulus.
+- **nu**: Poisson’s ratio. Set to `0.0` to eliminate Poisson and volumetric locking.
+
+- **numel**: Number of finite elements along the beam length. Each cross-section contains a single element. Increase this value to perform **h-refinement**.
+- **ne_L**: Number of nodes per element along the beam axis.  
+  - `ne_L = 2` → linear shape functions in the axial direction  
+  - `ne_L = 3` → quadratic shape functions, and so on  
+  Shape functions in the cross-section are always linear. Increase this value to perform **p-refinement**.
+
+- **ngp_c**: Number of Gauss points in each cross-sectional direction. Use `ngp_c = 2` for full integration. Setting `ngp_c = 1` often produces inaccurate results.
+- **ngp_l**: Number of Gauss points in the length direction.  
+  - `ngp_l = ne_L` → full integration  
+  - `ngp_l = ne_L - 1` → reduced integration in the axial direction  
+  Note: No stabilization techniques are included in the current implementation.
+
+- **ANS_membrane**: Enables/disables the Assumed Natural Strain (ANS) method to alleviate **membrane locking**.
+- **ANS_shear**: Enables/disables ANS to alleviate **transverse shear locking**.
+- **ANS_curvature**: Enables/disables ANS to alleviate **curvature-thickness locking**.
+
+- **n_load_steps**: Number of load steps to incrementally apply the external load.
+- **max_iterations**: Maximum number of Newton–Raphson iterations allowed per load step.
+- **tolerance**: Convergence tolerance on the **energy norm**.
+
+
 <p align="center">
   <img src="README_figures/user-parameters.jpg" alt="User parameters" width="800"/>
 </p>
