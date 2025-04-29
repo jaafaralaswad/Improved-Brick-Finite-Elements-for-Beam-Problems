@@ -229,17 +229,14 @@ $$
 
 where each $\mathbf{B}_I$ matrix is:
 
-$$
-\mathbf{B}_I =
-\begin{array}{l}
-N_{I,\xi} \cdot \mathbf{g}_\xi^T \\
-N_{I,\eta} \cdot \mathbf{g}_\eta^T \\
-N_{I,\zeta} \cdot \mathbf{g}_\zeta^T \\
-N_{I,\xi} \cdot \mathbf{g}_\eta^T + N_{I,\eta} \cdot \mathbf{g}_\xi^T \\
-N_{I,\eta} \cdot \mathbf{g}_\zeta^T + N_{I,\zeta} \cdot \mathbf{g}_\eta^T \\
-N_{I,\xi} \cdot \mathbf{g}_\zeta^T + N_{I,\zeta} \cdot \mathbf{g}_\xi^T
-\end{array}
-$$
+Each $\mathbf{B}_I$ row is:
+
+- $[B_I]_1 = N_{I,\xi} \cdot \mathbf{g}_\xi^T$
+- $[B_I]_2 = N_{I,\eta} \cdot \mathbf{g}_\eta^T$
+- $[B_I]_3 = N_{I,\zeta} \cdot \mathbf{g}_\zeta^T$
+- $[B_I]_4 = N_{I,\xi} \cdot \mathbf{g}_\eta^T + N_{I,\eta} \cdot \mathbf{g}_\xi^T$
+- $[B_I]_5 = N_{I,\eta} \cdot \mathbf{g}_\zeta^T + N_{I,\zeta} \cdot \mathbf{g}_\eta^T$
+- $[B_I]_6 = N_{I,\xi} \cdot \mathbf{g}_\zeta^T + N_{I,\zeta} \cdot \mathbf{g}_\xi^T$
 
 - $\mathbf{g}_\xi$,  $\mathbf{g}_\eta$, and $\mathbf{g}_\zeta $ are the **covariant base vectors** in the current configuration.
 
