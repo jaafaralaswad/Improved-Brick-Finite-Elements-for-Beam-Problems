@@ -141,7 +141,17 @@ $\Delta g^{\mathrm{int}} = \int_{\Omega_0} \Delta \mathbf{E} : \mathbb{C}(\mathb
 
 where:
 - $\int_{\Omega_0} \Delta \mathbf{E} : \mathbb{C}(\mathbf{E}) : \delta \mathbf{E} \mathrm{d}V$ is the material part.
-- $\int_{\Omega_0} \mathbf{S} : \Delta \delta \mathbf{E} \mathrm{d}V$ it the geometric part.
+- $\int_{\Omega_0} \mathbf{S} : \Delta \delta \mathbf{E} \mathrm{d}V$ is the geometric part.
+
+The **linearization** of the **external virtual work** is zero when the applied load is **conservative**. However, if the load is **non-conservative** (e.g., a **follower load**), the linearization is generally **non-zero** and must be taken account for. This leads to the following consequences:
+
+- The **weak form** cannot be derived from a strain energy **functional**, since a **non-conservative load** has no potential.
+- The **load must be updated** during every **Newton-Raphson iteration** to stay consistent.
+- An additional (third) **contribution to the tangent matrix** must be added — but **only for elements directly loaded**. Because of this, the tangent matrix is **no longer symmetric**.
+
+For details about the **linearization of the external virtual work**, see *Wriggers (2008), Section 4.2.5*. We follow the procedure **exactly as outlined** there.
+
+In this project, we model bending moment acting at the tip of the beam as a follower load.
 
 
 ## Locking modes
