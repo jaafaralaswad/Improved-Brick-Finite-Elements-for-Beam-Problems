@@ -17,21 +17,19 @@
 
 ## Motivation
 
-This project focuses on modeling beam structures using 3D brick finite elements, an approach that avoids many limitations of classical 1D beam theories. Traditional 1D beam theories have difficulty handling **advanced material behaviors**, cannot represent **cross-sectional deformations**, and pose challenges for **multiphysics coupling** and **contact interactions**. In contrast, so-called **solid-beam** formulations based on 3D brick elements are capable of surpassing these limitations.
-
+It is common to model slender structures using classical **beam finite elements**, which are efficient and widely used in engineering applications.
 
 <p align="center">
   <img src="README_figures/beam_elements.jpg" alt="Beam elements" width="400"/>
 </p>
 
+However, **1D beam theories** come with important limitations: they struggle to capture **advanced material behaviors**, cannot represent **cross-sectional deformations**, and pose challenges for **multiphysics coupling** and **contact interactions**.
+
+To overcome these limitations, this project adopts a **solid-beam modeling approach** using **3D brick finite elements**. These formulations offer greater flexibility and accuracy in capturing the full 3D deformation of beam-like structures.
+
 <p align="center">
   <img src="README_figures/brick_elements.jpg" alt="Solid-beam elements" width="400"/>
 </p>
-
-
-![Beam elements](README%20figures/beam_elements.jpg)
-
-![Solid-beam elements](README%20figures/brick_elements.jpg)
 
 
 However, **low-order brick elements** often suffer from **locking**, leading to inaccurate results. This project develops **brick finite element beams**, combining **Lagrange shape functions** with the **Assumed Natural Strain (ANS)** method to alleviate locking. We apply the code to a **benchmark problem** and investigate the **effects of different locking modes**. We also compare **ANS** to other approaches like **h-refinement**, **p-refinement**, and **reduced integration**.
@@ -41,6 +39,8 @@ Below are two videos comparing the analytical and finite element solutions for a
 The **first video** shows the **analytical solution**, where the beam forms a full circle under a tip moment of $M = 2π·EI / L$.
 
 The **second video** presents the **finite element simulation** using a coarse 3D mesh with four fully integrated trilinear elements. Due to **locking**, the beam fails to deform into a full circle and appears overly stiff.
+
+Click on each thumbnail below to watch the video on **YouTube**:
 
 [![Cantilever Beam Forming a Full Circle – Analytical Solution](https://img.youtube.com/vi/4MB-QnyLL30/0.jpg)](https://www.youtube.com/watch?v=4MB-QnyLL30)
 
