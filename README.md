@@ -117,7 +117,7 @@ The problem is completed with:
 
 ## Nonlinear Finite Element Procedure
 
-We are working in **convective curvilinear coordinates**, so while we follow the general framework from *Nonlinear Finite Element Methods* by **Wriggers (2008)**, some steps are **modified** to suit this coordinate system. Below, we highlight only the **key results** and **necessary adjustments**.
+We are working in **convective curvilinear coordinates**, so while we follow the general framework from *Nonlinear Finite Element Methods* by **Wriggers (2008)**, some steps are **modified** to suit this coordinate system. Below, we summarize only the **key results** and **necessary adjustments**.
 
 The weak form for the problem neglecting inertial effects and body forces is given by
 
@@ -134,6 +134,13 @@ $g(\mathbf{x}, \delta \mathbf{x}) = g^{\mathrm{int}}(\mathbf{x}, \delta \mathbf{
 where:
   - $g^{\mathrm{int}}(\mathbf{x}, \delta \mathbf{x}) := \int_{\Omega_0} \mathbf{S} : \delta \mathbf{E} \mathrm{d}V$ is the **internal virtual work**.
   - $g^{\mathrm{ext}}(\mathbf{x}, \delta \mathbf{x}) := \int_{\partial \Omega_0} \mathbf{t}_0 \cdot \delta \mathbf{x} \mathrm{d}A$ is the **external virtual work**.
+
+The **lienarization** of the **internal virtual work** is given by
+
+$\Delta g^{\mathrm{int}} = 
+\underbrace{\int_{\Omega_0} \Delta \mathbf{E} : \mathbb{C}(\mathbf{E}) : \delta \mathbf{E} \, \mathrm{d}V}_{\text{material part}} 
++ 
+\underbrace{\int_{\Omega_0} \mathbf{S} : \Delta \delta \mathbf{E} \, \mathrm{d}V}_{\text{geometric part}}.$
 
 
 ## Locking modes
