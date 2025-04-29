@@ -210,6 +210,38 @@ $$
 \end{bmatrix}
 $$
 
+The variation of the Green-Lagrange strain tensor $\delta \mathbf{E}$ in **Voigt notation**:
+
+$$
+\delta \widehat{\mathbf{E}} =
+\begin{bmatrix}
+\delta E_{\xi\xi} \\
+\delta E_{\eta\eta} \\
+\delta E_{\zeta\zeta} \\
+2\delta E_{\xi\eta} \\
+2\delta E_{\eta\zeta} \\
+2\delta E_{\xi\zeta}
+\end{bmatrix}
+\approx
+\sum_{I=1}^{n_e}
+\mathbf{B}_I \, \delta \mathbf{u}_I
+$$
+
+where each $\mathbf{B}_I$ matrix is:
+
+$$
+\mathbf{B}_I =
+\begin{bmatrix}
+N_{I,\xi} \, \mathbf{g}_\xi^T \\
+N_{I,\eta} \, \mathbf{g}_\eta^T \\
+N_{I,\zeta} \, \mathbf{g}_\zeta^T \\
+N_{I,\xi} \, \mathbf{g}_\eta^T + N_{I,\eta} \, \mathbf{g}_\xi^T \\
+N_{I,\eta} \, \mathbf{g}_\zeta^T + N_{I,\zeta} \, \mathbf{g}_\eta^T \\
+N_{I,\xi} \, \mathbf{g}_\zeta^T + N_{I,\zeta} \, \mathbf{g}_\xi^T
+\end{bmatrix}
+$$
+
+- $\mathbf{g}_\xi$, $\mathbf{g}_\eta$, $\mathbf{g}_\zeta$: covariant base vectors in current configuration.
 
 
 
