@@ -23,7 +23,7 @@ However, **low-order brick elements** often suffer from **locking**, leading to 
 
 Below are two videos comparing the analytical and finite element solutions for a cantilever beam subjected to a tip moment.
 
-The **first video** shows the **analytical solution**, where the beam forms a full circle under a tip moment of **M = 2π·EI / L**.
+The **first video** shows the **analytical solution**, where the beam forms a full circle under a tip moment of $M = 2π·EI / L$.
 
 The **second video** presents the **finite element simulation** using a coarse 3D mesh with four fully integrated trilinear elements. Due to **locking**, the beam fails to deform into a full circle and appears overly stiff.
 
