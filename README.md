@@ -309,7 +309,7 @@ A brick element is constructed using Lagrange polynomials.
 - In length direction ($\xi$), **user-defined number of nodes** ($n_\xi \geq 2$), allowing higher-order interpolation.
 
 <p align="center">
-  <img src="README_figures/beam_discretization.jpg" alt="Beam discretization" width="400"/>
+  <img src="README_figures/beam-discretization.jpg" alt="Beam discretization" width="400"/>
 </p>
 
 
