@@ -153,6 +153,10 @@ For details about the **linearization of the external virtual work**, see *Wrigg
 
 In this project, we model bending moment acting at the tip of the beam as a follower load.
 
+<p align="center">
+  <img src="README_figures/bending-traction.jpg" alt="Bending traction" width="400"/>
+</p>
+
 
 ## Locking modes
 
