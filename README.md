@@ -240,6 +240,21 @@ N<sub>I,ξ</sub> **g<sub>ζ</sub><sup>T</sup>** + N<sub>I,ζ</sub> **g<sub>�
 
 - **g<sub>ξ</sub>**, **g<sub>η</sub>**, and **g<sub>ζ</sub>** are the **covariant base vectors** in the current configuration.
 
+The internal virtual work discretized at element level:
+
+$$
+g_{\mathrm{int}} \approx \sum_{e=1}^{n_{\mathrm{el}}} \delta \mathbf{u}_e^T \mathbf{f}^{\mathrm{int}}_e
+$$
+
+with:
+
+$$
+\mathbf{f}^{\mathrm{int}}_e = \int_{\Omega^*} \mathbf{B}_e^T \widehat{\mathbf{S}} J_e \, \mathrm{d}\xi \, \mathrm{d}\eta \, \mathrm{d}\zeta
+$$
+
+where:
+- $\widehat{\mathbf{S}}$: second Piola-Kirchhoff stress in Voigt notation
+- $J_e$: determinant of the Jacobian
 
 ## Locking modes
 
