@@ -19,7 +19,7 @@
 
 This project focuses on modeling beam structures using 3D brick finite elements, an approach that avoids many limitations of classical 1D beam theories. Traditional 1D beam theories have difficulty handling **advanced material behaviors**, cannot represent **cross-sectional deformations**, and pose challenges for **multiphysics coupling** and **contact interactions**. In contrast, so-called **solid-beam** formulations based on 3D brick elements are capable of surpassing these limitations.
 
-However, low-order brick elements often suffer from **locking**, leading to inaccurate results. This project develops brick finite elements beams, combining Lagrange shape functions with the **Assumed Natural Strain (ANS)** method to alleviate locking.
+However, **low-order brick elements** often suffer from **locking**, leading to inaccurate results. This project develops **brick finite element beams**, combining **Lagrange shape functions** with the **Assumed Natural Strain (ANS)** method to alleviate locking. We apply the code to a **benchmark problem** and investigate the **effects of different locking modes**. We also compare **ANS** to other approaches like **h-refinement**, **p-refinement**, and **reduced integration**.
 
 [![Cantilever Beam Forming a Full Circle – Analytical Solution](https://img.youtube.com/vi/4MB-QnyLL30/0.jpg)](https://www.youtube.com/watch?v=4MB-QnyLL30)
 
