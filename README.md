@@ -21,6 +21,12 @@ This project focuses on modeling beam structures using 3D brick finite elements,
 
 However, **low-order brick elements** often suffer from **locking**, leading to inaccurate results. This project develops **brick finite element beams**, combining **Lagrange shape functions** with the **Assumed Natural Strain (ANS)** method to alleviate locking. We apply the code to a **benchmark problem** and investigate the **effects of different locking modes**. We also compare **ANS** to other approaches like **h-refinement**, **p-refinement**, and **reduced integration**.
 
+Below are two videos comparing the analytical and finite element solutions for a cantilever beam subjected to a tip moment.
+
+The **first video** shows the **analytical solution**, where the beam forms a full circle under a tip moment of **M = 2π·EI / L**.
+
+The **second video** presents the **finite element simulation** using a coarse 3D mesh with four fully integrated trilinear elements. Due to **locking**, the beam fails to deform into a full circle and appears overly stiff.
+
 [![Cantilever Beam Forming a Full Circle – Analytical Solution](https://img.youtube.com/vi/4MB-QnyLL30/0.jpg)](https://www.youtube.com/watch?v=4MB-QnyLL30)
 
 [![Beam Fails to Curve Fully – FEM with Locking (4 Elements, Full Integration)](https://img.youtube.com/vi/REFapxlKZWc/0.jpg)](https://www.youtube.com/watch?v=REFapxlKZWc)
