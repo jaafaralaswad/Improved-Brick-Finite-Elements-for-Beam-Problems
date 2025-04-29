@@ -14,6 +14,7 @@
 - [Locking Modes](#locking-modes)
 - [Assumed Natural Strain Method](#assumed-natural-strain-method)
 - [Results](#results)
+- [More Information](#more-information)
 
 ## Motivation
 
@@ -129,6 +130,10 @@ Here, we adopt the **Assumed Natural Strain (ANS)** method as outlined in:
 ["On the Assumed Natural Strain method to alleviate locking in solid-shell NURBS-based finite elements."](https://doi.org/10.1007/s00466-014-0978-4 ) *Computational Mechanics*, **53**, 1341–1353 (2014).
 
 However, we **adapt the formulation for beam problems**, **replace NURBS with Lagrange polynomials**, and **extend it to geometrically nonlinear analyses**.
+
+
+
+## Results
 
 
 ## More Information
