@@ -177,7 +177,7 @@ However, we **adapt the formulation for beam problems**, **replace NURBS with La
 
 ## Problem Setup and Usage Instructions
 
-The problem we solve here is a **cantiliever beam** subjected to **bending moment applied at its tip**.  
+The problem we solve here is a rectangular **cantiliever beam** subjected to **bending moment applied at its tip**.  
 
 <p align="center">
   <img src="README_figures/cantilever.jpg" alt="Cantilever beam" width="400"/>
