@@ -186,33 +186,6 @@ $$
 \end{bmatrix}
 $$
 
-with:
-
-$$
-\mathbf{J} =
-\begin{bmatrix}
-\frac{\partial X_1}{\partial \xi} & \frac{\partial X_2}{\partial \xi} & \frac{\partial X_3}{\partial \xi} \\
-\frac{\partial X_1}{\partial \eta} & \frac{\partial X_2}{\partial \eta} & \frac{\partial X_3}{\partial \eta} \\
-\frac{\partial X_1}{\partial \zeta} & \frac{\partial X_2}{\partial \zeta} & \frac{\partial X_3}{\partial \zeta}
-\end{bmatrix}
-$$
-
-Inverted:
-
-$$
-\begin{bmatrix}
-\frac{\partial N_I}{\partial X_1} \\
-\frac{\partial N_I}{\partial X_2} \\
-\frac{\partial N_I}{\partial X_3}
-\end{bmatrix}
-=
-\mathbf{J}^{-1}
-\begin{bmatrix}
-\frac{\partial N_I}{\partial \xi} \\
-\frac{\partial N_I}{\partial \eta} \\
-\frac{\partial N_I}{\partial \zeta}
-\end{bmatrix}
-$$
 
 
 ## Locking modes
