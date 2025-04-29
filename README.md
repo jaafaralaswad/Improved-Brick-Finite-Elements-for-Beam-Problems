@@ -231,12 +231,12 @@ where each $\mathbf{B}_I$ matrix is:
 
 $$
 \mathbf{B}_I = \begin{bmatrix}
-N_{I,\xi} \cdot \mathbf{g}_\xi^T \\
-N_{I,\eta} \cdot \mathbf{g}_\eta^T \\
-N_{I,\zeta} \cdot \mathbf{g}_\zeta^T \\
-N_{I,\xi} \cdot \mathbf{g}_\eta^T + N_{I,\eta} \cdot \mathbf{g}_\xi^T \\
-N_{I,\eta} \cdot \mathbf{g}_\zeta^T + N_{I,\zeta} \cdot \mathbf{g}_\eta^T \\
-N_{I,\xi} \cdot \mathbf{g}_\zeta^T + N_{I,\zeta} \cdot \mathbf{g}_\xi^T
+\left[ N_{I,\xi} \, \mathbf{g}_\xi^T \right] \\
+\left[ N_{I,\eta} \, \mathbf{g}_\eta^T \right] \\
+\left[ N_{I,\zeta} \, \mathbf{g}_\zeta^T \right] \\
+\left[ N_{I,\xi} \, \mathbf{g}_\eta^T + N_{I,\eta} \, \mathbf{g}_\xi^T \right] \\
+\left[ N_{I,\eta} \, \mathbf{g}_\zeta^T + N_{I,\zeta} \, \mathbf{g}_\eta^T \right] \\
+\left[ N_{I,\xi} \, \mathbf{g}_\zeta^T + N_{I,\zeta} \, \mathbf{g}_\xi^T \right]
 \end{bmatrix}
 $$
 
