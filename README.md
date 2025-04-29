@@ -270,47 +270,45 @@ where:
 
 The residual vector at element level is:
 
-$$
-f_I = f_{\text{int},I} - f_{\text{ext},I}
-$$
+<p align="center"><em>f</em><sub>I</sub> = <em>f</em><sub>int,I</sub> − <em>f</em><sub>ext,I</sub></p>
 
 The linearization of the internal virtual work gives two contributions:
 
-- Material part:
-  
-  $$
-  \Delta g_{\text{int}}^{\text{mat}} \approx \delta u^T \sum_{e=1}^{n_{\text{el}}} \mathbf{K}_m^e \delta u
-  $$
-  
+- **Material part:**
+
+  Δg<sub>int</sub><sup>mat</sup> ≈ δuᵀ · ∑<sub>e=1</sub><sup>n<sub>el</sub></sup> K<sub>m</sub><sup>e</sup> · δu
+
   with:
 
-  $$
-  \mathbf{K}_m^e = \int_{\Omega^*} \mathbf{B}_e^T \widehat{\mathbf{C}} \mathbf{B}_e J_e \, d\xi \, d\eta \, d\zeta
-  $$
+  K<sub>m</sub><sup>e</sup> = ∫<sub>Ω*</sub> B<sub>e</sub>ᵀ · Ĉ · B<sub>e</sub> · J<sub>e</sub> dξ dη dζ
 
-- Geometric part:
-  
-  $$
-  \Delta g_{\text{int}}^{\text{geo}} \approx \sum_{e=1}^{n_{\text{el}}} \sum_{I,J=1}^{n_e} \delta u_I^T \mathbf{K}_g^{IJ} \delta u_J
-  $$
-  
+- **Geometric part:**
+
+  Δg<sub>int</sub><sup>geo</sup> ≈ ∑<sub>e=1</sub><sup>n<sub>el</sub></sup> ∑<sub>I,J=1</sub><sup>n<sub>e</sub></sup> δu<sub>I</sub>ᵀ · K<sub>g</sub><sup>IJ</sup> · δu<sub>J</sub>
+
   with:
 
-  $$
-  \mathbf{K}_g^{IJ} = \int_{\Omega^*} \mathbf{S}_{IJ} \mathbf{I}_3 J_e \, d\xi \, d\eta \, d\zeta
-  $$
+  K<sub>g</sub><sup>IJ</sup> = ∫<sub>Ω*</sub> S<sub>IJ</sub> · I₃ · J<sub>e</sub> dξ dη dζ
 
-where $\mathbf{S}_{IJ}$ is built from derivatives of the shape functions and components of $\widehat{\mathbf{S}}$.
+Here, **S<sub>IJ</sub>** is constructed from the second Piola–Kirchhoff stress and derivatives of shape functions.
 
-Thus, the global tangent stiffness matrix is:
+- **Load stiffness matrix (optional part if external load depends on displacement):**
 
-$$
-\mathbf{K} = \sum_{e=1}^{n_{\text{el}}} \left( \mathbf{K}_m^e + \mathbf{K}_g^e \right)
-$$
+  If external loads depend on displacement (e.g., follower forces), the linearization introduces a **load stiffness matrix**:
+
+  K<sub>l</sub><sup>e</sup> — derived analogously and subtracted from the tangent matrix.
 
 ---
 
-### Higher-Order Nonlinear Brick Element
+**Total tangent stiffness matrix:**
+
+<p align="center"><strong>K</strong> = ∑<sub>e=1</sub><sup>n<sub>el</sub></sup> ( K<sub>m</sub><sup>e</sup> + K<sub>g</sub><sup>e</sup> − K<sub>l</sub><sup>e</sup> )</p>
+
+
+
+
+
+
 
 A higher-order brick element is constructed using Lagrange polynomials.
 
