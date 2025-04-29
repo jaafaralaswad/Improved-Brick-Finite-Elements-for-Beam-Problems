@@ -151,7 +151,7 @@ The **linearization** of the **external virtual work** is zero when the applied 
 
 For details about the **linearization of the external virtual work**, see *Wriggers (2008), Section 4.2.5*. We follow the procedure **exactly as outlined** there.
 
-In this project, we model **bending moment** acting at the tip of the beam as a **follower load**, where $\hat{p} = -\left(\dfrac{12M}{I}\right)\zeta, \quad \zeta \in \left[-\dfrac{h}{2}, \dfrac{h}{2}\right]$. In this project, we model **bending moment** acting at the tip of the beam as a **follower load**, where $\hat{p} = -\left(\dfrac{12M}{I}\right)\zeta, \quad \zeta \in \left[-\dfrac{h}{2}, \dfrac{h}{2}\right]$. We **apply** it as a **first Piola-Kirchhoff stress tensor**, meaning it is defined over the **undeformed area**. The load has a **constant magnitude** but its **direction changes** with deformation.
+In this project, we model **bending moment** acting at the tip of the beam as a **follower load**, where $\hat{p} = -\left(\dfrac{12M}{I}\right)\zeta, \quad \zeta \in \left[-\dfrac{h}{2}, \dfrac{h}{2}\right]$. We **apply** it as a **first Piola-Kirchhoff stress tensor**, meaning it is defined over the **undeformed area**. The load has a **constant magnitude** but its **direction changes** with deformation.
 
 
 <p align="center">
