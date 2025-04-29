@@ -127,6 +127,14 @@ $\int_{\Omega_0} \mathbf{S} : \delta \mathbf{E} \, \mathrm{d}V - \int_{\partial 
   - $\mathbf{S}$ is **2nd Piola-Kirchhoff stress tensor**.
   - $\mathbf{t}_0$ is **surface traction** in the reference configuration.
 
+One can write:
+
+$g(\mathbf{x}, \delta \mathbf{x}) = g^{\mathrm{int}}(\mathbf{x}, \delta \mathbf{x}) - g^{\mathrm{ext}}(\mathbf{x}, \delta \mathbf{x}) = 0$
+
+where:
+  - $\mathbf{S}$ is **2nd Piola-Kirchhoff stress tensor**.
+  - $\mathbf{t}_0$ is **surface traction** in the reference configuration.
+
 
 ## Locking modes
 
