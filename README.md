@@ -251,6 +251,105 @@ where:
 - $\widehat{\mathbf{S}}$: second Piola-Kirchhoff stress in Voigt notation
 - $J_e$: determinant of the Jacobian
 
+The internal virtual work discretized at element level:
+
+$$
+g_{\text{int}} \approx \sum_{e=1}^{n_{\text{el}}} \delta u_e^T f_{\text{int},e}
+$$
+
+with:
+
+$$
+f_{\text{int},e} = \int_{\Omega^*} \mathbf{B}_e^T \widehat{\mathbf{S}} J_e \, d\xi \, d\eta \, d\zeta
+$$
+
+where:
+
+- $\widehat{\mathbf{S}}$: second Piola-Kirchhoff stress in Voigt notation
+- $J_e$: determinant of the Jacobian
+
+The residual vector at element level is:
+
+$$
+f_I = f_{\text{int},I} - f_{\text{ext},I}
+$$
+
+The linearization of the internal virtual work gives two contributions:
+
+- Material part:
+  
+  $$
+  \Delta g_{\text{int}}^{\text{mat}} \approx \delta u^T \sum_{e=1}^{n_{\text{el}}} \mathbf{K}_m^e \delta u
+  $$
+  
+  with:
+
+  $$
+  \mathbf{K}_m^e = \int_{\Omega^*} \mathbf{B}_e^T \widehat{\mathbf{C}} \mathbf{B}_e J_e \, d\xi \, d\eta \, d\zeta
+  $$
+
+- Geometric part:
+  
+  $$
+  \Delta g_{\text{int}}^{\text{geo}} \approx \sum_{e=1}^{n_{\text{el}}} \sum_{I,J=1}^{n_e} \delta u_I^T \mathbf{K}_g^{IJ} \delta u_J
+  $$
+  
+  with:
+
+  $$
+  \mathbf{K}_g^{IJ} = \int_{\Omega^*} \mathbf{S}_{IJ} \mathbf{I}_3 J_e \, d\xi \, d\eta \, d\zeta
+  $$
+
+where $\mathbf{S}_{IJ}$ is built from derivatives of the shape functions and components of $\widehat{\mathbf{S}}$.
+
+Thus, the global tangent stiffness matrix is:
+
+$$
+\mathbf{K} = \sum_{e=1}^{n_{\text{el}}} \left( \mathbf{K}_m^e + \mathbf{K}_g^e \right)
+$$
+
+---
+
+### Higher-Order Nonlinear Brick Element
+
+A higher-order brick element is constructed using Lagrange polynomials.
+
+- In cross-section ($\eta$ and $\zeta$), always **2 nodes** (linear interpolation).
+- In length direction ($\xi$), **user-defined number of nodes** ($n_\xi \geq 2$), allowing higher-order interpolation.
+
+The shape functions are constructed as:
+
+$$
+N_{IJK}(\xi,\eta,\zeta) = N_I(\xi) N_J(\eta) N_K(\zeta)
+$$
+
+where:
+
+- $N_J(\eta)$ and $N_K(\zeta)$ are simple linear Lagrange polynomials:
+
+  $$
+  N_1(\eta) = \frac{1-\eta}{2}, \quad N_2(\eta) = \frac{1+\eta}{2}
+  $$
+  $$
+  N_1(\zeta) = \frac{1-\zeta}{2}, \quad N_2(\zeta) = \frac{1+\zeta}{2}
+  $$
+
+- $N_I(\xi)$ is a higher-order Lagrange polynomial depending on $n_\xi$ nodes.
+
+The derivatives of shape functions with respect to natural coordinates are obtained by:
+
+- Product rule for $\xi$, $\eta$, and $\zeta$ separately.
+- Special chain rule for the derivatives of $N_I(\xi)$.
+
+The total number of nodes per element is:
+
+$$
+n_e = 4 \times n_\xi
+$$
+
+recovering the classical 8-node brick when $n_\xi=2$.
+
+
 ## Locking modes
 
 
