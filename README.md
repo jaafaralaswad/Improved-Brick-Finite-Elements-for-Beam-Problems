@@ -21,9 +21,9 @@ This project focuses on modeling beam structures using 3D brick finite elements,
 
 However, low-order brick elements often suffer from **locking**, leading to inaccurate results. This project develops brick finite elements beams, combining Lagrange shape functions with the **Assumed Natural Strain (ANS)** method to alleviate locking.
 
-[![Watch the simulation](https://img.youtube.com/vi/4MB-QnyLL30/0.jpg)](https://www.youtube.com/watch?v=4MB-QnyLL30)
+[![Cantilever Beam Forming a Full Circle – Analytical Solution](https://img.youtube.com/vi/4MB-QnyLL30/0.jpg)](https://www.youtube.com/watch?v=4MB-QnyLL30)
 
-[![Watch the simulation](https://img.youtube.com/vi/REFapxlKZWc/0.jpg)](https://www.youtube.com/watch?v=REFapxlKZWc)
+[![Beam Fails to Curve Fully – FEM with Locking (4 Elements, Full Integration)](https://img.youtube.com/vi/REFapxlKZWc/0.jpg)](https://www.youtube.com/watch?v=REFapxlKZWc)
 
 
 ## Conda Environment, Install, and Testing
