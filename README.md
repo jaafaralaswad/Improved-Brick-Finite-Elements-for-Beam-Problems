@@ -224,7 +224,7 @@ $$
 \end{bmatrix}
 \approx
 \sum_{I=1}^{n_e}
-\mathbf{B}_I \, \delta \mathbf{u}_I
+\mathbf{B}_I \delta \mathbf{u}_I
 $$
 
 where the components of each $\mathbf{B}_I$ matrix is:
