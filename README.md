@@ -19,6 +19,16 @@
 
 This project focuses on modeling beam structures using 3D brick finite elements, an approach that avoids many limitations of classical 1D beam theories. Traditional 1D beam theories have difficulty handling **advanced material behaviors**, cannot represent **cross-sectional deformations**, and pose challenges for **multiphysics coupling** and **contact interactions**. In contrast, so-called **solid-beam** formulations based on 3D brick elements are capable of surpassing these limitations.
 
+
+<p align="center">
+  <img src="README_figures/beam_elements.jpg" alt="Beam elements" width="400"/>
+</p>
+
+<p align="center">
+  <img src="README_figures/brick_elements.jpg" alt="Solid-beam elements" width="400"/>
+</p>
+
+
 ![Beam elements](README%20figures/beam_elements.jpg)
 
 ![Solid-beam elements](README%20figures/brick_elements.jpg)
