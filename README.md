@@ -231,16 +231,16 @@ where each $\mathbf{B}_I$ matrix is:
 
 $$
 \mathbf{B}_I = \begin{bmatrix}
-\left[ N_{I,\xi} \, \mathbf{g}_\xi^T \right] \\
-\left[ N_{I,\eta} \, \mathbf{g}_\eta^T \right] \\
-\left[ N_{I,\zeta} \, \mathbf{g}_\zeta^T \right] \\
-\left[ N_{I,\xi} \, \mathbf{g}_\eta^T + N_{I,\eta} \, \mathbf{g}_\xi^T \right] \\
-\left[ N_{I,\eta} \, \mathbf{g}_\zeta^T + N_{I,\zeta} \, \mathbf{g}_\eta^T \right] \\
-\left[ N_{I,\xi} \, \mathbf{g}_\zeta^T + N_{I,\zeta} \, \mathbf{g}_\xi^T \right]
+N_{I,\xi} \cdot \mathbf{g}_\xi^T \\
+N_{I,\eta} \cdot \mathbf{g}_\eta^T \\
+N_{I,\zeta} \cdot \mathbf{g}_\zeta^T \\
+N_{I,\xi} \cdot \mathbf{g}_\eta^T + N_{I,\eta} \cdot \mathbf{g}_\xi^T \\
+N_{I,\eta} \cdot \mathbf{g}_\zeta^T + N_{I,\zeta} \cdot \mathbf{g}_\eta^T \\
+N_{I,\xi} \cdot \mathbf{g}_\zeta^T + N_{I,\zeta} \cdot \mathbf{g}_\xi^T
 \end{bmatrix}
 $$
 
-- $\mathbf{g}_\xi$, $\mathbf{g}_\eta$, $\mathbf{g}_\zeta$: covariant base vectors in current configuration.
+- $\mathbf{g}_\xi$, $\mathbf{g}_\eta$, and $\mathbf{g}_\zeta$ are the **covariant base vectors** in the current configuration.
 
 
 
