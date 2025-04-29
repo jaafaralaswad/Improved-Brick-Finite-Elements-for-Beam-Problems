@@ -195,6 +195,21 @@ $$
 \end{bmatrix}
 $$
 
+Inverted:
+
+$$
+\begin{bmatrix}
+\frac{\partial N_I}{\partial X_1} \\
+\frac{\partial N_I}{\partial X_2} \\
+\frac{\partial N_I}{\partial X_3}
+\end{bmatrix}
+= \mathbf{J}^{-1}
+\begin{bmatrix}
+\frac{\partial N_I}{\partial \xi} \\
+\frac{\partial N_I}{\partial \eta} \\
+\frac{\partial N_I}{\partial \zeta}
+\end{bmatrix}
+$$
 
 
 
