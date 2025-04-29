@@ -178,7 +178,7 @@ However, we **adapt the formulation for beam problems**, **replace NURBS with La
 ## Problem Setup and Usage Instructions
 
 <p align="center">
-  <img src="README_figures/user-parameters.jpg" alt="User parameters" width="600"/>
+  <img src="README_figures/user-parameters.jpg" alt="User parameters" width="800"/>
 </p>
 
 
