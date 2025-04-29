@@ -292,25 +292,18 @@ The linearization of the internal virtual work gives two contributions:
 
 Here, **S<sub>IJ</sub>** is constructed from the second Piola–Kirchhoff stress and derivatives of shape functions.
 
-- **Load stiffness matrix (optional part if external load depends on displacement):**
+- **Load stiffness matrix (with follower loads):**
 
-  If external loads depend on displacement (e.g., follower forces), the linearization introduces a **load stiffness matrix**:
+  when follower loads exist, the linearization introduces a **load stiffness matrix**:
 
-  K<sub>l</sub><sup>e</sup> — derived analogously and subtracted from the tangent matrix.
-
----
+  K<sub>l</sub><sup>e</sup> — derived analogously and subtracted from the tangent matrix. This affects only the elements directly loaded.
 
 **Total tangent stiffness matrix:**
 
 <p align="center"><strong>K</strong> = ∑<sub>e=1</sub><sup>n<sub>el</sub></sup> ( K<sub>m</sub><sup>e</sup> + K<sub>g</sub><sup>e</sup> − K<sub>l</sub><sup>e</sup> )</p>
 
 
-
-
-
-
-
-A higher-order brick element is constructed using Lagrange polynomials.
+A brick element is constructed using Lagrange polynomials.
 
 - In cross-section ($\eta$ and $\zeta$), always **2 nodes** (linear interpolation).
 - In length direction ($\xi$), **user-defined number of nodes** ($n_\xi \geq 2$), allowing higher-order interpolation.
