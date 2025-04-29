@@ -91,7 +91,7 @@ $\hat{\mathbf{E}} = \left[ \overline{E}{\xi \xi},\ \overline{E}{\eta \eta},\ \ov
 
 > For static problems, inertial effects are neglected: $\ddot{\mathbf{x}} = 0$.
 
-### 3. Constitutive Model: Saint-Venant Kirchhoff Material
+### 3. Material Law: Saint-Venant Kirchhoff Material
 
 - The **Helmholtz free energy** is defined in the **reference configuration** as  
   $\psi_0(C) = \dfrac{1}{8} \lambda (I_C - 3)^2 + \dfrac{1}{4} \mu (I_C^2 - 2I_C - 2II_{C} + 3)$  
@@ -116,6 +116,16 @@ The problem is completed with:
   $\mathbf{P} \mathbf{N} = \bar{\mathbf{t}} \quad \text{on } \Gamma_t$
 
 ## Nonlinear Finite Element Procedure
+
+We are working in **convective curvilinear coordinates**, so while we follow the general framework from *Nonlinear Finite Element Methods* by **Wriggers (2008)**, some steps are **modified** to suit this coordinate system. Below, we highlight only the **key results** and **necessary adjustments**.
+
+The weak form for the problem neglecting inertial effects and body forces is given by
+
+\[
+\int_{\Omega_0} \mathbf{S} : \delta \mathbf{E} \, \mathrm{d}V 
+- \int_{\partial \Omega_0} \mathbf{t}_0 \cdot \delta \mathbf{x} \, \mathrm{d}A = 0,
+\]
+
 
 ## Locking modes
 
