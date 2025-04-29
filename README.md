@@ -151,7 +151,8 @@ The **linearization** of the **external virtual work** is zero when the applied 
 
 For details about the **linearization of the external virtual work**, see *Wriggers (2008), Section 4.2.5*. We follow the procedure **exactly as outlined** there.
 
-In this project, we model bending moment acting at the tip of the beam as a follower load.
+In this project, we model bending moment acting at the tip of the beam as a follower load, where $\hat{p} = -\left(\dfrac{12M}{I}\right)\zeta, \quad \zeta \in \left[-\dfrac{h}{2}, \dfrac{h}{2}\right]$
+
 
 <p align="center">
   <img src="README_figures/bending-traction.jpg" alt="Bending traction" width="400"/>
