@@ -234,27 +234,16 @@ Each $\mathbf{B}_I$ row is:
 The components of $\mathbf{B}_I$ are:
 
 $$
-[B_I]_1 = N_{I,\xi} \, \mathbf{g}_\xi^T
-$$
-
-$$
-[B_I]_2 = N_{I,\eta} \, \mathbf{g}_\eta^T
-$$
-
-$$
-[B_I]_3 = N_{I,\zeta} \, \mathbf{g}_\zeta^T
-$$
-
-$$
-[B_I]_4 = N_{I,\xi} \, \mathbf{g}_\eta^T + N_{I,\eta} \, \mathbf{g}_\xi^T
-$$
-
-$$
-[B_I]_5 = N_{I,\eta} \, \mathbf{g}_\zeta^T + N_{I,\zeta} \, \mathbf{g}_\eta^T
-$$
-
-$$
-[B_I]_6 = N_{I,\xi} \, \mathbf{g}_\zeta^T + N_{I,\zeta} \, \mathbf{g}_\xi^T
+\mathbf{B}_I = \left[
+\begin{array}{c}
+N_{I,\xi} \, \mathbf{g}_\xi^T \\
+N_{I,\eta} \, \mathbf{g}_\eta^T \\
+N_{I,\zeta} \, \mathbf{g}_\zeta^T \\
+N_{I,\xi} \, \mathbf{g}_\eta^T + N_{I,\eta} \, \mathbf{g}_\xi^T \\
+N_{I,\eta} \, \mathbf{g}_\zeta^T + N_{I,\zeta} \, \mathbf{g}_\eta^T \\
+N_{I,\xi} \, \mathbf{g}_\zeta^T + N_{I,\zeta} \, \mathbf{g}_\xi^T
+\end{array}
+\right]
 $$
 
 - $\mathbf{g}_\xi$,  $\mathbf{g}_\eta$, and $\mathbf{g}_\zeta $ are the **covariant base vectors** in the current configuration.
