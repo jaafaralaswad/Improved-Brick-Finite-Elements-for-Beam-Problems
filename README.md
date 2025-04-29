@@ -240,7 +240,7 @@ N_{I,\xi} \cdot \mathbf{g}_\zeta^T + N_{I,\zeta} \cdot \mathbf{g}_\xi^T
 \end{bmatrix}
 $$
 
-- $\mathbf{g}_\xi$, $\mathbf{g}_\eta$, and $\mathbf{g}_\zeta$ are the **covariant base vectors** in the current configuration.
+- $\mathbf{g}_\xi$,  $\mathbf{g}_\eta$, and $\mathbf{g}_\zeta $ are the **covariant base vectors** in the current configuration.
 
 
 
