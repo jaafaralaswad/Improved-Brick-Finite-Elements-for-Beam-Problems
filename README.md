@@ -19,9 +19,9 @@
 
 This project focuses on modeling beam structures using 3D brick finite elements, an approach that avoids many limitations of classical 1D beam theories. Traditional 1D beam theories have difficulty handling **advanced material behaviors**, cannot represent **cross-sectional deformations**, and pose challenges for **multiphysics coupling** and **contact interactions**. In contrast, so-called **solid-beam** formulations based on 3D brick elements are capable of surpassing these limitations.
 
-![Beam elements](README%20figures/beam elements.jpg)
+![Beam elements](README%20figures/beam_elements.jpg)
 
-![Solid-beam elements](README%20figures/brick elements.jpg)
+![Solid-beam elements](README%20figures/brick_elements.jpg)
 
 
 However, **low-order brick elements** often suffer from **locking**, leading to inaccurate results. This project develops **brick finite element beams**, combining **Lagrange shape functions** with the **Assumed Natural Strain (ANS)** method to alleviate locking. We apply the code to a **benchmark problem** and investigate the **effects of different locking modes**. We also compare **ANS** to other approaches like **h-refinement**, **p-refinement**, and **reduced integration**.
