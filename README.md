@@ -162,8 +162,7 @@ In this project, we model **bending moment** acting at the tip of the beam as a 
 
 We discretize the domain into $n_{\text{el}}$ finite elements.
 
-**Isoparametric concept:**  
-Both the geometry and displacements are approximated using the same **shape functions** $N_I(\xi, \eta, \zeta)$:
+Within the **isoparametric concept**, both the geometry and displacements are approximated using the same **shape functions** $N_I(\xi, \eta, \zeta)$:
 
 $$
 \mathbf{u}(\xi, \eta, \zeta) \approx \sum_{I=1}^{n_e} N_I(\xi, \eta, \zeta) \mathbf{u}_I
