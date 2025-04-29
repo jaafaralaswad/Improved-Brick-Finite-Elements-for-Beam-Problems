@@ -118,7 +118,7 @@ The problem is completed with:
 
 ## Nonlinear Finite Element Procedure
 
-We are working in **convective curvilinear coordinates**, so while we follow the general framework from *Nonlinear Finite Element Methods* by **Wriggers (2008)**, some steps are **modified** to suit this coordinate system. Below, we summarize only the **key results** and **necessary adjustments**.
+We are working in **convective curvilinear coordinates**, so while we follow the general framework from *Nonlinear Finite Element Methods* by **Wriggers (2008)**, some steps are **modified** to suit this coordinate system. Below, we summarize only the **key results** and **necessary adjustments**. We assume the reader is familiar with the general procedure and only provide reminders.
 
 The weak form for the problem neglecting inertial effects and body forces is given by
 
@@ -144,9 +144,8 @@ where:
 - $\int_{\Omega_0} \Delta \mathbf{E} : \mathbb{C}(\mathbf{E}) : \delta \mathbf{E} \mathrm{d}V$ is the material part.
 - $\int_{\Omega_0} \mathbf{S} : \Delta \delta \mathbf{E} \mathrm{d}V$ is the geometric part.
 
-The **linearization** of the **external virtual work** is zero when the applied load is **conservative**. However, if the load is **non-conservative** (e.g., a **follower load**), the linearization is generally **non-zero** and must be taken account for. This leads to the following consequences:
+The **linearization** of the **external virtual work** is zero when the applied load is **conservative**. However, if the load is **non-conservative** (e.g., a **follower load**), the linearization is generally **non-zero** and must be taken account for. This leads to consequences including:
 
-- The **weak form** cannot be derived from a strain energy **functional**, since a **non-conservative load** has no potential.
 - The **load must be updated** during every **Newton-Raphson iteration** to stay consistent.
 - An additional (third) **contribution to the tangent matrix** must be added — but **only for elements directly loaded**. Because of this, the tangent matrix is **no longer symmetric**.
 
@@ -159,8 +158,6 @@ In this project, we model **bending moment** acting at the tip of the beam as a 
   <img src="README_figures/bending-traction.jpg" alt="Bending traction" width="400"/>
 </p>
 
-
-We discretize the domain into $n_{\text{el}}$ finite elements.
 
 Within the **isoparametric concept**, both the geometry and displacements are approximated using the same **shape functions** $N_I(\xi, \eta, \zeta)$:
 
