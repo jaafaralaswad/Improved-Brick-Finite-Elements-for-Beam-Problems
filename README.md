@@ -233,18 +233,11 @@ Each $\mathbf{B}_I$ row is:
 
 The components of $\mathbf{B}_I$ are:
 
-$$
-\mathbf{B}_I = \left[
-\begin{array}{c}
-N_{I,\xi} \, \mathbf{g}_\xi^T \\
-N_{I,\eta} \, \mathbf{g}_\eta^T \\
-N_{I,\zeta} \, \mathbf{g}_\zeta^T \\
-N_{I,\xi} \, \mathbf{g}_\eta^T + N_{I,\eta} \, \mathbf{g}_\xi^T \\
-N_{I,\eta} \, \mathbf{g}_\zeta^T + N_{I,\zeta} \, \mathbf{g}_\eta^T \\
-N_{I,\xi} \, \mathbf{g}_\zeta^T + N_{I,\zeta} \, \mathbf{g}_\xi^T
-\end{array}
-\right]
-$$
+The components of **B<sub>I</sub>** are:
+
+**B<sub>I</sub>** = [ N<sub>I,ξ</sub> g<sub>ξ</sub><sup>T</sup>, N<sub>I,η</sub> g<sub>η</sub><sup>T</sup>, N<sub>I,ζ</sub> g<sub>ζ</sub><sup>T</sup> ]<sup>T</sup>
+
+- **g<sub>ξ</sub>**, **g<sub>η</sub>**, and **g<sub>ζ</sub>** are the **covariant base vectors** in the current configuration.
 
 - $\mathbf{g}_\xi$,  $\mathbf{g}_\eta$, and $\mathbf{g}_\zeta $ are the **covariant base vectors** in the current configuration.
 
