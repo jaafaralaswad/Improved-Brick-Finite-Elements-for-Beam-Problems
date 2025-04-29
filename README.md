@@ -169,6 +169,50 @@ $$
 \mathbf{u}(\xi, \eta, \zeta) \approx \sum_{I=1}^{n_e} N_I(\xi, \eta, \zeta) \mathbf{u}_I
 $$
 
+The mapping between parametric $(\xi, \eta, \zeta)$ and physical coordinates $(X_1, X_2, X_3)$ is given by the **Jacobian**:
+
+$$
+\begin{bmatrix}
+\frac{\partial (\cdot)}{\partial \xi} \\
+\frac{\partial (\cdot)}{\partial \eta} \\
+\frac{\partial (\cdot)}{\partial \zeta}
+\end{bmatrix}
+=
+\mathbf{J}
+\begin{bmatrix}
+\frac{\partial (\cdot)}{\partial X_1} \\
+\frac{\partial (\cdot)}{\partial X_2} \\
+\frac{\partial (\cdot)}{\partial X_3}
+\end{bmatrix}
+$$
+
+with:
+
+$$
+\mathbf{J} =
+\begin{bmatrix}
+\frac{\partial X_1}{\partial \xi} & \frac{\partial X_2}{\partial \xi} & \frac{\partial X_3}{\partial \xi} \\
+\frac{\partial X_1}{\partial \eta} & \frac{\partial X_2}{\partial \eta} & \frac{\partial X_3}{\partial \eta} \\
+\frac{\partial X_1}{\partial \zeta} & \frac{\partial X_2}{\partial \zeta} & \frac{\partial X_3}{\partial \zeta}
+\end{bmatrix}
+$$
+
+Inverted:
+
+$$
+\begin{bmatrix}
+\frac{\partial N_I}{\partial X_1} \\
+\frac{\partial N_I}{\partial X_2} \\
+\frac{\partial N_I}{\partial X_3}
+\end{bmatrix}
+=
+\mathbf{J}^{-1}
+\begin{bmatrix}
+\frac{\partial N_I}{\partial \xi} \\
+\frac{\partial N_I}{\partial \eta} \\
+\frac{\partial N_I}{\partial \zeta}
+\end{bmatrix}
+$$
 
 
 ## Locking modes
