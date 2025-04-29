@@ -194,11 +194,11 @@ The parameters are:
 - **E**: Young’s modulus.
 - **nu**: Poisson’s ratio. Set to `0.0` to eliminate Poisson and volumetric locking.
 
-- **numel**: Number of finite elements along the beam length. Each cross-section contains a single element. Increase this value to perform **h-refinement**.
+- **numel**: Number of finite elements along the beam length. Increase this value to perform **h-refinement**. Each cross-section contains only a single element.
 - **ne_L**: Number of nodes per element along the beam axis.  
   - `ne_L = 2` → linear shape functions in the axial direction  
   - `ne_L = 3` → quadratic shape functions, and so on  
-  Shape functions in the cross-section are always linear. Increase this value to perform **p-refinement**.
+  Increase this value to perform **p-refinement**. Shape functions in the cross-sectional directions are always linear.
 
 - **ngp_c**: Number of Gauss points in each cross-sectional direction. Use `ngp_c = 2` for full integration. Setting `ngp_c = 1` often produces inaccurate results.
 - **ngp_l**: Number of Gauss points in the length direction.  
