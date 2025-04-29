@@ -19,7 +19,7 @@
 
 ## Motivation
 
-It is common to model slender structures using classical **beam finite elements**, which are efficient and widely used in engineering applications.
+It is common to model slender beams using classical **beam finite elements**, which are efficient and widely used in engineering applications.
 
 <p align="center">
   <img src="README_figures/beam_elements.jpg" alt="Beam elements" width="400"/>
