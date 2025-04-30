@@ -379,17 +379,7 @@ Here, we adopt the **Assumed Natural Strain (ANS)** method as fairly clearly out
 
 However, we **adapt the formulation for beam problems**, **replace NURBS with Lagrange polynomials**, and **extend it to geometrically nonlinear analyses**.
 
-
-
-
-
-
-
-
-
-
-
-
+For detailed derivation, [refer to ANS.pdf](documents/ANS.pdf)
 
 
 ## Problem Setup and Usage Instructions
