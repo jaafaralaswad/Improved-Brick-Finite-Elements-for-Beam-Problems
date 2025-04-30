@@ -460,11 +460,30 @@ Now, we turn on the locking alleviation technique, i.e. `ANS_membrane = True`, `
 </p>
 
 
+which is much better results.
 
+If we further increase the number of elements to 20. We get:
 
+<p align="center">
+  <img src="README_figures/numerical_example_1_simulation_3_tip_displacement_x.png" alt="Tip displacement - Example 1 - Simulation 3" width="400"/>
+</p>
 
+we shows close matching to the analytical solution.
 
+## Simulation Notes
 
+- The parameters used in our simulations are chosen to match those in the following references:
+
+  1. Frischkorn, J., & Reese, S. (2013). *A solid-beam finite element and non-linear constitutive modelling*. Computer Methods in Applied Mechanics and Engineering, 265, 195–212.
+  2. Shafqat, A., Weeger, O., & Xu, B.X. (2024). *A robust finite strain isogeometric solid-beam element*. Computer Methods in Applied Mechanics and Engineering, 426, 116993.
+
+- Although it is possible to deform the beam into a full circle by doubling the bending moment, this was not done. The goal was to maintain consistency with the parameters reported in the above papers to allow direct comparison. Achieving a full circle is feasible but may require additional elements and load increments due to mesh distortion.
+
+- All simulations exhibited **quadratic convergence**.
+
+- The analytical solution corresponds to a one-dimensional boundary value problem. It does not exactly match the three-dimensional finite element solution, since the 3D formulation inherently includes coupling with cross-sectional directions—effects that are neglected in the 1D theory.
+
+- The numerical results are in good agreement with those of Frischkorn & Reese (2013) and Shafqat et al. (2024), despite differences in the underlying solid-beam finite element formulations. However, the referenced papers provide only plotted curves, so a **quantitative** comparison of displacements is not possible.
 
 
 ## Future Work
