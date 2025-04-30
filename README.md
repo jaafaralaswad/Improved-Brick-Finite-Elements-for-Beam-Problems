@@ -470,7 +470,7 @@ If we further increase the number of elements to 20. We get:
 
 we shows close matching to the analytical solution.
 
-## Simulation Notes
+**Simulation Notes**
 
 - The parameters used in our simulations are chosen to match those in the following references:
 
@@ -483,7 +483,7 @@ we shows close matching to the analytical solution.
 
 - The analytical solution corresponds to a one-dimensional boundary value problem. It does not exactly match the three-dimensional finite element solution, since the 3D formulation inherently includes coupling with cross-sectional directions—effects that are neglected in the 1D theory.
 
-- The numerical results are in good agreement with those of Frischkorn & Reese (2013) and Shafqat et al. (2024), despite differences in the underlying solid-beam finite element formulations. However, the referenced papers provide only plotted curves, so a **quantitative** comparison of displacements is not possible.
+- The numerical results are in very good agreement with those of Frischkorn & Reese (2013) and Shafqat et al. (2024), despite differences in the underlying solid-beam finite element formulations. However, the referenced papers provide only plotted curves, so a **quantitative** comparison of displacements is not possible.
 
 
 ## Future Work
