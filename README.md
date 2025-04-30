@@ -18,7 +18,6 @@
 - [Assumed Natural Strain Method](#assumed-natural-strain-method)
 - [Code Usage Instructions](#code-usage-instructions)
 - [Numerical Example 1](#numerical-example-1)
-- [Numerical Example 2](#numerical-example-2)
 - [Future Work](#future-work)
 
 ## Motivation
@@ -434,9 +433,6 @@ The problem we solve here is a rectangular **cantiliever beam** subjected to **b
 
 We set the following 
 
-
-
-## Numerical Example 2
 
 
 
