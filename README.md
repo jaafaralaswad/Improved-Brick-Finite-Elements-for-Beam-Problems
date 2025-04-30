@@ -431,7 +431,22 @@ The problem we solve here is a rectangular **cantiliever beam** subjected to **b
   <img src="README_figures/cantilever.jpg" alt="Cantilever beam" width="400"/>
 </p>
 
-We simulate the cantilever beam using the following parameters: `width = 1.0`, `height = 0.5`, `length = 20.0`, Young’s modulus `E = 1.2e7`, Poisson’s ratio `ν = 0.0`; discretized with 10 elements along the length and `ne_L = 2` nodes per element (linear shape functions). Gauss integration uses `ngp_c = 2` in each cross-sectional direction and `ngp_l = 2` axially. Locking alleviation techniques are disabled: `ANS_membrane = False`, `ANS_shear = False`, `ANS_curvature = False`. The solution proceeds over 10 load steps with a maximum of 20 Newton-Raphson iterations per step and a convergence tolerance of `1e-15`.
+We simulate the cantilever beam using the following parameters: `width = 1.0`, `height = 0.5`, `length = 20.0`, `E = 1.2e7`, `ν = 0.0`; discretized with 10 elements along the length and `ne_L = 2` nodes per element (linear shape functions axially). Gauss integration uses `ngp_c = 2` in each cross-sectional direction and `ngp_l = 2` axially (i.e. full integration). Locking alleviation techniques are disabled: `ANS_membrane = False`, `ANS_shear = False`, `ANS_curvature = False`. The solution proceeds over 10 load steps with a maximum of 20 Newton-Raphson iterations per step and a convergence tolerance of `1e-15`.
+
+<p align="center">
+  <img src="README_figures/numerical_example_1_undeformed.png" alt="Undeformed configuration - Example 1" width="400"/>
+</p>
+
+The results show obvious locking, as shown in the following figures:
+
+<p align="center">
+  <img src="README_figures/numerical_example_1_deformed_1.png" alt="Deformed configuration - Example 1 - Simulation 1" width="400"/>
+</p>
+
+<p align="center">
+  <img src="README_figures/numerical_example_1_simulation_1_tip_displacement_x.png" alt="Tip displacement - Example 1 - Simulation 1" width="400"/>
+</p>
+
 
 
 
