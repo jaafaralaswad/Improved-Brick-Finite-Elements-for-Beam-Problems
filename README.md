@@ -18,7 +18,6 @@
 - [Assumed Natural Strain Method](#assumed-natural-strain-method)
 - [Code Usage Instructions](#code-usage-instructions)
 - [Numerical Example 1](#numerical-example-1)
-- [Numerical Example 2](#numerical-example-2)
 - [Future Work](#future-work)
 
 ## Motivation
@@ -432,11 +431,9 @@ The problem we solve here is a rectangular **cantiliever beam** subjected to **b
   <img src="README_figures/cantilever.jpg" alt="Cantilever beam" width="400"/>
 </p>
 
-We set the following 
+We simulate the cantilever beam using the following parameters: `width = 1.0`, `height = 0.5`, `length = 20.0`, Young’s modulus `E = 1.2e7`, Poisson’s ratio `ν = 0.0`; discretized with 10 elements along the length and `ne_L = 2` nodes per element (linear shape functions). Gauss integration uses `ngp_c = 2` in each cross-sectional direction and `ngp_l = 2` axially. Locking alleviation techniques are disabled: `ANS_membrane = False`, `ANS_shear = False`, `ANS_curvature = False`. The solution proceeds over 10 load steps with a maximum of 20 Newton-Raphson iterations per step and a convergence tolerance of `1e-15`.
 
 
-
-## Numerical Example 2
 
 
 
