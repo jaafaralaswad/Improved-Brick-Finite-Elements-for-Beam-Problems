@@ -509,9 +509,6 @@ It is clear from the figure that transverse shear locking is more dominant in th
 
 > The above plot is created using automation_1.py.
 
-**Comparison of alleviation methods**
-
-
 
 ## Further Validation
 
