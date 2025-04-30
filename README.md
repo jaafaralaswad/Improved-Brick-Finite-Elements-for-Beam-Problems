@@ -433,7 +433,7 @@ The parameters are:
 Other modifications, such as changing the load and boundary conditions, must be made manually within their respective functions.
 
 
-## Numerical Example 1
+## Numerical Example
 
 The problem we solve here is a rectangular **cantiliever beam** subjected to **bending moment applied at its tip**.  
 
@@ -507,7 +507,7 @@ Now, we compare how influencial are the different locking modes for this problem
 
 It is clear from the figure that transverse shear locking is more dominant in this problem.
 
-The above plot is created using [`automation_1.py`](./automation_1.py).
+> The above plot is created using automation_1.py.
 
 **Comparison of alleviation methods**
 
