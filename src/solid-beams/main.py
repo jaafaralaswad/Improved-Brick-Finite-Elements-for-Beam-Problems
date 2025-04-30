@@ -21,8 +21,8 @@ figures_dir.mkdir(exist_ok=True)
 
 # Geometry of the rectangular cantilever beam
 width = 1.0     # Beam width (cross-sectional)
-height = 1.0    # Beam height (cross-sectional)
-length = 200.0   # Beam length (axial direction)
+height = 0.5    # Beam height (cross-sectional)
+length = 20.0   # Beam length (axial direction)
 
 # Material properties (Saint Venant–Kirchhoff model)
 E = 1.2e7        # Young's modulus
@@ -99,7 +99,6 @@ u, displacements_all = newton_raphson_solver(
     ANS_shear, ANS_curvature
 )
 
-
 # ==============================
 #                POST-PROCESSING
 # ==============================
@@ -111,7 +110,7 @@ if plot_displacement:
         compute_tip_displacement(u_i, coords, connect, shape_functions_3D, ne_L)
         for u_i in displacements_all
     ]
-
+    print(tip_displacements)
     # Plot X displacement curve and save it
     plot_tip_displacement_x(tip_displacements, length, save_path=figures_dir / "tip_displacement_x.png")
 

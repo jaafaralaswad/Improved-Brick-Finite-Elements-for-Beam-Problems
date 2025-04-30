@@ -395,7 +395,7 @@ def element_3D_nonlinear(ne, ne_L, nx0_e, ue, lambda_, mu, ngp_c, ngp_l, ANS_mem
                 if ANS_membrane or ANS_shear:
 
                     ntying1 = ne_L - 1
-                    xibar1 = gauss(ntying1)
+                    xibar1 = np.array(gauss(ntying1)).flatten()
                     Nmat1 = lagrange_shape_1D(ntying1, xi[k1])
 
                     M1 = np.zeros((ntying1, ntying1))
@@ -506,12 +506,10 @@ def element_3D_nonlinear(ne, ne_L, nx0_e, ue, lambda_, mu, ngp_c, ngp_l, ANS_mem
                     Be[2, :] = Row3
 
 
-
-
                 # Internal force
                 fe += Be.T @ Svgt * detJ * wgp_l[k1] * wgp_c[k2] * wgp_c[k3]
 
-                # Material stiffness matrix (C)
+                # Material stiffness matrix
                 matC = np.zeros((6, 6))
                 for I in range(3):
                     for J in range(I, 3):

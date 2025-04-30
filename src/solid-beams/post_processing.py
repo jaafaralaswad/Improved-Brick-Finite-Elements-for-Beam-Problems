@@ -49,20 +49,33 @@ def plot_tip_displacement_x(tip_displacements, length, save_path="tip_displaceme
     disp_array = np.array(tip_displacements)
     x_disp = np.abs(disp_array[:, 0])  # Absolute value of x displacement
 
+    # Add zero at the beginning
+    x_disp = np.insert(x_disp, 0, 0.0)
+
     # Normalize by beam length
     x_disp_normalized = x_disp / length
 
     n_steps = len(x_disp_normalized)
-    k_normalized = np.linspace(0, 0.5, n_steps)  # Go from 0 to 0.5
+    k_normalized = np.linspace(0, 0.5, n_steps)  # Normalized load
 
+    # Hardcoded analytical solution (11 points)
+    analytical = np.array([
+        0, 0.016368357, 0.064510716, 0.141606309, 0.243173271,
+        0.363380228, 0.495448848, 0.632116989, 0.766127679,
+        0.890707595, 1
+    ])
+    analytical_k = np.linspace(0, 0.5, len(analytical))
+
+    # Plot
     plt.figure(figsize=(6, 4))
     plt.plot(k_normalized, x_disp_normalized, marker='o', linestyle='-', color='blue', label='Numerical Solution')
+    plt.plot(analytical_k, analytical, linestyle='-', color='black', label='Analytical Solution')
     plt.xlabel(r"$k = \dfrac{ML}{2\pi EI}$", fontsize=12)
     plt.ylabel(r"$\dfrac{u}{L}$", fontsize=12)
     plt.grid(True)
     plt.legend()
     plt.xlim(0, 0.5)
-    plt.ylim(0, 1.2)  # You can adjust this based on your actual values
+    plt.ylim(0, 1.2)
     plt.tight_layout()
     plt.savefig(save_path, dpi=300)
     plt.show()
