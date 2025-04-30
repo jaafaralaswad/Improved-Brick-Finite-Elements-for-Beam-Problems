@@ -10,15 +10,25 @@
 
 ## Table of Contents
 
-- [Introduction](#introduction)
+- [ME700 Skills](#me700-skills)
+- [Motivation](#motivation)
 - [Conda Environment, Installation, and Testing](#conda-environment-installation-and-testing)
 - [The Boundary Value Problem](#the-boundary-value-problem)
 - [Nonlinear Finite Element Procedure](#nonlinear-finite-element-procedure)
 - [Locking Modes](#locking-modes)
 - [Assumed Natural Strain Method](#assumed-natural-strain-method)
 - [Code Usage Instructions](#code-usage-instructions)
-- [Numerical Example 1](#numerical-example-1)
+- [Numerical Example](#numerical-example)
+- [Further Validation](#further-validation)
 - [Future Work](#future-work)
+
+## ME700 Skills
+I applied the following skills which I learned from the course:
+- Python programming.
+- Good programming practices.
+- Git and GitHub.
+- Markdown documentation.
+- Code automation.
 
 ## Motivation
 
@@ -468,7 +478,7 @@ If we further increase the number of elements to 20. We get:
   <img src="README_figures/numerical_example_1_simulation_3_tip_displacement_x.png" alt="Tip displacement - Example 1 - Simulation 3" width="400"/>
 </p>
 
-we shows close matching to the analytical solution.
+which shows close matching to the analytical solution.
 
 **Simulation Notes**
 
@@ -477,13 +487,33 @@ we shows close matching to the analytical solution.
   1. Frischkorn, J., & Reese, S. (2013). *A solid-beam finite element and non-linear constitutive modelling*. Computer Methods in Applied Mechanics and Engineering, 265, 195–212.
   2. Shafqat, A., Weeger, O., & Xu, B.X. (2024). *A robust finite strain isogeometric solid-beam element*. Computer Methods in Applied Mechanics and Engineering, 426, 116993.
 
-- Although it is possible to deform the beam into a full circle by doubling the bending moment, this was not done. The goal was to maintain consistency with the parameters reported in the above papers to allow direct comparison. Achieving a full circle is feasible but may require additional elements and load increments due to mesh distortion.
+- Although it is possible to deform the beam into a full circle by doubling the bending moment, this was not done. The goal was to maintain consistency with the parameters reported in the above papers to allow direct comparison. Achieving a full circle is defnitely feasible but may require additional elements and load increments due to mesh distortion. In both papers, it is reported that the elements are sensitive to distorion.
 
 - All simulations exhibited **quadratic convergence**.
 
 - The analytical solution corresponds to a one-dimensional boundary value problem. It does not exactly match the three-dimensional finite element solution, since the 3D formulation inherently includes coupling with cross-sectional directions—effects that are neglected in the 1D theory.
 
 - The numerical results are in very good agreement with those of Frischkorn & Reese (2013) and Shafqat et al. (2024), despite differences in the underlying solid-beam finite element formulations. However, the referenced papers provide only plotted curves, so a **quantitative** comparison of displacements is not possible.
+
+**Comparison of locking modes**
+
+Now, we compare how influencial are the different locking modes for this problem. We simulate the cantilever beam using the following parameters: `width = 1.0`, `height = 0.5`, `length = 20.0`, `E = 1.2e7`, `ν = 0.0`; discretized with 20 elements along the length and `ne_L = 2` nodes per element (linear shape functions axially). Gauss integration uses `ngp_c = 2` in each cross-sectional direction and `ngp_l = 2` axially (i.e. full integration). The solution proceeds over 10 load steps with a maximum of 20 Newton-Raphson iterations per step and a convergence tolerance of `1e-15`. We apply a bending moment equal to $\pi EI/L$, which should bend the beam into half a circle according to the analytical solution. To investigate which locking mode is more dominant, we plot three curves: in each, we enable one of `ANS_membrane`, `ANS_shear`, or `ANS_curvature`, while keeping the other two disabled.
+
+
+<p align="center">
+  <img src="README_figures/locking-modes-influence.png" alt="locking-modes-influence" width="400"/>
+</p>
+
+
+It is clear from the figure that transverse shear locking is more dominant in this problem.
+
+The above plot is created using automation_1.py.
+
+**Comparison of alleviation methods**
+
+
+
+## Further Validation
 
 
 ## Future Work
