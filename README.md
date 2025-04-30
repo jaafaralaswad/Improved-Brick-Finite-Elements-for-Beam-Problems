@@ -16,8 +16,9 @@
 - [Nonlinear Finite Element Procedure](#nonlinear-finite-element-procedure)
 - [Locking Modes](#locking-modes)
 - [Assumed Natural Strain Method](#assumed-natural-strain-method)
-- [Problem Setup and Usage Instructions](#problem-setup-and-usage-instructions)
-- [Results](#results)
+- [Code Usage Instructions](#code-usage-instructions)
+- [Numerical Example 1](#numerical-example-1)
+- [Numerical Example 2](#numerical-example-2)
 - [Future Work](#future-work)
 
 ## Motivation
@@ -382,14 +383,7 @@ However, we **adapt the formulation for beam problems**, **replace NURBS with La
 For detailed derivation, [refer to ANS.pdf](documents/ANS.pdf)
 
 
-## Problem Setup and Usage Instructions
-
-The problem we solve here is a rectangular **cantiliever beam** subjected to **bending moment applied at its tip**.  
-
-<p align="center">
-  <img src="README_figures/cantilever.jpg" alt="Cantilever beam" width="400"/>
-</p>
-
+## Code Usage Instructions
 
 All the user needs to do is define the parameters in the `DEFINE PROBLEM SETUP` block from `main.py`.
 
@@ -429,12 +423,26 @@ The parameters are:
 
 Other modifications, such as changing the load and boundary conditions, must be made manually within their respective functions.
 
-## Results
+
+## Numerical Example 1
+
+The problem we solve here is a rectangular **cantiliever beam** subjected to **bending moment applied at its tip**.  
+
+<p align="center">
+  <img src="README_figures/cantilever.jpg" alt="Cantilever beam" width="400"/>
+</p>
+
+We set the following 
+
+
+
+## Numerical Example 2
+
 
 
 ## Future Work
 
-The current code serves as a platform for further development. Additional validation can be performed by solving more benchmark problems and conducting more thorough comparisons between different locking alleviation methods. **Poisson locking** and **volumetric locking** are suppressed by using a **linear material model** and setting the **Poisson's ratio** to zero.   The formulation can be augmented with methods such as the **Enhanced Assumed Strain (EAS)** technique to properly address these effects when present.
+The current code serves as a versatile platform for further development. Additional validation can be performed by solving more benchmark problems and conducting more thorough comparisons between different locking alleviation methods. **Poisson locking** and **volumetric locking** are suppressed by using a **linear material model** and setting the **Poisson's ratio** to zero.   The formulation can be augmented with methods such as the **Enhanced Assumed Strain (EAS)** technique to properly address these effects when present.
 
 The code is already structured to support these **extensions**. We had intended to develop these **implementations** within **FEniCSx** to establish a more **comprehensive** and more **usable** **framework** for beam problems, especially that, to the best of our knowledge, these important techniques are not yet available there, and in general, they lack beginner-friendly documentation, despite their significance for addressing locking phenomena in finite element simulations. However, **time limitations** have prevented us from pursuing this effort at present.
 
