@@ -501,13 +501,13 @@ Now, we compare how influencial are the different locking modes for this problem
 
 
 <p align="center">
-  <img src="README_figures/locking-modes-influence.png" alt="locking-modes-influence" width="400"/>
+  <img src="README_figures/locking-modes-influence.png" alt="locking-modes-influence" width="600"/>
 </p>
 
 
 It is clear from the figure that transverse shear locking is more dominant in this problem.
 
-The above plot is created using automation_1.py.
+The above plot is created using [`automation_1.py`](./automation_1.py).
 
 **Comparison of alleviation methods**
 
