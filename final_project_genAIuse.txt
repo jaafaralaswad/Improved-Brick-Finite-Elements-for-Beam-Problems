@@ -1,7 +1,9 @@
-- ChatGPT was used to get information about python syntax, output format and debugging.
+- ChatGPT was used to get information about python syntax and debugging.
 - ChatGPT was used to get information about LaTeX syntax.
+- ChatGPT was used to get information about MarkDown syntax and to format some of the text.
 - ChatGPT was used to optimize convoluted nested loops.
 - ChatGPT was used to clean and comment parts of the code.
+- ChatGPT was used to create automation files.
 
 
 Notes:

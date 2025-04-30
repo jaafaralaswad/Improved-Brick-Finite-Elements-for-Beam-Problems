@@ -37,9 +37,9 @@ ngp_c = 2       # Number of Gauss points in each cross-sectional direction
 ngp_l = ne_L    # Number of Gauss points in axial direction (≤ 10)
 
 # Locking alleviation techniques (Assumed Natural Strain method)
-ANS_membrane = True    # Alleviate membrane locking
-ANS_shear = True       # Alleviate transverse shear locking
-ANS_curvature = True   # Alleviate curvature-thickness locking
+ANS_membrane = False    # Alleviate membrane locking
+ANS_shear = False       # Alleviate transverse shear locking
+ANS_curvature = False   # Alleviate curvature-thickness locking
 
 # Incremental loading and Newton-Raphson settings
 n_load_steps = 10       # Number of load steps
