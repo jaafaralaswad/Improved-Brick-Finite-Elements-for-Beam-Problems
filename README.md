@@ -5,6 +5,9 @@
 
 # Improved Brick Finite Elements for Beam Problems
 
+> **Note**  
+> If figures do not appear, please refresh the page.
+
 ## Table of Contents
 
 - [Introduction](#introduction)
@@ -15,7 +18,7 @@
 - [Assumed Natural Strain Method](#assumed-natural-strain-method)
 - [Problem Setup and Usage Instructions](#problem-setup-and-usage-instructions)
 - [Results](#results)
-- [More Information](#more-information)
+- [Future Work](#future-work)
 
 ## Motivation
 
@@ -308,6 +311,11 @@ A brick element is constructed using Lagrange polynomials.
 - In cross-section ($\eta$ and $\zeta$), always **2 nodes** (linear interpolation).
 - In length direction ($\xi$), **user-defined number of nodes** ($n_\xi \geq 2$), allowing higher-order interpolation.
 
+<p align="center">
+  <img src="README_figures/beam-discretization.jpg" alt="Beam discretization" width="600"/>
+</p>
+
+
 The shape functions are constructed as:
 
 $$
@@ -339,17 +347,50 @@ recovering the classical 8-node brick when $n_\xi=2$.
 
 ## Locking modes
 
+**Locking** is characterized by an overestimation of the stresses and an underestimation of the displacements. It can also deteriorate the convergence behavior even when the correct results are obtained.
+
+Five types of locking are commonly distinguished:
+
+1. **Transverse shear locking**  
+   Occurs when elements cannot represent pure bending without activating non-physical transverse shear strains.  
+
+2. **Membrane locking**  
+   Occurs when elements cannot represent pure bending without activating non-physical membrane strains.  
+
+3. **Curvature-thickness locking**  
+   Also called trapezoidal locking; when linear shape functions are used in the transverse direction, bending deformation induces artificial thickness stretch due to parasitic strain terms, resulting in an increased bending stiffness.  
+
+4. **Poisson locking**  
+  Arises from an incorrect assumption of constant normal stress in the thickness direction. Linear transverse shape functions impose a linear displacement profile, leading to constant thickness strain. However, Poisson’s effect couples this with linearly varying in-plane strains, causing a mismatch that induces transverse contraction and locking when Poisson’s ratio $\nu \ne 0$.
+
+5. **Volumetric locking**  
+   Found in (nearly) incompressible materials where artificial volumetric constraints stiffen the response.
 
 
 
 ## Assumed Natural Strain Method
 
-Here, we adopt the **Assumed Natural Strain (ANS)** method as outlined in:  
+Using the **Assumed Natural Strain (ANS)** method, we can alleviate **transverse shear**, **membrane**, and **curvature-thickness locking**. To prevent triggering **Poisson** and **volumetric locking**, we adopt a **linear material model** with **Poisson’s ratio set to zero**.
+
+Here, we adopt the **Assumed Natural Strain (ANS)** method as fairly clearly outlined in:  
 
 *Caseiro, J.F., Valente, R.F., Reali, A., Kiendl, J., Auricchio, F., & Alves de Sousa, R.*  
 ["On the Assumed Natural Strain method to alleviate locking in solid-shell NURBS-based finite elements."](https://doi.org/10.1007/s00466-014-0978-4 ) *Computational Mechanics*, **53**, 1341–1353 (2014).
 
 However, we **adapt the formulation for beam problems**, **replace NURBS with Lagrange polynomials**, and **extend it to geometrically nonlinear analyses**.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Problem Setup and Usage Instructions
 
@@ -401,8 +442,10 @@ Other modifications, such as changing the load and boundary conditions, must be 
 ## Results
 
 
-## More Information
+## Future Work
 
 The current code serves as a platform for further development. Additional validation can be performed by solving more benchmark problems and conducting more thorough comparisons between different locking alleviation methods. **Poisson locking** and **volumetric locking** are suppressed by using a **linear material model** and setting the **Poisson's ratio** to zero.   The formulation can be augmented with methods such as the **Enhanced Assumed Strain (EAS)** technique to properly address these effects when present.
 
 The code is already structured to support these **extensions**. We had intended to develop these **implementations** within **FEniCSx** to establish a more **comprehensive** and more **usable** **framework** for beam problems, especially that, to the best of our knowledge, these important techniques are not yet available there, and in general, they lack beginner-friendly documentation, despite their significance for addressing locking phenomena in finite element simulations. However, **time limitations** have prevented us from pursuing this effort at present.
+
+If you are interested in contributing to or collaborating on this effort, please feel free to reach out.
