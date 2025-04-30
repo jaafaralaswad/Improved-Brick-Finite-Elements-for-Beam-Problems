@@ -16,8 +16,9 @@
 - [Nonlinear Finite Element Procedure](#nonlinear-finite-element-procedure)
 - [Locking Modes](#locking-modes)
 - [Assumed Natural Strain Method](#assumed-natural-strain-method)
-- [Problem Setup and Usage Instructions](#problem-setup-and-usage-instructions)
-- [Results](#results)
+- [Code Usage Instructions](#code-usage-instructions)
+- [Numerical Example 1](#numerical-example-1)
+- [Numerical Example 2](#numerical-example-2)
 - [Future Work](#future-work)
 
 ## Motivation
