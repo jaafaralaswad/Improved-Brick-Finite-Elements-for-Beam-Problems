@@ -29,7 +29,7 @@ E = 1.2e7        # Young's modulus
 nu = 0.0        # Poisson's ratio (set to 0 to avoid Poisson and volumetric locking)
 
 # Finite element discretization
-numel = 10              # Number of elements along the beam length
+numel = 20              # Number of elements along the beam length
 ne_L = 2               # Number of nodes per element in axial direction (minimum = 2)
 
 # Integration points
