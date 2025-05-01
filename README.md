@@ -484,8 +484,10 @@ which shows close matching to the analytical solution.
 
 - The parameters used in our simulations are chosen to match those in the following references:
 
-  1. Frischkorn, J., & Reese, S. (2013). *A solid-beam finite element and non-linear constitutive modelling*. Computer Methods in Applied Mechanics and Engineering, 265, 195–212.
-  2. Shafqat, A., Weeger, O., & Xu, B.X. (2024). *A robust finite strain isogeometric solid-beam element*. Computer Methods in Applied Mechanics and Engineering, 426, 116993.
+  1. **Frischkorn, J., & Reese, S.**  
+[*A solid-beam finite element and non-linear constitutive modelling.*](https://doi.org/10.1016/j.cma.2013.06.009) *Computer Methods in Applied Mechanics and Engineering*, **265**, 195–212 (2013).
+  2. **Shafqat, A., Weeger, O., & Xu, B.X.**  
+[*A robust finite strain isogeometric solid-beam element.*](https://doi.org/10.1016/j.cma.2013.06.009) *Computer Methods in Applied Mechanics and Engineering*, **426**, 116993 (2024).
 
 - Although it is possible to deform the beam into a full circle by doubling the bending moment, this was not done. The goal was to maintain consistency with the parameters reported in the above papers to allow direct comparison. Achieving a full circle is defnitely feasible but may require additional elements and load increments due to mesh distortion. In both papers, it is reported that the elements are sensitive to distorion.
 
