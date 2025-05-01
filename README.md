@@ -576,7 +576,7 @@ To investigate the effectiveness of different locking alleviation techniques, we
 
 The figure shows that h-refinement is not that effective. ANS and reduced integration without ANS solutions are the closest to the analytical solution for the given parameters and problem. However, we do not draw conclusions about which method is "better" becasue that obviously require more thorough considerations. Our aim is just to establish that our code is capable of doing so.
 
-The following important paper by Hughes et. al. mentions many occasisions in which ANS outperforms reduced integration. For instance, reduced integration can lead to non-physically soft responses and can trigger zero-energy modes.
+In ANS, full integration is typically used. The following important paper by Hughes et. al. mentions many occasisions in which full integration outperforms reduced integration. For instance, reduced integration can lead to non-physically soft responses and can trigger zero-energy modes.
 
 **Hughes, T.J.R., & Tezduyar, T.E.**  
 [*Finite elements based upon Mindlin plate theory with particular reference to the four-node bilinear isoparametric element.*](https://doi.org/10.1115/1.3157679) *American Society of Mechanical Engineers, Applied Mechanics Division (AMD)*, **44**, 81–106 (1981).
