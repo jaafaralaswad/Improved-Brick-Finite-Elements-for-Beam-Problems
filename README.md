@@ -19,7 +19,6 @@
 - [Assumed Natural Strain Method](#assumed-natural-strain-method)
 - [Code Usage Instructions](#code-usage-instructions)
 - [Numerical Example](#numerical-example)
-- [Further Validation](#further-validation)
 - [Future Work](#future-work)
 
 ## ME700 Skills
