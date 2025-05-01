@@ -106,8 +106,8 @@ Once you are there, you can either open the files in VS Code to run and edit the
  python main.py
  ```
  
- You can run the comparison between the locking modes and the alleviation techniques by using
- 
+Similarly, to run the comparisons between the locking modes and the alleviation techniques, you can either open the corresponding scripts in VS Code or run them from the terminal:
+
  ```bash
  python automation_1.py
  ```
