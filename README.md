@@ -40,7 +40,7 @@ It is common to model slender beams using classical **beam finite elements**, wh
 However, **1D beam theories** come with important limitations: they struggle to capture **advanced material behaviors**, cannot represent **cross-sectional deformations**, and pose challenges for **multiphysics coupling** and **contact interactions**. These limitations stem from the **inherent assumptions of 1D beam theory** and are **not artifacts of the finite element method**.
 
 
-To overcome these limitations, this project adopts a **solid-beam modeling approach** using **3D brick finite elements**. These formulations offer greater flexibility and accuracy in capturing the full 3D deformation of beam-like structures.
+To overcome these limitations, this project adopts a **solid-beam modeling approach** using **3D brick finite elements**.
 
 <p align="center">
   <img src="README_figures/brick_elements.jpg" alt="Solid-beam elements" width="400"/>
