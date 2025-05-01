@@ -370,7 +370,7 @@ Five types of locking are commonly distinguished:
    Also called trapezoidal locking; when linear shape functions are used in the transverse direction, bending deformation induces artificial thickness stretch due to parasitic strain terms, resulting in an increased bending stiffness.  
 
 4. **Poisson locking**  
-  Arises from an incorrect assumption of constant normal stress in the thickness direction. Linear transverse shape functions impose a linear displacement profile, leading to constant thickness strain. However, Poisson’s effect couples this with linearly varying in-plane strains, causing a mismatch that induces transverse contraction and locking when Poisson’s ratio $\nu \ne 0$.
+  Arises from an incorrect assumption of constant normal stress in the thickness direction. Linear transverse shape functions impose a linear displacement profile, leading to constant thickness strain. However, Poisson’s effect couples this with linearly varying in-plane strains, causing a mismatch that induces locking when Poisson’s ratio $\nu \ne 0$.
 
 5. **Volumetric locking**  
    Found in (nearly) incompressible materials where artificial volumetric constraints stiffen the response.
