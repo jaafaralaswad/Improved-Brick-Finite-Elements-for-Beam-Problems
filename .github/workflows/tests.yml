@@ -1,0 +1,48 @@
+name: Run Checks
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check:
+    runs-on: ${{ matrix.platform }}
+
+    strategy:
+      matrix:
+        platform: [macos-latest, ubuntu-latest, windows-latest]
+        python-version: ["3.12", "3.11"]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e . || pip install .
+
+      - name: Set PYTHONPATH (Linux/macOS)
+        if: runner.os != 'Windows'
+        run: echo "PYTHONPATH=$(pwd)/src" >> $GITHUB_ENV
+
+      - name: Set PYTHONPATH (Windows)
+        if: runner.os == 'Windows'
+        run: echo "PYTHONPATH=$(Get-Location)/src" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Confirm environment setup
+        run: |
+          echo "Python version:"
+          python --version
+          echo "Installed packages:"
+          pip list
