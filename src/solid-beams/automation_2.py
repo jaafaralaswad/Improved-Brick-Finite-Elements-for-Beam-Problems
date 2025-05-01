@@ -1,3 +1,4 @@
+# This automation code was created using ChatGPT
 
 import numpy as np
 import matplotlib.pyplot as plt

@@ -1,3 +1,5 @@
+# This automation code was created using ChatGPT
+
 import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
@@ -80,7 +82,7 @@ for case in cases:
 
 plt.figure(figsize=(7, 5))
 
-# Match styles by label string (consistent with `label` field)
+# Match styles by label string
 markers = {
     "Only membrane locking alleviated": "o",
     "Only transverse shear locking alleviated": "s",
@@ -111,7 +113,7 @@ for label, tips in tip_displacements_all:
         label=label
     )
 
-# Analytical solution: solid black line, no marker
+# Analytical solution
 analytical = np.array([
     0, 0.016368357, 0.064510716, 0.141606309, 0.243173271,
     0.363380228, 0.495448848, 0.632116989, 0.766127679,
