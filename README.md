@@ -12,7 +12,7 @@
 
 - [ME700 Skills](#me700-skills)
 - [Motivation](#motivation)
-- [Conda Environment, Installation, and Testing](#conda-environment-installation-and-testing)
+- [Conda Environment and Installation](#conda-environment-and-installation)
 - [The Boundary Value Problem](#the-boundary-value-problem)
 - [Nonlinear Finite Element Procedure](#nonlinear-finite-element-procedure)
 - [Locking Modes](#locking-modes)
@@ -62,7 +62,7 @@ Click on each thumbnail below to watch the video on **YouTube**:
 [![Beam Fails to Curve Fully – FEM with Locking (4 Elements, Full Integration)](https://img.youtube.com/vi/REFapxlKZWc/0.jpg)](https://www.youtube.com/watch?v=REFapxlKZWc)
 
 
-## Conda Environment, Install, and Testing
+## Conda Environment and Installation
 
 First, you need to download the repository and unzip it. Then, to install the package, use:
 
