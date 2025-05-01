@@ -100,8 +100,8 @@ First, you need to download the repository and unzip it. Then, to install the pa
  cd /Users/jaafaralaswad/Downloads/Improved-Brick-Finite-Elements-for-Beam-Problems-main/src/solid-beams
  ```
  
- Once you are there, you can use:
- 
+Once you are there, you can either open the files in VS Code to run and edit them interactively, or execute the scripts directly from the terminal using:
+
  ```bash
  python main.py
  ```
