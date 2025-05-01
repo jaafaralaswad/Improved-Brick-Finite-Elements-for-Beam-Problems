@@ -538,6 +538,6 @@ The current code serves as a versatile platform with many capabilities for furth
 
 The **Assumed Natural Strain (ANS)** method is fully implemented at the **element level**, making it straightforward to adapt to other codes and applicable to a wider range of problems. To the best of our knowledge, this method is not currently available as **open-source**, despite its classical status and widespread use in commercial software. Through this work, we hope to help filling this gap by presenting our **open-source implementation**.
 
-The code is already structured to support these **extensions**. We had intended to develop these **implementations** within **FEniCSx** to establish a more **comprehensive** and more **usable** **framework** for beam problems—especially since, to the best of our knowledge, these important techniques are not yet available there. In general, they lack beginner-friendly documentation, despite their significance for addressing locking phenomena in finite element simulations. However, **time limitations** have prevented us from pursuing this effort at present.
+We had intended to implement both (ANS) and (EAS) within **FEniCSx** to establish a more **comprehensive** and more **usable** **framework** for beam problems—especially since, to the best of our knowledge, these important techniques are not yet available there. However, **time limitations** have prevented us from pursuing this effort at present.
 
 If you are interested in contributing to or collaborating on this effort, please feel free to reach out.
