@@ -491,7 +491,7 @@ which shows close matching to the analytical solution.
 
 - Although it is possible to deform the beam into a full circle by doubling the bending moment, this was not done. The goal was to maintain consistency with the parameters reported in the above papers to allow direct comparison. Achieving a full circle is defnitely feasible, and can be done manually by changing the load in the function `compute_external_force`; however, it may require additional elements and load increments due to mesh distortion. In both papers, it is reported that the elements are sensitive to distorion.
 
-- All simulations exhibited **quadratic convergence**.
+- All simulations exhibited **quadratic convergence**, including when the beam is bent into a full circle, provided that enough elements and increments are used.
 
 - The analytical solution corresponds to a one-dimensional boundary value problem. It does not exactly match the three-dimensional finite element solution, since the 3D formulation inherently includes coupling with cross-sectional directions—effects that are neglected in the 1D theory.
 
