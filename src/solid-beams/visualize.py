@@ -1,3 +1,6 @@
+# Note: these are adapted from class!
+
+
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
@@ -100,9 +103,6 @@ def plot_mesh_3D(fname: str, coords: np.ndarray, connect: np.ndarray,
     plt.savefig(fname, dpi=300, bbox_inches='tight', pad_inches=0.1)
     plt.show()
     plt.close(fig)
-
-
-
 
 
 def plot_deformed_mesh_3D(fname: str, coords: np.ndarray, connect: np.ndarray, 

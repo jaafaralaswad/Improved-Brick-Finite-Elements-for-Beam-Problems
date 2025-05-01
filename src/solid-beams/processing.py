@@ -1,3 +1,5 @@
+# Author: Jaafar Alaswad (jalaswad@bu.edu)
+
 import numpy as np
 
 def newton_raphson_solver(E, width, height, length, lambda_, mu,
@@ -38,21 +40,22 @@ def newton_raphson_solver(E, width, height, length, lambda_, mu,
     u : np.ndarray
         Final displacement vector.
     """
-    ndof = coords.shape[0] * 3  # 3 DOFs per node
+    ndof = coords.shape[0] * 3   # total number of nodes: 3 DOFs per node
     ndof_e = ne * 3              # 3 DOFs per element node
 
     # Initialize displacement vector
     u = np.zeros((ndof, 1))
 
-    # Initialize history storage
-    ResNorm = np.zeros((n_load_steps, max_iterations))
-    EnerNorm = np.zeros((n_load_steps, max_iterations))
+    # Initialize convergence history storage
+    ResNorm = np.zeros((n_load_steps, max_iterations))      # Euclidean norm
+    EnerNorm = np.zeros((n_load_steps, max_iterations))     # Energy norm
 
-    displacements_all = []  # Store solution per load step
+    displacements_all = []  # Store solution per load step to visualize later
 
     # Incremental force method loop
     for inc in range(1, n_load_steps + 1):
 
+        # Newton-Raphson loop per increment
         for itn in range(1, max_iterations + 1):
     
             # Initialize internal force, external force, stiffness
@@ -61,28 +64,29 @@ def newton_raphson_solver(E, width, height, length, lambda_, mu,
 
             K = np.zeros((ndof, ndof))
 
-            # External force computation (incremental)
+            # External force computation (follwer load updated every iteration)
             F_ext, ke_l = compute_external_force(E, length, height, width,
                                                  n_load_steps, inc,
                                                  coords, connect, ne, ne_L, numel,
                                                  ngp_c, ndof, u)
 
-            # Element loop
+            # Loop over all elements
             for ie in range(numel):
-                nx0_e = np.zeros((ndof_e, 3))
-                ue = np.zeros((ndof_e, 3))
+                nx0_e = np.zeros((ndof_e, 3))   # Nodal position of the current element in the reference configuration
+                ue = np.zeros((ndof_e, 3))      # Initialize nodal displacements
 
+                # Loop over nodes of the element
                 for i in range(ne):
-                    num = connect[ie, i]
-                    nx0_e[i, :] = coords[num, :]
-                    ue[i, :] = u[3*num:3*num+3, 0]
+                    num = connect[ie, i]            # Global node number for local node i
+                    nx0_e[i, :] = coords[num, :]    # Extract reference coordinates from global array
+                    ue[i, :] = u[3*num:3*num+3, 0]  # Extract displacement components for global node
                 ke, fe = element_3D_nonlinear(ne, ne_L, nx0_e, ue, lambda_, mu, ngp_c, ngp_l, ANS_membrane, ANS_shear, ANS_curvature)
 
-                # Assemble ke_l for last element
+                # Assemble ke_l for loaded last element only
                 if ie == numel - 1:
                     ke += ke_l
                 
-                # Assembly
+                # Assembly of global stiffness matrix and internal force vector
                 for i in range(ne):
                     ii = connect[ie, i]
                     for j in range(ne):
@@ -94,16 +98,18 @@ def newton_raphson_solver(E, width, height, length, lambda_, mu,
             # Residual
             R = F_int - F_ext
             
-            # Solve
+            # Solve linear system
             du, R_r = solve_linear_system(K, R, prescribed_dofs)
 
-            # Update
+            # Update displacements
             u += du
 
             # Residual and Energy norms
             ResNorm[inc-1, itn-1] = np.linalg.norm(R_r)
             EnerNorm[inc-1, itn-1] = abs(R.T @ du)[0, 0]
 
+            # Print current load step and Newton-Raphson iteration,
+            # along with residual and energy norms for monitoring convergence
             print(f"Load Step {inc}, Iteration {itn}: Residual Norm = {ResNorm[inc-1, itn-1]:10.6e}, Energy Norm = {EnerNorm[inc-1, itn-1]:10.6e}")
 
             # Convergence check
@@ -111,16 +117,17 @@ def newton_raphson_solver(E, width, height, length, lambda_, mu,
                 print("=====")
                 break
 
+        # Store displacements for visualization later
         displacements_all.append(u.copy())
 
     return u, displacements_all
-
 
 
 def compute_external_force(E, length, height, width, n_load_steps, inc,
                             coords, connect, ne, ne_L, numel, ngp_c, ndof, u):
     """
     Compute the external force vector and load stiffness matrix for surface traction.
+    Following Wriggers (2008) - Section 4.2.5
 
     Parameters
     ----------
@@ -160,13 +167,13 @@ def compute_external_force(E, length, height, width, n_load_steps, inc,
     ke_l : np.ndarray
         Load stiffness matrix (element level).
     """
-    ndof_e = 3 * ne
-    list_e_surf = [numel - 1]  # Loading only the last element
+
+    ndof_e = 3 * ne             # Degrees of freedom per element
+    list_e_surf = [numel - 1]  # List of loaded elements: only the last element here
 
     # Gauss points and weights
     XI, wgp = gauss(ngp_c)
-    xi_fixed = 1.0  # fixed natural coordinate
-
+    xi_fixed = 1.0  # fixed natural coordinate at traction surface
     eta = XI
     zta = XI
 
@@ -177,48 +184,51 @@ def compute_external_force(E, length, height, width, n_load_steps, inc,
     # Current nodal coordinates
     qcur = coords + u.reshape(-1, 3)
 
+    # Loop over every loaded element
     for ie in list_e_surf:
 
+        # Initialize nodal external force vector
         fe_ext = np.zeros((ndof_e, 1))
 
+        # Loop over Gauss points
         for k2 in range(ngp_c):
             for k3 in range(ngp_c):
 
                 # Shape functions and derivatives
                 N, dN = shape_functions_3D(ne_L, xi_fixed, eta[k2], zta[k3])
 
-                # Build Ne matrix
-                Ne = np.zeros((3, ndof_e))
-                Z = 0.0
+                # Construct Ne matrix (interpolation operator for vector fields)
+                Ne = np.zeros((3, ndof_e))      
+                Z = 0.0     # Initialize Z coordinate for bending moment arm
                 for m in range(ne):
-                    mm = connect[ie, m]
-                    Ne[0, 3*m] = N[m]
-                    Ne[1, 3*m+1] = N[m]
-                    Ne[2, 3*m+2] = N[m]
-                    Z += N[m] * coords[mm, 2]
+                    mm = connect[ie, m]     # Global node index
+                    Ne[0, 3*m] = N[m]       # X-component
+                    Ne[1, 3*m+1] = N[m]     # Y-component
+                    Ne[2, 3*m+2] = N[m]     # Z-component
+                    Z += N[m] * coords[mm, 2]       # Interpolated Z-position at Gauss point
 
-                # Surface traction calculation
-                Ie = height**3 * width / 12
-                M = (np.pi * E * Ie / length) * (inc / n_load_steps)  # half circle
-                marm = Z - height/2
-                sf = (-12 * M / height**3) * marm
+                # Compute surface traction magnitude using bending moment expression
+                Ie = height**3 * width / 12     # Second moment of area (rectangular cross-section)
+                M = (np.pi * E * Ie / length) * (inc / n_load_steps)        # Moment at current step
+                marm = Z - height/2         # Moment arm (distance from neutral axis)
+                sf = (-12 * M / height**3) * marm   # Resulting surface traction at this Gauss point
 
-                # Convective vectors
-                comp1 = np.zeros((3, 1))
-                comp2 = np.zeros((3, 1))
+                # Compute convective basis vectors (tangent vectors on surface)
+                comp1 = np.zeros((3, 1))    # Initialize ∂x/∂η
+                comp2 = np.zeros((3, 1))    # Initialize ∂x/∂ζ
                 for m in range(ne):
                     mm = connect[ie, m]
                     comp1 += (dN[1, m] * qcur[mm, :]).reshape(3,1)
                     comp2 += (dN[2, m] * qcur[mm, :]).reshape(3,1)
 
-                # Normal vector (cross product)
+                # Compute normal vector to the surface (cross product of comp1 and comp2)
                 normal = np.zeros((3, 1))
                 normal[0] = comp1[1]*comp2[2] - comp1[2]*comp2[1]
                 normal[1] = comp1[2]*comp2[0] - comp1[0]*comp2[2]
                 normal[2] = comp1[0]*comp2[1] - comp1[1]*comp2[0]
 
-                # N_bar matrices
-                N_bar_eta = np.zeros((3, 3))
+                # Build skew-symmetric matrices (for load stiffness matrix computation)
+                N_bar_eta = np.zeros((3, 3))    # ∂x/∂η cross product matrix
                 N_bar_eta[0, 1] = comp1[2]
                 N_bar_eta[1, 0] = -comp1[2]
                 N_bar_eta[0, 2] = -comp1[1]
@@ -226,7 +236,7 @@ def compute_external_force(E, length, height, width, n_load_steps, inc,
                 N_bar_eta[1, 2] = comp1[0]
                 N_bar_eta[2, 1] = -comp1[0]
 
-                N_bar_zta = np.zeros((3, 3))
+                N_bar_zta = np.zeros((3, 3))    # ∂x/∂ζ cross product matrix
                 N_bar_zta[0, 1] = comp2[2]
                 N_bar_zta[1, 0] = -comp2[2]
                 N_bar_zta[0, 2] = -comp2[1]
@@ -234,35 +244,29 @@ def compute_external_force(E, length, height, width, n_load_steps, inc,
                 N_bar_zta[1, 2] = comp2[0]
                 N_bar_zta[2, 1] = -comp2[0]
 
-                # Load stiffness matrix
+                # Assemble contribution to load stiffness matrix ke_l
                 for K in range(ne):
                     for L in range(ne):
                         ke_l[3*K:3*K+3, 3*L:3*L+3] -= (
                             sf * N[K] * (dN[1, L]*N_bar_zta - dN[2, L]*N_bar_eta) * wgp[k2] * wgp[k3]
                         )
 
-                # External force contribution
+                # Add contribution to external force vector from this Gauss point
                 fe_ext += (Ne.T @ (sf * normal)) * wgp[k2] * wgp[k3]
 
-        # Assembly into global force vector
+        # Assemble element external force into global external force vector
         for m in range(ne):
             mm = connect[ie, m]
             F_ext[3*mm:3*mm+3, 0] += fe_ext[3*m:3*m+3, 0]
 
+    # Return updated global external force vector and load stiffness matrix
     return F_ext, ke_l
-
-
-
-
-
-
-
-
 
 
 def element_3D_nonlinear(ne, ne_L, nx0_e, ue, lambda_, mu, ngp_c, ngp_l, ANS_membrane, ANS_shear, ANS_curvature):
     """
-    Compute element tangent stiffness matrix and internal force vector for Saint Venant-Kirchhoff (SVK) material.
+    Compute element tangent stiffness matrix and internal force vector for Saint Venant-Kirchhoff (SVK) material,
+    using ANS method to alleviate membrane, transverse shear, and curvature-thickness locking.
 
     Parameters
     ----------
@@ -291,9 +295,9 @@ def element_3D_nonlinear(ne, ne_L, nx0_e, ue, lambda_, mu, ngp_c, ngp_l, ANS_mem
         Element internal force vector (3*ne x 1).
     """
 
-    ndof_e = 3 * ne
+    ndof_e = 3 * ne     # Degrees of freedom per element
 
-    # Initialize
+    # Initialize element material and geometric stiffnesses and internal force vector
     ke_m = np.zeros((ndof_e, ndof_e))
     ke_g = np.zeros((ndof_e, ndof_e))
     fe = np.zeros((ndof_e, 1))
@@ -306,36 +310,43 @@ def element_3D_nonlinear(ne, ne_L, nx0_e, ue, lambda_, mu, ngp_c, ngp_l, ANS_mem
     # Current configuration
     qcur = nx0_e + ue
 
+    # Loop over Gauss points
     for k1 in range(ngp_l):
         for k2 in range(ngp_c):
             for k3 in range(ngp_c):
 
-                N, dN = shape_functions_3D(ne_L, xi[k1], eta[k2], zta[k3])
+                # Evaluate shape functions derivative at Gauss points
+                _, dN = shape_functions_3D(ne_L, xi[k1], eta[k2], zta[k3])
 
-                # Compute covariant basis in reference
+                # Covariant basis in reference coordinates
                 H = np.zeros((3, 3))
                 for m in range(ne):
                     H[:, 0] += dN[:, m] * nx0_e[m, 0]
                     H[:, 1] += dN[:, m] * nx0_e[m, 1]
                     H[:, 2] += dN[:, m] * nx0_e[m, 2]
 
+                # Compute determinant of Jacobian
                 detJ = np.linalg.det(H)
 
+                # Construct covariant basis vectors in reference configuration
                 G_1 = H[:, 0]
                 G_2 = H[:, 1]
                 G_3 = H[:, 2]
 
+                # Construct covariant metric tensor in reference configuration
                 Gco = np.array([
                     [np.dot(G_1, G_1), np.dot(G_1, G_2), np.dot(G_1, G_3)],
                     [np.dot(G_2, G_1), np.dot(G_2, G_2), np.dot(G_2, G_3)],
                     [np.dot(G_3, G_1), np.dot(G_3, G_2), np.dot(G_3, G_3)]
                 ])
 
+                # Invert to get contravariant metric tensor in reference configuration
                 Gcontra = np.linalg.inv(Gco)
                 
-                G1 = Gcontra[0, 0]*G_1 + Gcontra[0, 1]*G_2 + Gcontra[0, 2]*G_3
-                G2 = Gcontra[1, 0]*G_1 + Gcontra[1, 1]*G_2 + Gcontra[1, 2]*G_3
-                G3 = Gcontra[2, 0]*G_1 + Gcontra[2, 1]*G_2 + Gcontra[2, 2]*G_3
+                # Construct contravariant basis vectors in reference configuration - No need when F not calculated!
+                # G1 = Gcontra[0, 0]*G_1 + Gcontra[0, 1]*G_2 + Gcontra[0, 2]*G_3
+                # G2 = Gcontra[1, 0]*G_1 + Gcontra[1, 1]*G_2 + Gcontra[1, 2]*G_3
+                # G3 = Gcontra[2, 0]*G_1 + Gcontra[2, 1]*G_2 + Gcontra[2, 2]*G_3
 
                 # Covariant basis in current configuration
                 H = np.zeros((3, 3))
@@ -344,22 +355,25 @@ def element_3D_nonlinear(ne, ne_L, nx0_e, ue, lambda_, mu, ngp_c, ngp_l, ANS_mem
                     H[1, :] += dN[:, m] * qcur[m, 1]
                     H[2, :] += dN[:, m] * qcur[m, 2]
 
+                # Construct covariant basis vectors in current configuration
                 g_1 = H[:, 0]
                 g_2 = H[:, 1]
                 g_3 = H[:, 2]
 
+                # Construct covariant metric tensor in current configuration
                 gco = np.array([
                     [np.dot(g_1, g_1), np.dot(g_1, g_2), np.dot(g_1, g_3)],
                     [np.dot(g_2, g_1), np.dot(g_2, g_2), np.dot(g_2, g_3)],
                     [np.dot(g_3, g_1), np.dot(g_3, g_2), np.dot(g_3, g_3)]
                 ])
 
-                F = np.outer(g_1, G1) + np.outer(g_2, G2) + np.outer(g_3, G3)
+                # Deformation gradient - no need!
+                # F = np.outer(g_1, G1) + np.outer(g_2, G2) + np.outer(g_3, G3)
 
-                # Green-Lagrange strain
+                # Green-Lagrange strain tensor
                 E = 0.5 * (gco - Gco)
 
-                # 2nd Piola-Kirchhoff stress (SVK)
+                # 2nd Piola-Kirchhoff stress (SVK- material)
                 S = np.zeros((3, 3))
                 for I in range(3):
                     for J in range(3):
@@ -367,7 +381,7 @@ def element_3D_nonlinear(ne, ne_L, nx0_e, ue, lambda_, mu, ngp_c, ngp_l, ANS_mem
                             for L in range(3):
                                 S[I, J] += compute_C_SVK_component(Gcontra, lambda_, mu, I, J, K, L) * E[K, L]
 
-                # Voigt notation
+                # Cast stress in Voigt notation
                 Svgt = np.array([
                     S[0, 0],
                     S[1, 1],
@@ -377,9 +391,10 @@ def element_3D_nonlinear(ne, ne_L, nx0_e, ue, lambda_, mu, ngp_c, ngp_l, ANS_mem
                     S[1, 2]
                 ]).reshape(6, 1)
 
-                # Strain-displacement matrix Be
+                # Initialize standard strain-displacement matrix Be
                 Be = np.zeros((6, ndof_e))
 
+                # Calculate standard strain-displacement matrix Be
                 for m in range(ne):
                     B = np.zeros((6, 3))
                     B[0, :] = g_1 * dN[0, m]
@@ -390,39 +405,41 @@ def element_3D_nonlinear(ne, ne_L, nx0_e, ue, lambda_, mu, ngp_c, ngp_l, ANS_mem
                     B[5, :] = g_3 * dN[1, m] + g_2 * dN[2, m]
                     Be[:, 3*m:3*m+3] = B
 
-
-                # Modify B using ANS for membrane and transverse shear locking
+                # ANS - refer to accompanying document for details
+                # Modify standard Be using ANS for membrane and transverse shear locking
                 if ANS_membrane or ANS_shear:
+                    
+                    ntying1 = ne_L - 1      # Number of tying points based on reduced integration
+                    xibar1 = np.array(gauss(ntying1)).flatten()     # Tying points in xi
+                    Nmat1 = lagrange_shape_1D(ntying1, xi[k1])      # Evaluate 1D Lagrange shape functions for tying points
 
-                    ntying1 = ne_L - 1
-                    xibar1 = np.array(gauss(ntying1)).flatten()
-                    Nmat1 = lagrange_shape_1D(ntying1, xi[k1])
-
-                    M1 = np.zeros((ntying1, ntying1))
-                    for i in range(ntying1):
+                    M1 = np.zeros((ntying1, ntying1))   # Initialize Matrix M (Equation 8)
+                    for i in range(ntying1):            # Calculate Matrix M (Equation 8)
                         M1[i, :] = lagrange_shape_1D(ntying1, xibar1[i])
 
-                    if ANS_membrane:
+                    if ANS_membrane:    # Initialize modified 1st row for membrane
                         Bebar_1 = np.zeros((ntying1, 3 * ne))
 
-                    if ANS_shear:
+                    if ANS_shear:       # Initialize modified 4th and 5th rows for transverse shear
                         Bebar_4 = np.zeros((ntying1, 3 * ne))
                         Bebar_5 = np.zeros((ntying1, 3 * ne))
 
                     for k in range(ntying1):
-                        Nbar1, dNbar1 = shape_functions_3D(ne_L, xibar1[k], eta[k2], zta[k3])
+                        _, dNbar1 = shape_functions_3D(ne_L, xibar1[k], eta[k2], zta[k3])   # Evaluate shape functions at tying points
 
-                        # Covariant tangents
+                        # Covariant basis in current configuration at tying points
                         Pbar1 = np.zeros((3, 3))
                         for m in range(ne):
                             Pbar1[0, :] += dNbar1[0:3, m] * qcur[m, 0]
                             Pbar1[1, :] += dNbar1[0:3, m] * qcur[m, 1]
                             Pbar1[2, :] += dNbar1[0:3, m] * qcur[m, 2]
-                    
+
+                        # Construct covariant basis vectors at tying points
                         gbar_1 = Pbar1[:, 0]
                         gbar_2 = Pbar1[:, 1]
                         gbar_3 = Pbar1[:, 2]
 
+                        # Construct the ANS modified B matrix for membrane locking
                         if ANS_membrane:
                             for m in range(ne):
                                 Bbar1 = np.zeros(3)
@@ -430,7 +447,8 @@ def element_3D_nonlinear(ne, ne_L, nx0_e, ue, lambda_, mu, ngp_c, ngp_l, ANS_mem
                                 Bbar1[1] = gbar_1[1] * dNbar1[0, m]
                                 Bbar1[2] = gbar_1[2] * dNbar1[0, m]
                                 Bebar_1[k, 3 * m : 3 * m + 3] = Bbar1
-                                
+                        
+                        # Construct the ANS modified B matrix for transverse shear locking
                         if ANS_shear:
                             for m in range(ne):
                                 Bbar4 = np.zeros(3)
@@ -445,44 +463,47 @@ def element_3D_nonlinear(ne, ne_L, nx0_e, ue, lambda_, mu, ngp_c, ngp_l, ANS_mem
                                 Bbar5[2] = gbar_3[2] * dNbar1[0, m] + gbar_1[2] * dNbar1[2, m]
                                 Bebar_5[k, 3 * m : 3 * m + 3] = Bbar5
 
-                        # Final row updates
+                        # Replace 1st row for membrane - Beware Python indexing!
                         if ANS_membrane:
                             Row1 = Nmat1 @ np.linalg.solve(M1, Bebar_1)
                             Be[0, :] = Row1
 
+                        # Replace 4th and 5th rows for transverse shear - Beware Python indexing!
                         if ANS_shear:
                             Row4 = Nmat1 @ np.linalg.solve(M1, Bebar_4)
                             Be[3, :] = Row4
                             Row5 = Nmat1 @ np.linalg.solve(M1, Bebar_5)
                             Be[4, :] = Row5
                 
-
-                # Modify B using ANS for curvature-thickness locking
+                # Modify standard Be using ANS for curvature-thickness locking
                 if ANS_curvature:
 
-                    ntying2 = ne_L
+                    ntying2 = ne_L      # Number of tying points based on equidistant nodes
                     xibar2 = np.linspace(-1, 1, ntying2)  # Use equally spaced tying points
 
-                    Nmat2 = lagrange_shape_1D(ntying2, xi[k1])
-                    M2 = np.eye(ntying2)
+                    Nmat2 = lagrange_shape_1D(ntying2, xi[k1])  # Tying points in xi
+                    M2 = np.eye(ntying2)    # Matrix M collapses to identity - euaidistant nodes
 
+                    # Initialize modified 2nd and 3rd rows of B matrix
                     Bebar_2 = np.zeros((ntying2, 3 * ne))
                     Bebar_3 = np.zeros((ntying2, 3 * ne))
 
                     for k in range(ntying2):
-                        Nbar2, dNbar2 = shape_functions_3D(ne_L, xibar2[k], eta[k2], zta[k3])
+                        _, dNbar2 = shape_functions_3D(ne_L, xibar2[k], eta[k2], zta[k3])   # Evaluate shape functions derivatives at tying points
 
+                        # Covariant basis in current configuration at tying points
                         Pbar2 = np.zeros((3, 3))
                         for m in range(ne):
                             Pbar2[0, :] += dNbar2[0:3, m] * qcur[m, 0]
                             Pbar2[1, :] += dNbar2[0:3, m] * qcur[m, 1]
                             Pbar2[2, :] += dNbar2[0:3, m] * qcur[m, 2]
 
+                        # Construct covariant vectors at tying points in current configuration
                         gbar_1 = Pbar2[:, 0]
                         gbar_2 = Pbar2[:, 1]
                         gbar_3 = Pbar2[:, 2]
 
-                        # Calculate 2nd row
+                        # Calculate 2nd row of B matrix
                         for m in range(ne):
                             Bbar2 = np.zeros(3)
                             Bbar2[0] = gbar_2[0] * dNbar2[1, m]
@@ -490,7 +511,7 @@ def element_3D_nonlinear(ne, ne_L, nx0_e, ue, lambda_, mu, ngp_c, ngp_l, ANS_mem
                             Bbar2[2] = gbar_2[2] * dNbar2[1, m]
                             Bebar_2[k, 3 * m : 3 * m + 3] = Bbar2
 
-                        # Calculate 3rd row
+                        # Calculate 3rd row of B matrix
                         for m in range(ne):
                             Bbar3 = np.zeros(3)
                             Bbar3[0] = gbar_3[0] * dNbar2[2, m]
@@ -498,15 +519,16 @@ def element_3D_nonlinear(ne, ne_L, nx0_e, ue, lambda_, mu, ngp_c, ngp_l, ANS_mem
                             Bbar3[2] = gbar_3[2] * dNbar2[2, m]
                             Bebar_3[k, 3 * m : 3 * m + 3] = Bbar3
 
-                    # Replace 2nd and 3rd rows of B matrix
+                    # Calculate and replace 2nd row of B matrix - Beware Python indexing!
                     Row2 = Nmat2 @ np.linalg.solve(M2, Bebar_2)
                     Be[1, :] = Row2
 
+                    # Calculate and replace 3rd row of B matrix - Beware Python indexing!
                     Row3 = Nmat2 @ np.linalg.solve(M2, Bebar_3)
                     Be[2, :] = Row3
 
 
-                # Internal force
+                # Internal force vector
                 fe += Be.T @ Svgt * detJ * wgp_l[k1] * wgp_c[k2] * wgp_c[k3]
 
                 # Material stiffness matrix
@@ -524,7 +546,6 @@ def element_3D_nonlinear(ne, ne_L, nx0_e, ue, lambda_, mu, ngp_c, ngp_l, ANS_mem
                 # Material stiffness contribution
                 ke_m += Be.T @ matC @ Be * detJ * wgp_l[k1] * wgp_c[k2] * wgp_c[k3]
                 
-
                 # Geometric stiffness contribution
                 
                 # Initialize sub-matrices
@@ -538,43 +559,47 @@ def element_3D_nonlinear(ne, ne_L, nx0_e, ue, lambda_, mu, ngp_c, ngp_l, ANS_mem
                 ke_g32 = np.zeros((ndof_e, ndof_e))
                 ke_g33 = np.zeros((ndof_e, ndof_e))
 
-                # Preallocate tying arrays as needed
+                # Initialize tying arrays for membrane (Equation 19)
                 if ANS_membrane:
                     tying_dNxi_dNxi = np.zeros((ntying1, 1))
 
+                # Initialize tying arrays for transverse shear (Equation 19)
                 if ANS_shear:
                     tying_dNxi_dNeta = np.zeros((ntying1, 1))
                     tying_dNeta_dNxi = np.zeros((ntying1, 1))
                     tying_dNxi_dNzta = np.zeros((ntying1, 1))
                     tying_dNzta_dNxi = np.zeros((ntying1, 1))
                 
+                # Initialize tying arrays for curvature-thickness (Equation 19)
                 if ANS_curvature:
                     tying_dNeta_dNeta = np.zeros((ntying2, 1))
                     tying_dNzta_dNzta = np.zeros((ntying2, 1))
 
+                # Loop over element nodes
                 for K in range(ne):
                     for L in range(ne):
-
+                        
+                        # Lump constants and define identity matrix
                         factor = detJ * wgp_l[k1] * wgp_c[k2] * wgp_c[k3]
                         I3 = np.eye(3)
 
-                        # Always calculated (never modified)
+                        # In-plane shear contributions lways calculated the usual way (never modified by ANS)
                         ke_g23[3*K:3*K+3, 3*L:3*L+3] += dN[1, K] * S[1, 2] * I3 * dN[2, L] * factor
                         ke_g32[3*K:3*K+3, 3*L:3*L+3] += dN[2, K] * S[2, 1] * I3 * dN[1, L] * factor
 
-                        # --- Membrane (xi-xi) ---
-                        if ANS_membrane:
+                        # --- Membrane contribution to stress (Equation 14) ---
+                        if ANS_membrane:    # calculated stresses in a modified way if alleviated
                             for k in range(ntying1):
                                 _, dNbar1 = shape_functions_3D(ne_L, xibar1[k], eta[k2], zta[k3])
                                 tying_dNxi_dNxi[k, 0] = dNbar1[0, K] * dNbar1[0, L]
                             proj_dNxi_dNxi = Nmat1 @ np.linalg.inv(M1) @ tying_dNxi_dNxi
                             Sxi_xi = S[0, 0] * proj_dNxi_dNxi
-                        else:
+                        else:   # Calculate stresses the usual way if not alleviated
                             Sxi_xi = S[0, 0] * dN[0, K] * dN[0, L]
-                        ke_g11[3*K:3*K+3, 3*L:3*L+3] += Sxi_xi * I3 * factor
+                        ke_g11[3*K:3*K+3, 3*L:3*L+3] += Sxi_xi * I3 * factor    # Calculate membrane geometric contribution (Equations 18 and 19)
 
-                        # --- Shear terms (modified if ANS_shear) ---
-                        if ANS_shear:
+                        # --- Transverse shear contribution to stress (Equation 14) ---
+                        if ANS_shear:   # calculated stresses in a modified way if alleviated
                             for k in range(ntying1):
                                 _, dNbar1 = shape_functions_3D(ne_L, xibar1[k], eta[k2], zta[k3])
                                 tying_dNxi_dNeta[k, 0] = dNbar1[0, K] * dNbar1[1, L]
@@ -591,18 +616,19 @@ def element_3D_nonlinear(ne, ne_L, nx0_e, ue, lambda_, mu, ngp_c, ngp_l, ANS_mem
                             Seta_xi = S[1, 0] * proj_dNeta_dNxi
                             Sxi_zta = S[0, 2] * proj_dNxi_dNzta
                             Szta_xi = S[2, 0] * proj_dNzta_dNxi
-                        else:
+                        else:   # Calculate stresses the usual way if not alleviated
                             Sxi_eta = S[0, 1] * dN[0, K] * dN[1, L]
                             Seta_xi = S[1, 0] * dN[1, K] * dN[0, L]
                             Sxi_zta = S[0, 2] * dN[0, K] * dN[2, L]
                             Szta_xi = S[2, 0] * dN[2, K] * dN[0, L]
 
+                        # Calculate transvere shear geometric contributions (Equations 18 and 19)
                         ke_g12[3*K:3*K+3, 3*L:3*L+3] += Sxi_eta * I3 * factor
                         ke_g21[3*K:3*K+3, 3*L:3*L+3] += Seta_xi * I3 * factor
                         ke_g13[3*K:3*K+3, 3*L:3*L+3] += Sxi_zta * I3 * factor
                         ke_g31[3*K:3*K+3, 3*L:3*L+3] += Szta_xi * I3 * factor
 
-                        # --- Curvature terms (modified if ANS_curvature) ---
+                        # --- Curvature-thickness contribution to stress (Equation 14) ---
                         if ANS_curvature:
                             for k in range(ntying2):
                                 _, dNbar2 = shape_functions_3D(ne_L, xibar2[k], eta[k2], zta[k3])
@@ -614,64 +640,30 @@ def element_3D_nonlinear(ne, ne_L, nx0_e, ue, lambda_, mu, ngp_c, ngp_l, ANS_mem
 
                             Seta_eta = S[1, 1] * proj_dNeta_dNeta
                             Szta_zta = S[2, 2] * proj_dNzta_dNzta
-                        else:
+                        else:   # Calculate stresses the usual way if not alleviated
                             Seta_eta = S[1, 1] * dN[1, K] * dN[1, L]
                             Szta_zta = S[2, 2] * dN[2, K] * dN[2, L]
 
+                        # Calculate curvature-thickness geometric contributions (Equations 18 and 19)
                         ke_g22[3*K:3*K+3, 3*L:3*L+3] += Seta_eta * I3 * factor
                         ke_g33[3*K:3*K+3, 3*L:3*L+3] += Szta_zta * I3 * factor
 
 
-
-
-
-
-
-
-
-
-
-
-                # Sum all parts to form final geometric stiffness matrix
+                # Sum all parts to form final geometric stiffness matrix (Equation 16)
                 ke_g += (
                     ke_g11 + ke_g12 + ke_g13 +
                     ke_g21 + ke_g22 + ke_g23 +
                     ke_g31 + ke_g32 + ke_g33
 )
 
-
-
-
-
-
+    # Add material and geometric parts of element stiffness matrix
     ke = ke_m + ke_g
     return ke, fe
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def gauss(ngp):
     """
-    Returns Gauss points and weights for 1D numerical integration.
+    Returns Gauss points and weights for numerical integration.
 
     Parameters
     ----------
@@ -763,8 +755,6 @@ def gauss(ngp):
     return XI, ALPHAG
 
 
-
-
 def solve_linear_system(K, R, prescribed_dofs):
     """
     Solves the linear system K d = -R with Dirichlet boundary conditions.
@@ -796,9 +786,9 @@ def solve_linear_system(K, R, prescribed_dofs):
     # Initialize displacement vector
     d = np.zeros((ndof, 1))
 
-    # Reduced system solve
+    # Reduced system solver
     R_r = R[free_dofs]
-    s = -np.linalg.solve(K[np.ix_(free_dofs, free_dofs)], R_r)
+    s = -np.linalg.solve(K[np.ix_(free_dofs, free_dofs)], R_r)      # Comment: you may want to use sparse solver for larger problems!
 
     # Set displacements
     d[free_dofs, 0] = s[:, 0]
@@ -925,6 +915,17 @@ def shape_functions_3D(ne_L, xi, eta, zta):
 
 
 def voigt_index(i, j):
+    """
+    Return the Voigt notation index corresponding to the tensor component (i, j).
+
+    Voigt notation maps 3×3 symmetric tensor indices to a 6-element vector:
+        (0,0) → 0   normal xx
+        (1,1) → 1   normal yy
+        (2,2) → 2   normal zz
+        (0,1),(1,0) → 3   shear xy
+        (0,2),(2,0) → 4   shear xz
+        (1,2),(2,1) → 5   shear yz
+    """
     if i == j:
         return i
     elif (i, j) in [(0, 1), (1, 0)]:
@@ -933,7 +934,6 @@ def voigt_index(i, j):
         return 4
     elif (i, j) in [(1, 2), (2, 1)]:
         return 5
-
 
 
 def lagrange_shape_1D(ne_L, xi):

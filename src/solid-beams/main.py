@@ -1,3 +1,6 @@
+# bending a cantilever beam into half a circle
+# Author: Jaafar Alaswad (jalaswad@bu.edu)
+
 import numpy as np
 from pathlib import Path
 import matplotlib.pyplot as plt
@@ -37,9 +40,9 @@ ngp_c = 2       # Number of Gauss points in each cross-sectional direction
 ngp_l = ne_L    # Number of Gauss points in axial direction (≤ 10)
 
 # Locking alleviation techniques (Assumed Natural Strain method)
-ANS_membrane = False    # Alleviate membrane locking
-ANS_shear = False       # Alleviate transverse shear locking
-ANS_curvature = False   # Alleviate curvature-thickness locking
+ANS_membrane = True    # Alleviate membrane locking
+ANS_shear = True       # Alleviate transverse shear locking
+ANS_curvature = True   # Alleviate curvature-thickness locking
 
 # Incremental loading and Newton-Raphson settings
 n_load_steps = 10       # Number of load steps
@@ -62,25 +65,25 @@ plot_displacement = True        # Plot horizontal tip displacement
 # ------------------------------
 validate_inputs(width, height, length, E, nu, numel, ne_L, ngp_c, ngp_l, n_load_steps, max_iterations, tolerance)
 
-# ------------------------------
+# --------------------------------------------
 # Generate mesh (nodes, connectivity, DOFs)
-# ------------------------------
+# --------------------------------------------
 coords, nnode_W, nnode_H, nnode_L, ndof, connect, ne = create_mesh(width, height, length, numel, ne_L)
 
-# ------------------------------
+# ---------------------------------------------------
 # Apply displacement boundary conditions (supports)
-# ------------------------------
+# ---------------------------------------------------
 prescribed_nodes = [0, 1, 2, 3]  # Nodes to be clamped
 prescribed_dofs = impose_supports(prescribed_nodes) # Corresponding constrained DOFs
 
-# ------------------------------
+# -----------------------------------------------
 # Compute Lamé parameters (material properties)
-# ------------------------------
+# -----------------------------------------------
 lambda_, mu = compute_lame_parameters(E, nu) # Calculate Lame parameters
 
-# ------------------------------
+# -----------------------------------------------
 # Visualize reference (undeformed) configuration
-# ------------------------------
+# -----------------------------------------------
 if visualize_reference:
     img_fname = figures_dir / "reference_configuration.png"
     viz.plot_mesh_3D(str(img_fname), coords, connect, prescribed_nodes)
@@ -110,7 +113,7 @@ if plot_displacement:
         compute_tip_displacement(u_i, coords, connect, shape_functions_3D, ne_L)
         for u_i in displacements_all
     ]
-    print(tip_displacements)
+
     # Plot X displacement curve and save it
     plot_tip_displacement_x(tip_displacements, length, save_path=figures_dir / "tip_displacement_x.png")
 

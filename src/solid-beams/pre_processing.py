@@ -1,3 +1,5 @@
+# Author: Jaafar Alaswad (jalaswad@bu.edu)
+
 import numpy as np
 
 def validate_inputs(width, height, length, E, nu, numel, ne_L, ngp_c, ngp_l, n_load_steps, max_iterations, tolerance):
@@ -42,6 +44,7 @@ def validate_inputs(width, height, length, E, nu, numel, ne_L, ngp_c, ngp_l, n_l
     if tolerance <= 0:
         raise ValueError("Convergence tolerance 'tolerance' must be positive.")
 
+
 def create_mesh(width, height, length, numel, ne_L):
     """
     Parameters:
@@ -51,7 +54,7 @@ def create_mesh(width, height, length, numel, ne_L):
     ne_L: Number of nodes per element in the length direction
 
     Returns:
-    qref: Nodal coordinates (flattened as [x1, y1, z1, x2, y2, z2, ...])
+    coords: Nodal coordinates
     nnode_W, nnode_H, nnode_L: Number of nodes in each direction
     ndof: Total number of degrees of freedom
     connect: Element connectivity matrix
@@ -72,7 +75,7 @@ def create_mesh(width, height, length, numel, ne_L):
     elen_W = width
     elen_H = height
     elen_L = length / numel
-    nelen_L = elen_L / (ne_L - 1)
+    nelen_L = elen_L / (ne_L - 1) # Distance between nodes in the length direction
 
     # Initialize nodal coordinate vector
     coords = np.zeros(ndof)
@@ -128,6 +131,7 @@ def impose_supports(prescribed_nodes):
         prescribed_dofs[3*i + 2] = 3*node + 2 # z DOF
 
     return prescribed_dofs
+
 
 def compute_lame_parameters(E, nu):
     """
