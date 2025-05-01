@@ -3,7 +3,7 @@
 - ChatGPT was used to get information about MarkDown syntax and to format some of the text.
 - ChatGPT was used to optimize convoluted nested loops.
 - ChatGPT was used to clean and comment parts of the code.
-- ChatGPT was used to create automation files.
+- ChatGPT was used to create automation files - they were slightly modified and verified by me.
 
 
 Notes:

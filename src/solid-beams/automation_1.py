@@ -39,6 +39,7 @@ visualize_final = False
 # ==============================
 
 cases = [
+    {"label": "No locking alleviated", "ANS_membrane": False, "ANS_shear": False, "ANS_curvature": False},
     {"label": "Only membrane locking alleviated", "ANS_membrane": True, "ANS_shear": False, "ANS_curvature": False},
     {"label": "Only transverse shear locking alleviated", "ANS_membrane": False, "ANS_shear": True, "ANS_curvature": False},
     {"label": "Only curvature-thickness locking alleviated", "ANS_membrane": False, "ANS_shear": False, "ANS_curvature": True},
@@ -84,6 +85,7 @@ plt.figure(figsize=(7, 5))
 
 # Match styles by label string
 markers = {
+    "No locking alleviated": "d",
     "Only membrane locking alleviated": "o",
     "Only transverse shear locking alleviated": "s",
     "Only curvature-thickness locking alleviated": "^",
@@ -91,6 +93,7 @@ markers = {
 }
 
 linestyles = {
+    "No locking alleviated": ":",
     "Only membrane locking alleviated": "-",
     "Only transverse shear locking alleviated": "--",
     "Only curvature-thickness locking alleviated": "-.",
@@ -113,7 +116,7 @@ for label, tips in tip_displacements_all:
         label=label
     )
 
-# Analytical solution
+# Analytical solution from Euler's elastica
 analytical = np.array([
     0, 0.016368357, 0.064510716, 0.141606309, 0.243173271,
     0.363380228, 0.495448848, 0.632116989, 0.766127679,
