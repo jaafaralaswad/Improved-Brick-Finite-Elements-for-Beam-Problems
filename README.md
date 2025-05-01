@@ -526,7 +526,8 @@ The figure shows that h-refinement is not that effective. ANS and reduced integr
 
 The following important paper by Hughes et. al. mentions many occasisions in which ANS outperforms reduced integration. For instance, reduced integration can lead to non-physically soft responses and can trigger zero-energy modes.
 
-Hughes TJ, Tezduyar T. *Finite elements based upon Mindlin plate theory with particular reference to the four-node bilinear isoparametric element*.
+**Hughes, T.J.R., & Tezduyar, T.E.**  
+[*Finite elements based upon Mindlin plate theory with particular reference to the four-node bilinear isoparametric element.*](https://doi.org/10.1115/1.3157679) *American Society of Mechanical Engineers, Applied Mechanics Division (AMD)*, **44**, 81–106 (1981).
 
 > The above plot is created using automation_2.py.
 
