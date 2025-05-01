@@ -58,7 +58,7 @@ def plot_tip_displacement_x(tip_displacements, length, save_path="tip_displaceme
     n_steps = len(x_disp_normalized)
     k_normalized = np.linspace(0, 0.5, n_steps)  # Normalized load
 
-    # analytical solution
+    # Hardcoded analytical solution (11 points)
     analytical = np.array([
         0, 0.016368357, 0.064510716, 0.141606309, 0.243173271,
         0.363380228, 0.495448848, 0.632116989, 0.766127679,
