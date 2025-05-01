@@ -510,6 +510,24 @@ It is clear from the figure that transverse shear locking is more dominant in th
 > The above plot is created using automation_1.py.
 
 
+**Comparison of locking alleviation techniques**
+
+Now, we compare how influencial are the different locking alleviation techniques for this problem. We simulate the cantilever beam using the following parameters: `width = 1.0`, `height = 0.5`, `length = 20.0`, `E = 1.2e7`, `ν = 0.0`; discretized with 10 elements along the length and `ne_L = 2` nodes per element (linear shape functions axially). Gauss integration uses `ngp_c = 2` in each cross-sectional direction and `ngp_l = 2` axially (i.e. full integration). The solution proceeds over 10 load steps with a maximum of 20 Newton-Raphson iterations per step and a convergence tolerance of `1e-15`. We apply a bending moment equal to $\pi EI/L$, which should bend the beam into half a circle according to the analytical solution. The solution is obviously locked.
+
+To investigate the effectiveness of different locking alleviation techniques, we use four techinques and compar them to the baseline solution described above: an h-refined mesh where we double the number of elements to `numel = 20`; a p-refined mesh where we increase the axial interpolation to quadratic by setting `ne_L = 3` and `ngp_l = 3` (full integration); a case with full ANS application, where we set `ANS_membrane = True`, `ANS_shear = True`, and `ANS_curvature = True` to modify the strain field and alleviate all locking modes directly; and a reduced integration case, where we lower the number of axial Gauss points to `ngp_l = 1` to avoid overstiffness from full integration.
+
+<p align="center">
+  <img src="README_figures/locking-methods-comparison.png" alt="locking-methods-comparison" width="600"/>
+</p>
+
+The figure shows that h-refinement is not that effective. ANS and reduced integration without ANS solutions are the closest to the analytical solution for the given parameters and problem. However, we do not draw conclusions about which method is "better" becasue that obviously require more thorough considerations. Our aim is just to establish that our code is capable of doing so.
+
+The following important paper by Hughes et. al. mentions many occasisions in which ANS outperforms reduced integration. For instance, reduced integration can lead to non-physically soft response and can trigger zero-energy modes.
+
+Hughes TJ, Tezduyar T. *Finite elements based upon Mindlin plate theory with particular reference to the four-node bilinear isoparametric element*.
+
+> The above plot is created using automation_2.py.
+
 ## Further Validation
 
 
