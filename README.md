@@ -559,7 +559,7 @@ Now, we compare how influencial are the different locking modes for this problem
 </p>
 
 
-It is clear from the figure that transverse shear locking is more dominant in this problem.
+It is clear from the figure that transverse shear locking is the dominant mode in this problem.
 
 > The above plot is created using automation_1.py.
 
