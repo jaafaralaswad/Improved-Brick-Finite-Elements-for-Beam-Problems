@@ -64,6 +64,60 @@ Click on each thumbnail below to watch the video on **YouTube**:
 
 ## Conda Environment, Install, and Testing
 
+First, you need to download the repository and unzip it. Then, to install the package, use:
+
+```bash
+conda create --name solid-beams-env python=3.12
+```
+
+After creating the environment, make sure to activate it, use:
+
+```bash
+conda activate solid-beams-env
+```
+
+Check that you have Python 3.12 in the environment. To do so, use:
+
+```bash
+python --version
+```
+
+Create an editable install of the assignemnt codes. Use the following line making sure you are in the correct directory:
+
+```bash
+pip install -e .
+```
+
+You must do this in the correct directory; in order to make sure, replace the dot at the end by the directory of the folder "Improved-Brick-Finite-Elements-for-Beam-Problems-main" that you unzipped earlier: For example, on my computer, the line would appear as follows:
+
+```bash
+pip install -e /Users/jaafaralaswad/Downloads/Improved-Brick-Finite-Elements-for-Beam-Problems-main
+```
+
+To run the tutorial, make sure you are in the code directory. You can navigate their as you navigated to the tests folder. On my computer, I would use:
+
+```bash
+cd /Users/jaafaralaswad/Downloads/Improved-Brick-Finite-Elements-for-Beam-Problems-main/src/solid-beams
+```
+
+Once you are there, you can use:
+
+```bash
+python main.py
+```
+
+You can run the comparison between the locking modes and the alleviation techniques by using
+
+```bash
+python automation_1.py
+```
+
+```bash
+python automation_2.py
+```
+
+respectively.
+
 
 ## The Boundary Value Problem
 
