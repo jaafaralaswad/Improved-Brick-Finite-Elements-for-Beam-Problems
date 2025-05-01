@@ -522,7 +522,7 @@ To investigate the effectiveness of different locking alleviation techniques, we
 
 The figure shows that h-refinement is not that effective. ANS and reduced integration without ANS solutions are the closest to the analytical solution for the given parameters and problem. However, we do not draw conclusions about which method is "better" becasue that obviously require more thorough considerations. Our aim is just to establish that our code is capable of doing so.
 
-The following important paper by Hughes et. al. mentions many occasisions in which ANS outperforms reduced integration. For instance, reduced integration can lead to non-physically soft response and can trigger zero-energy modes.
+The following important paper by Hughes et. al. mentions many occasisions in which ANS outperforms reduced integration. For instance, reduced integration can lead to non-physically soft responses and can trigger zero-energy modes.
 
 Hughes TJ, Tezduyar T. *Finite elements based upon Mindlin plate theory with particular reference to the four-node bilinear isoparametric element*.
 
@@ -533,7 +533,7 @@ Hughes TJ, Tezduyar T. *Finite elements based upon Mindlin plate theory with par
 
 ## Future Work
 
-The current code serves as a versatile platform for further development. Additional validation can be performed by solving more benchmark problems and conducting more thorough comparisons between different locking alleviation methods. **Poisson locking** and **volumetric locking** are suppressed by using a **linear material model** and setting the **Poisson's ratio** to zero.   The formulation can be augmented with methods such as the **Enhanced Assumed Strain (EAS)** technique to properly address these effects when present.
+The current code serves as a versatile platform for further development. Additional validation can be performed by solving more benchmark problems and conducting more thorough comparisons between different locking alleviation methods. **Poisson locking** and **volumetric locking** are suppressed by using a **linear material model** and setting the **Poisson's ratio** to zero. The formulation can be augmented with methods such as the **Enhanced Assumed Strain (EAS)** technique to properly address these effects when present.
 
 The code is already structured to support these **extensions**. We had intended to develop these **implementations** within **FEniCSx** to establish a more **comprehensive** and more **usable** **framework** for beam problems, especially that, to the best of our knowledge, these important techniques are not yet available there, and in general, they lack beginner-friendly documentation, despite their significance for addressing locking phenomena in finite element simulations. However, **time limitations** have prevented us from pursuing this effort at present.
 
