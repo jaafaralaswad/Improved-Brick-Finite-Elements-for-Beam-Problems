@@ -661,9 +661,10 @@ def element_3D_nonlinear(ne, ne_L, nx0_e, ue, lambda_, mu, ngp_c, ngp_l, ANS_mem
     return ke, fe
 
 
+
 def gauss(ngp):
     """
-    Returns Gauss points and weights for numerical integration.
+    Returns Gauss-Legendre quadrature points and weights for [-1, 1].
 
     Parameters
     ----------
@@ -672,87 +673,62 @@ def gauss(ngp):
 
     Returns
     -------
-    XI : np.ndarray
+    xi : np.ndarray
         Coordinates of Gauss points.
-    ALPHAG : np.ndarray
-        Weights associated with Gauss points.
+    w : np.ndarray
+        Associated weights.
     """
-    XI = np.zeros(ngp)
-    ALPHAG = np.zeros(ngp)
-
-    if ngp == 1:
-        XI[0] = 0.0
-        ALPHAG[0] = 2.0
-
-    elif ngp == 2:
-        XI[:] = [-1/np.sqrt(3), 1/np.sqrt(3)]
-        ALPHAG[:] = [1.0, 1.0]
-
-    elif ngp == 3:
-        XI[:] = [-np.sqrt(3/5), 0.0, np.sqrt(3/5)]
-        ALPHAG[:] = [5/9, 8/9, 5/9]
-
-    elif ngp == 4:
-        XI[:] = [-0.861136311594053, -0.339981043584856,
-                  0.339981043584856,  0.861136311594053]
-        ALPHAG[:] = [0.347854845137454, 0.652145154862546,
-                     0.652145154862546, 0.347854845137454]
-
-    elif ngp == 5:
-        XI[:] = [-0.906179845938664, -0.538469310105683, 0.0,
-                  0.538469310105683,  0.906179845938664]
-        ALPHAG[:] = [0.236926885056189, 0.478628670499366,
-                     0.568888888888889, 0.478628670499366,
-                     0.236926885056189]
-
-    elif ngp == 6:
-        XI[:] = [-0.932469514203152, -0.661209386466265, -0.238619186083197,
-                  0.238619186083197,  0.661209386466265,  0.932469514203152]
-        ALPHAG[:] = [0.171324492379170, 0.360761573048139, 0.467913934572691,
-                     0.467913934572691, 0.360761573048139, 0.171324492379170]
-
-    elif ngp == 7:
-        XI[:] = [-0.949107912342759, -0.741531185599394, -0.405845151377397,
-                  0.0,
-                  0.405845151377397,  0.741531185599394,  0.949107912342759]
-        ALPHAG[:] = [0.129484966168870, 0.279705391489277, 0.381830050505119,
-                     0.417959183673469,
-                     0.381830050505119, 0.279705391489277, 0.129484966168870]
-
-    elif ngp == 8:
-        XI[:] = [-0.960289856497536, -0.796666477413627, -0.525532409916329,
-                 -0.183434642495650,
-                  0.183434642495650,  0.525532409916329,  0.796666477413627,
-                  0.960289856497536]
-        ALPHAG[:] = [0.101228536290376, 0.222381034453374, 0.313706645877887,
-                     0.362683783378362,
-                     0.362683783378362, 0.313706645877887, 0.222381034453374,
-                     0.101228536290376]
-
-    elif ngp == 9:
-        XI[:] = [-0.968160239507626, -0.836031107326636, -0.613371432700590,
-                 -0.324253423403809, 0.0,
-                  0.324253423403809,  0.613371432700590,  0.836031107326636,
-                  0.968160239507626]
-        ALPHAG[:] = [0.081274388361574, 0.180648160694857, 0.260610696402935,
-                     0.312347077040003, 0.330239355001260,
-                     0.312347077040003, 0.260610696402935, 0.180648160694857,
-                     0.081274388361574]
-
-    elif ngp == 10:
-        XI[:] = [-0.973906528517172, -0.865063366688985, -0.679409568299024,
-                 -0.433395394129247, -0.148874338981631,
-                  0.148874338981631,  0.433395394129247,  0.679409568299024,
-                  0.865063366688985,  0.973906528517172]
-        ALPHAG[:] = [0.066671344308688, 0.149451349150581, 0.219086362515982,
-                     0.269266719309996, 0.295524224714753,
-                     0.295524224714753, 0.269266719309996, 0.219086362515982,
-                     0.149451349150581, 0.066671344308688]
-
-    else:
+    if not (1 <= ngp <= 10):
         raise ValueError("Number of Gauss points must be between 1 and 10.")
 
-    return XI, ALPHAG
+    data = {
+        1: ([0.0], [2.0]),
+        2: ([-1/np.sqrt(3), 1/np.sqrt(3)], [1.0, 1.0]),
+        3: ([-np.sqrt(3/5), 0.0, np.sqrt(3/5)], [5/9, 8/9, 5/9]),
+        4: (
+            [-0.8611363116, -0.3399810436, 0.3399810436, 0.8611363116],
+            [0.3478548451, 0.6521451549, 0.6521451549, 0.3478548451]
+        ),
+        5: (
+            [-0.9061798459, -0.5384693101, 0.0, 0.5384693101, 0.9061798459],
+            [0.2369268851, 0.4786286705, 0.5688888889, 0.4786286705, 0.2369268851]
+        ),
+        6: (
+            [-0.9324695142, -0.6612093865, -0.2386191861,
+              0.2386191861,  0.6612093865,  0.9324695142],
+            [0.1713244924, 0.3607615730, 0.4679139346,
+             0.4679139346, 0.3607615730, 0.1713244924]
+        ),
+        7: (
+            [-0.9491079123, -0.7415311856, -0.4058451514,
+              0.0,
+              0.4058451514, 0.7415311856, 0.9491079123],
+            [0.1294849662, 0.2797053915, 0.3818300505,
+             0.4179591837,
+             0.3818300505, 0.2797053915, 0.1294849662]
+        ),
+        8: (
+            [-0.9602898565, -0.7966664774, -0.5255324099, -0.1834346425,
+              0.1834346425,  0.5255324099,  0.7966664774,  0.9602898565],
+            [0.1012285363, 0.2223810345, 0.3137066459, 0.3626837834,
+             0.3626837834, 0.3137066459, 0.2223810345, 0.1012285363]
+        ),
+        9: (
+            [-0.9681602395, -0.8360311073, -0.6133714327, -0.3242534234, 0.0,
+              0.3242534234, 0.6133714327, 0.8360311073, 0.9681602395],
+            [0.0812743884, 0.1806481607, 0.2606106964, 0.3123470770, 0.3302393550,
+             0.3123470770, 0.2606106964, 0.1806481607, 0.0812743884]
+        ),
+        10: (
+            [-0.9739065285, -0.8650633667, -0.6794095683, -0.4333953941, -0.1488743390,
+              0.1488743390, 0.4333953941, 0.6794095683, 0.8650633667, 0.9739065285],
+            [0.0666713443, 0.1494513492, 0.2190863625, 0.2692667193, 0.2955242247,
+             0.2955242247, 0.2692667193, 0.2190863625, 0.1494513492, 0.0666713443]
+        )
+    }
+
+    xi, w = data[ngp]
+    return np.array(xi), np.array(w)
 
 
 def solve_linear_system(K, R, prescribed_dofs):
@@ -792,7 +768,6 @@ def solve_linear_system(K, R, prescribed_dofs):
 
     # Set displacements
     d[free_dofs, 0] = s[:, 0]
-    d[prescribed_dofs, 0] = 0.0
 
     return d, R_r
 
@@ -824,92 +799,65 @@ def compute_C_SVK_component(Gcontra, lambda_, mu, I, J, K, L):
 
 def shape_functions_3D(ne_L, xi, eta, zta):
     """
-    Computes shape functions and their derivatives for a nonlinear 3D brick element.
+    Compute shape functions and their derivatives for a 3D brick element
+    with 2x2 nodes per cross-section and ne_L nodes in axial direction.
 
     Parameters
     ----------
     ne_L : int
-        Number of nodes along the length (xi) direction.
+        Number of nodes along the xi (length) direction.
     xi, eta, zta : float
-        Parametric coordinates.
+        Natural coordinates in the reference cube [-1, 1]^3.
 
     Returns
     -------
-    N : np.ndarray
-        Shape function values at (xi, eta, zta), shape (4*ne_L, ).
-    dN : np.ndarray
-        Derivatives of shape functions w.r.t (xi, eta, zta), shape (3, 4*ne_L).
-        dN[0, :] = dN/dxi, dN[1, :] = dN/deta, dN[2, :] = dN/dzta
+    N : (4*ne_L,) array
+        Shape functions evaluated at (xi, eta, zta).
+    dN : (3, 4*ne_L) array
+        Derivatives of shape functions with respect to xi, eta, zta.
     """
-    # Parametric coordinates of nodes in cross-sectional directions (eta and zta)
+    # Nodes in each direction
+    xi_nodes = np.linspace(-1, 1, ne_L)
     eta_nodes = [-1, 1]
     zta_nodes = [-1, 1]
 
-    # Linear Lagrangian shape functions in eta and zta
-    N_eta = [0.5 * (1 - eta), 0.5 * (1 + eta)]
-    N_zta = [0.5 * (1 - zta), 0.5 * (1 + zta)]
+    # 1D shape functions and derivatives in xi
+    N_xi = np.array([
+        np.prod([(xi - xi_nodes[m]) / (xi_nodes[k] - xi_nodes[m])
+                 for m in range(ne_L) if m != k])
+        for k in range(ne_L)
+    ])
 
-    # Parametric coordinates of nodes along xi direction
-    xi_nodes = np.linspace(-1, 1, ne_L)
-
-    # 1D Lagrangian shape functions in xi
-    N_xi = np.zeros(len(xi_nodes))
-    for k in range(len(xi_nodes)):
-        product = 1.0
-        for m in range(len(xi_nodes)):
-            if m != k:
-                product *= (xi_nodes[m] - xi) / (xi_nodes[m] - xi_nodes[k])
-        N_xi[k] = product
-
-    # Combine shape functions in all directions
-    N = np.zeros(4 * len(xi_nodes))
-    num = 0
-    for k in range(len(xi_nodes)):
-        for j in range(2):
-            for i in range(2):
-                N[num] = N_eta[i] * N_zta[j] * N_xi[k]
-                num += 1
-
-    # Initialize derivatives dN (3 rows: dN/dxi, dN/deta, dN/dzta)
-    dN = np.zeros((3, 4 * len(xi_nodes)))
-
-    # Derivatives w.r.t eta (row 1)
-    num = 0
-    for k in range(len(xi_nodes)):
-        for j in range(2):
-            for i in range(2):
-                dN[1, num] = ((-0.5 if eta_nodes[i] == -1 else 0.5) * N_zta[j] * N_xi[k])
-                num += 1
-
-    # Derivatives w.r.t zta (row 2)
-    num = 0
-    for k in range(len(xi_nodes)):
-        for j in range(2):
-            for i in range(2):
-                dN[2, num] = ((-0.5 if zta_nodes[j] == -1 else 0.5) * N_eta[i] * N_xi[k])
-                num += 1
-
-    # Derivatives w.r.t xi (row 0)
-    dXi = np.zeros(len(xi_nodes))
-    for i in range(len(xi_nodes)):
-        dl = 0.0
-        for j in range(len(xi_nodes)):
+    dN_xi = np.zeros(ne_L)
+    for i in range(ne_L):
+        for j in range(ne_L):
             if j != i:
-                dl_temp = 1.0 / (xi_nodes[i] - xi_nodes[j])
-                for k in range(len(xi_nodes)):
+                term = 1.0 / (xi_nodes[i] - xi_nodes[j])
+                for k in range(ne_L):
                     if k != i and k != j:
-                        dl_temp *= (xi - xi_nodes[k]) / (xi_nodes[i] - xi_nodes[k])
-                dl += dl_temp
-        dXi[i] = dl
+                        term *= (xi - xi_nodes[k]) / (xi_nodes[i] - xi_nodes[k])
+                dN_xi[i] += term
 
-    num = 0
-    num1 = 0
-    for k in range(len(xi_nodes)):
-        for j in range(2):
-            for i in range(2):
-                dN[0, num] = dXi[num1] * N_eta[i] * N_zta[j]
-                num += 1
-        num1 += 1
+    # Bilinear shape functions in (eta, zta)
+    N_eta = [0.5 * (1 - eta), 0.5 * (1 + eta)]
+    dN_eta = [-0.5, 0.5]
+
+    N_zta = [0.5 * (1 - zta), 0.5 * (1 + zta)]
+    dN_zta = [-0.5, 0.5]
+
+    ne = 4 * ne_L
+    N = np.zeros(ne)
+    dN = np.zeros((3, ne))  # rows: d/dxi, d/deta, d/dzta
+
+    index = 0
+    for k, Nxi in enumerate(N_xi):
+        for j, Nzt in enumerate(N_zta):
+            for i, Net in enumerate(N_eta):
+                N[index] = Net * Nzt * Nxi
+                dN[0, index] = N_eta[i] * N_zta[j] * dN_xi[k]
+                dN[1, index] = dN_eta[i] * N_zta[j] * Nxi
+                dN[2, index] = N_eta[i] * dN_zta[j] * Nxi
+                index += 1
 
     return N, dN
 

@@ -117,7 +117,6 @@ if plot_displacement:
     # Plot X displacement curve and save it
     plot_tip_displacement_x(tip_displacements, length, save_path=figures_dir / "tip_displacement_x.png")
 
-
 # ================================
 # VISUALIZE DEFORMED CONFIGURATION
 # ================================

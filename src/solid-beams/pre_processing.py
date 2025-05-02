@@ -5,44 +5,37 @@ import numpy as np
 def validate_inputs(width, height, length, E, nu, numel, ne_L, ngp_c, ngp_l, n_load_steps, max_iterations, tolerance):
     """
     Validate the input parameters for the finite element simulation.
-
-    Parameters:
-        width (float): Cross-sectional width of the beam
-        height (float): Cross-sectional height of the beam
-        length (float): Length of the beam
-        E (float): Young's modulus
-        nu (float): Poisson's ratio
-        numel (int): Number of elements along the beam length
-        ne_L (int): Number of nodes per element in the axial direction
-        ngp_c (int): Number of Gauss points in each cross-sectional direction
-        ngp_l (int): Number of Gauss points in the axial direction
-        n_load_steps (int): Number of load steps
-        max_iterations (int): Maximum number of Newton-Raphson iterations per load step
-        tolerance (float): Convergence tolerance
-
+    
     Raises:
         ValueError: If any input is outside the allowed range.
     """
+    # Geometry checks
     if width <= 0 or height <= 0 or length <= 0:
-        raise ValueError("Geometry dimensions must be positive.")
+        raise ValueError("All geometry dimensions (width, height, length) must be positive.")
+
+    # Material properties
     if E <= 0:
         raise ValueError("Young's modulus 'E' must be positive.")
     if not (0 <= nu < 0.5):
-        raise ValueError("Poisson's ratio 'nu' must be in [0, 0.5).")
+        raise ValueError("Poisson's ratio 'nu' must be in the range [0, 0.5).")
+
+    # Discretization parameters
     if numel < 1:
-        raise ValueError("Number of elements 'numel' must be at least 1.")
+        raise ValueError("'numel' (number of elements) must be at least 1.")
     if ne_L < 2:
-        raise ValueError("Number of nodes per element 'ne_L' must be at least 2.")
-    if ngp_c < 1 or ngp_c > 10:
-        raise ValueError("Number of Gauss points in each cross-sectional direction 'ngp_c' must be between 1 amd 10.")
-    if ngp_l < 1 or ngp_l > 10:
-        raise ValueError("Number of Gauss points in the axial direction 'ngp_l' must be between 1 and 10.")
+        raise ValueError("'ne_L' (nodes per element in axial direction) must be at least 2.")
+    if not (1 <= ngp_c <= 10):
+        raise ValueError("'ngp_c' (Gauss points per cross-sectional direction) must be in [1, 10].")
+    if not (1 <= ngp_l <= 10):
+        raise ValueError("'ngp_l' (Gauss points in axial direction) must be in [1, 10].")
+
+    # Solver parameters
     if n_load_steps < 1:
-        raise ValueError("Number of load steps 'n_load_steps' must be at least 1.")
+        raise ValueError("'n_load_steps' must be at least 1.")
     if max_iterations < 1:
-        raise ValueError("Maximum number of Newton-Raphson iterations per load step 'max_iterations' must be at least 1.")
+        raise ValueError("'max_iterations' must be at least 1.")
     if tolerance <= 0:
-        raise ValueError("Convergence tolerance 'tolerance' must be positive.")
+        raise ValueError("'tolerance' must be positive.")
 
 
 def create_mesh(width, height, length, numel, ne_L):
@@ -104,6 +97,7 @@ def create_mesh(width, height, length, numel, ne_L):
             connect[i, j] = j + i * nnode_W * nnode_H + i * (ne_L - 2) * nnode_W * nnode_H
 
     return coords, nnode_W, nnode_H, nnode_L, ndof, connect, ne
+
 
 def impose_supports(prescribed_nodes):
     """
