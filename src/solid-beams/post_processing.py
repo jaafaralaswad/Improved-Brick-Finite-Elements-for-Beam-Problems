@@ -42,7 +42,7 @@ def compute_tip_displacement(u, coords, connect, shape_func_3D, ne_L):
     # Interpolate displacement at the center using the shape functions
     u_center = N @ u_tip_nodes
 
-    return u_center
+    return u_center[1]
 
 
 def plot_tip_displacement_x(tip_displacements, length, save_path="tip_displacement_x.png"):

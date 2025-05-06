@@ -99,6 +99,11 @@ def create_mesh(width, height, length, numel, ne_L):
     return coords, nnode_W, nnode_H, nnode_L, ndof, connect, ne
 
 
+
+
+
+
+
 def impose_supports(prescribed_nodes):
     """
     Generate list of constrained degrees of freedom (DOFs) based on prescribed nodes.
