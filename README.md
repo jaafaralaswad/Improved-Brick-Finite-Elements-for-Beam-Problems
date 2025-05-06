@@ -98,7 +98,7 @@ First, you need to download the repository and unzip it. Then, to install the pa
  To run the first numerical example, make sure you are in the code directory. You can navigate their as you navigated to the tests folder. On my computer, I would use:
  
  ```bash
- cd /Users/jaafaralaswad/Downloads/Improved-Brick-Finite-Elements-for-Beam-Problems-main/src/solid-beams/Numerical Example 1
+ cd /Users/jaafaralaswad/Downloads/Improved-Brick-Finite-Elements-for-Beam-Problems-main/src/solid-beams/Numerical-Example-1
  ```
  
 Once you are there, you can either open the files in VS Code to run and edit them interactively, or execute the scripts directly from the terminal using:
@@ -123,7 +123,7 @@ Similarly, to run the comparisons between the locking modes and the alleviation 
   To run the second numerical example, make sure you are in the code directory. You can navigate their as you navigated to the tests folder. On my computer, I would use:
  
  ```bash
- cd /Users/jaafaralaswad/Downloads/Improved-Brick-Finite-Elements-for-Beam-Problems-main/src/solid-beams/Numerical Example 2
+ cd /Users/jaafaralaswad/Downloads/Improved-Brick-Finite-Elements-for-Beam-Problems-main/src/solid-beams/Numerical-Example-2
  ```
  
 Once you are there, you can either open the files in VS Code to run and edit them interactively, or execute the scripts directly from the terminal using:
