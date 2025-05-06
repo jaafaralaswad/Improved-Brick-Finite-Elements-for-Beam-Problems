@@ -18,7 +18,7 @@
 - [Locking Modes](#locking-modes)
 - [Assumed Natural Strain Method](#assumed-natural-strain-method)
 - [Code Usage Instructions](#code-usage-instructions)
-- [Numerical Example](#numerical-example)
+- [Numerical Example 1](#numerical-example-1)
 - [Future Work](#future-work)
 
 ## ME700 Skills
@@ -485,7 +485,7 @@ The parameters are:
 Other modifications, such as changing the load and boundary conditions, must be made manually within their respective functions.
 
 
-## Numerical Example
+## Numerical Example 1
 
 The problem we solve here is a rectangular **cantiliever beam** subjected to **bending moment applied at its tip**.  
 
@@ -582,6 +582,39 @@ In ANS, full integration is typically used. The following important paper by Hug
 [*Finite elements based upon Mindlin plate theory with particular reference to the four-node bilinear isoparametric element.*](https://doi.org/10.1115/1.3157679) *American Society of Mechanical Engineers, Applied Mechanics Division (AMD)*, **44**, 81–106 (1981).
 
 > The above plot is created using automation_2.py.
+
+
+
+## Numerical Example 2
+
+The problem we solve here is a rectangular **cantiliever beam** subjected to a **conservative shear force applied at its tip**.  
+
+
+We simulate the cantilever beam using the following parameters: `width = 1.0`, `height = 1.0`, `length = 6.0` and `length = 300.0`, `E = 12`, `ν = 0.0`; discretized with 3 elements along the length and `ne_L = 3` nodes per element (quadratic shape functions axially). Gauss integration uses `ngp_c = 2` in each cross-sectional direction and `ngp_l = 3` axially (i.e. full integration). Locking alleviation techniques are enabled: `ANS_membrane = True`, `ANS_shear = True`, `ANS_curvature = True`. The solution proceeds over 10 load steps with a maximum of 20 Newton-Raphson iterations per step and a convergence tolerance of `1e-15`. We apply a shear force equal to $4 EI/L^2$ (we non-dimensionalize in the code).
+
+We compare the vertical displacement interpolated at the tip of the beam and interpolate it against the factor $k$ for the two different lengths `length = 6.0` and `length = 300.0`, where the length of the finite element is $a=3$ for the former and $a=100$ for the latter.
+
+<p align="center">
+  <img src="README_figures/vertical-tip_displacement_comparison.png" alt="vertical-displacement-comparison" width="600"/>
+</p>
+
+> The above plot is created using automation_3.py.
+
+These results are in good agreement with what is reported in the literature. For instance, the following figure is given in Shafqat et. al. (2024). They are using higher-order NURBS in the length direction, where we use quadratic Lagrange polynomials in the length direction.
+
+<p align="center">
+  <img src="README_figures/shafqat-results.png" alt="shafqat-results" width="600"/>
+</p>
+
+Now, we compare the different modes of locking for the case of `length = 300.0`. We get the following 
+
+<p align="center">
+  <img src="README_figures/locking_alleviation_comparison.png" alt="locking-methods-comparison" width="600"/>
+</p>
+
+> The above plot is created using automation_4.py.
+
+Thus, this thin beam is acting similar to a rope under tension.
 
 
 ## Future Work
