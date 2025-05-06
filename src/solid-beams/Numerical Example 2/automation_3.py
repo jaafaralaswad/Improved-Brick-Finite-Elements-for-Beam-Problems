@@ -12,8 +12,9 @@ from post_processing import compute_tip_displacement
 #       SETUP FIGURE DIRECTORY
 # ==============================
 
-figures_dir = Path(__file__).resolve().parent / "generated-figures"
-figures_dir.mkdir(parents=True, exist_ok=True)
+# Set directory to save figures and plots
+figures_dir = Path(__file__).resolve().parents[3] / "generated-figures"
+figures_dir.mkdir(exist_ok=True)
 
 # ==============================
 #       COMMON PARAMETERS

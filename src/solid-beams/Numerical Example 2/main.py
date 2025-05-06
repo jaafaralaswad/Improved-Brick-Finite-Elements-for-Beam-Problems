@@ -14,6 +14,7 @@ import visualize as viz
 #       SETUP FIGURE DIRECTORY
 # ==============================
 
+# Set directory to save figures and plots
 figures_dir = Path(__file__).resolve().parents[3] / "generated-figures"
 figures_dir.mkdir(exist_ok=True)
 

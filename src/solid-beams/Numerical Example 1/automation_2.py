@@ -12,8 +12,9 @@ from post_processing import compute_tip_displacement
 #       SETUP FIGURE DIRECTORY
 # ==============================
 
-figures_dir = Path(__file__).resolve().parents[2] / "generated-figures"
-figures_dir.mkdir(parents=True, exist_ok=True)
+# Set directory to save figures and plots
+figures_dir = Path(__file__).resolve().parents[3] / "generated-figures"
+figures_dir.mkdir(exist_ok=True)
 
 # ==============================
 #       FIXED PARAMETERS
@@ -86,7 +87,7 @@ linestyles = ["-", "--", "-.", (0, (3,1,1,1)), ":"]
 
 for i, (label, tips) in enumerate(tip_displacements_all):
     disp_array = np.array(tips)
-    x_disp = np.abs(disp_array[:, 0])
+    x_disp = np.abs(disp_array)
     x_disp = np.insert(x_disp, 0, 0.0)
     x_disp_normalized = x_disp / length
     n_steps = len(x_disp_normalized)

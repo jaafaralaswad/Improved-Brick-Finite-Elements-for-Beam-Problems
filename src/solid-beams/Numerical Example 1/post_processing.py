@@ -42,7 +42,7 @@ def compute_tip_displacement(u, coords, connect, shape_func_3D, ne_L):
     # Interpolate displacement at the center using the shape functions
     u_center = N @ u_tip_nodes
 
-    return u_center[1]
+    return u_center[0]
 
 
 def plot_tip_displacement_x(tip_displacements, length, save_path="tip_displacement_x.png"):
@@ -59,9 +59,9 @@ def plot_tip_displacement_x(tip_displacements, length, save_path="tip_displaceme
         File path to save the figure.
     """
 
-    # Convert list of tip displacements to a NumPy array
+
     disp_array = np.array(tip_displacements)
-    x_disp = np.abs(disp_array[:, 0])  # Absolute value of x displacement
+    x_disp = np.abs(disp_array)   # Absolute value of x displacement
 
     # Add zero at the beginning for undeformed "step"
     x_disp = np.insert(x_disp, 0, 0.0)
