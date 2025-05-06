@@ -593,23 +593,34 @@ The problem we solve here is a rectangular **cantiliever beam** subjected to a *
 
 We simulate the cantilever beam using the following parameters: `width = 1.0`, `height = 1.0`, `length = 6.0` and `length = 300.0`, `E = 12`, `ν = 0.0`; discretized with 3 elements along the length and `ne_L = 3` nodes per element (quadratic shape functions axially). Gauss integration uses `ngp_c = 2` in each cross-sectional direction and `ngp_l = 3` axially (i.e. full integration). Locking alleviation techniques are enabled: `ANS_membrane = True`, `ANS_shear = True`, `ANS_curvature = True`. The solution proceeds over 10 load steps with a maximum of 20 Newton-Raphson iterations per step and a convergence tolerance of `1e-15`. We apply a shear force equal to $4 EI/L^2$ (we non-dimensionalize in the code).
 
+Undeformed configuration for `length = 6.0`:
+
 <p align="center">
   <img src="README_figures/numerical_example_2_case_a_undeformed.png" alt="Undeformed configuration - Example 2 - Case A" width="600"/>
 </p>
+
+
+Deformed configuration for `length = 6.0`:
 
 <p align="center">
   <img src="README_figures/numerical_example_2_case_a_deformed.png" alt="Deformed configuration - Example 2 - Case A" width="600"/>
 </p>
 
+
+Undeformed configuration for `length = 300.0`:
+
+<p align="center">
+  <img src="README_figures/numerical_example_2_case_b_undeformed.png" alt="Undeformed configuration - Example 2 - Case B" width="600"/>
+</p>
+
+
+Deformed configuration for `length = 300.0`:
+
 <p align="center">
   <img src="README_figures/numerical_example_2_case_b_deformed.png" alt="Deformed configuration - Example 2 - Case B" width="600"/>
 </p>
 
-
-<p align="center">
-  <img src="README_figures/numerical_example_2_case_b_deformed.png" alt="Deformed configuration - Example 2 - Case B" width="600"/>
-</p>
-
+> The above figure are generated manually using main.py. They are only 3 elements, but might appear as 6 becasue they are higher order elements.
 
 
 
