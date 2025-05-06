@@ -646,7 +646,7 @@ Now, we compare the different modes of locking for the case of `length = 300.0`.
 
 > The above plot is created using automation_4.py.
 
-Thus, this thin beam is acting similar to a rope under tension.
+Thus, this thin beam is dominated by membrane locking, so it is acting like a rope under tension.
 
 
 ## Future Work
