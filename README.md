@@ -95,10 +95,10 @@ First, you need to download the repository and unzip it. Then, to install the pa
  pip install -e /Users/jaafaralaswad/Downloads/Improved-Brick-Finite-Elements-for-Beam-Problems-main
  ```
  
- To run the tutorial, make sure you are in the code directory. You can navigate their as you navigated to the tests folder. On my computer, I would use:
+ To run the first numerical example, make sure you are in the code directory. You can navigate their as you navigated to the tests folder. On my computer, I would use:
  
  ```bash
- cd /Users/jaafaralaswad/Downloads/Improved-Brick-Finite-Elements-for-Beam-Problems-main/src/solid-beams
+ cd /Users/jaafaralaswad/Downloads/Improved-Brick-Finite-Elements-for-Beam-Problems-main/src/solid-beams/Numerical Example 1
  ```
  
 Once you are there, you can either open the files in VS Code to run and edit them interactively, or execute the scripts directly from the terminal using:
@@ -118,6 +118,32 @@ Similarly, to run the comparisons between the locking modes and the alleviation 
  ```
  
  respectively.
+
+
+  To run the second numerical example, make sure you are in the code directory. You can navigate their as you navigated to the tests folder. On my computer, I would use:
+ 
+ ```bash
+ cd /Users/jaafaralaswad/Downloads/Improved-Brick-Finite-Elements-for-Beam-Problems-main/src/solid-beams/Numerical Example 2
+ ```
+ 
+Once you are there, you can either open the files in VS Code to run and edit them interactively, or execute the scripts directly from the terminal using:
+
+ ```bash
+ python main.py
+ ```
+ 
+Similarly, to run the deflection comparison and the comparison between the locking modes, you can either open the corresponding scripts in VS Code or run them from the terminal:
+
+ ```bash
+ python automation_3.py
+ ```
+ 
+ ```bash
+ python automation_4.py
+ ```
+ 
+ respectively.
+
 
 ## The Boundary Value Problem
 
